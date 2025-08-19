@@ -1,0 +1,441 @@
+// Visual Master Summary Styles
+@import (reference) "./seo";
+
+// Visual Comparison Header (matching style from master summary)
+.visual-comparison-header {
+    background: linear-gradient(135deg, @viz-purple 0%, darken(@viz-purple, 15%) 100%);
+    color: @brand-white;
+    padding: 3em 0;
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><pattern id="visual" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="30" cy="30" r="2" fill="rgba(255,255,255,0.1)"/><rect x="10" y="10" width="40" height="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(%23visual)"/></svg>');
+        opacity: 0.3;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .header-breadcrumbs {
+        margin-bottom: 1.5em;
+        
+        .breadcrumbs ul {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+            li {
+                color: @brand-white;
+                
+                a {
+                    color: @brand-white;
+                    opacity: 0.8;
+                    
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2em;
+        
+        @media (max-width: @widthTablet) {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    
+    .comparison-info {
+        flex: 1;
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+            color: @brand-white;
+            
+            @media (max-width: @widthMobile) {
+                font-size: 2rem;
+            }
+        }
+        
+        .comparison-sites {
+            margin-bottom: 1em;
+            
+            .site-name {
+                font-family: @data;
+                font-size: 1.1rem;
+                font-weight: 600;
+                background: rgba(255, 255, 255, 0.2);
+                padding: 0.5em 1em;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+        }
+        
+        .comparison-meta {
+            display: flex;
+            gap: 2em;
+            font-family: @data;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            
+            @media (max-width: @widthMobile) {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+            
+            span {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 0.5em 1em;
+                border-radius: 6px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+    
+    .overall-score-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            
+            .score-percentage {
+                font-family: @data;
+                font-size: 2rem;
+                font-weight: 700;
+                color: @brand-white;
+                line-height: 1;
+            }
+            
+            .score-label {
+                font-size: 0.7rem;
+                opacity: 0.9;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                text-align: center;
+            }
+        }
+        
+        .score-grade {
+            text-align: center;
+            
+            .grade-letter {
+                font-size: 3rem;
+                font-weight: 700;
+                display: block;
+                line-height: 1;
+            }
+            
+            .grade-description {
+                font-size: 1rem;
+                opacity: 0.9;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+// Metrics Overview
+.metrics-overview {
+    background: @brand-white;
+    
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2em;
+        
+        @media (max-width: @widthTablet) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: @widthMobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .metric-card {
+        background: @brand-light-gray;
+        border-radius: 12px;
+        padding: 2em;
+        text-align: center;
+        border-left: 5px solid;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        &.layout { border-left-color: @viz-blue; }
+        &.colors { border-left-color: @viz-red; }
+        &.typography { border-left-color: @viz-green; }
+        &.responsive { border-left-color: @viz-orange; }
+        &.design-system { border-left-color: @viz-purple; }
+        &.hierarchy { border-left-color: @viz-teal; }
+        &.spacing { border-left-color: @viz-pink; }
+        
+        .metric-icon {
+            font-size: 3rem;
+            margin-bottom: 1em;
+        }
+        
+        .metric-content {
+            .metric-score {
+                font-family: @data;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: @brand-primary;
+                line-height: 1;
+                margin-bottom: 0.5em;
+            }
+            
+            .metric-label {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: @brand-text;
+                margin-bottom: 1em;
+            }
+            
+            .metric-bar {
+                width: 100%;
+                height: 8px;
+                background: @brand-light-gray;
+                border-radius: 4px;
+                overflow: hidden;
+                border: 1px solid #ddd;
+                
+                .metric-fill {
+                    height: 100%;
+                    border-radius: 4px;
+                    transition: width 1s ease-out;
+                    
+                    &.layout { background: @viz-blue; }
+                    &.colors { background: @viz-red; }
+                    &.typography { background: @viz-green; }
+                    &.responsive { background: @viz-orange; }
+                    &.design-system { background: @viz-purple; }
+                    &.hierarchy { background: @viz-teal; }
+                    &.spacing { background: @viz-pink; }
+                }
+            }
+        }
+    }
+}
+
+// Insights Section
+.insights-section {
+    background: @brand-light-gray;
+    padding: 4em 0;
+    
+    .insights-container {
+        display: grid;
+        gap: 1.5em;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .insight-item {
+        background: @brand-white;
+        border-radius: 12px;
+        padding: 2em;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid @viz-blue;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .insight-content {
+            .insight-text {
+                font-size: 1.1rem;
+                color: @brand-text;
+                line-height: 1.6;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+// Page Comparisons (using bubble effect)
+.page-comparisons {
+    background: @brand-white;
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: @brand-gray;
+        margin-bottom: 3em;
+        text-align: center;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 3em;
+    }
+    
+    .page-reports-grid {
+        display: grid;
+        gap: 1em;
+        max-width: 900px;
+        margin: 0 auto;
+        
+        @media (max-width: @widthMobile) {
+            gap: 0.75em;
+        }
+    }
+}
+
+// Footer CTA
+.footer-cta {
+    background: linear-gradient(135deg, @viz-purple 0%, darken(@viz-purple, 10%) 100%);
+    color: @brand-white;
+    padding: 4em 0;
+    text-align: center;
+    
+    .cta-content {
+        max-width: 600px;
+        margin: 0 auto;
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1em;
+            color: @brand-white;
+            
+            @media (max-width: @widthTablet) {
+                font-size: 2rem;
+            }
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2em;
+            opacity: 0.9;
+        }
+    }
+    
+    .cta-buttons {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        
+        @media (max-width: @widthMobile) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: @widthTablet) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .visual-comparison-header {
+        .page-title {
+            font-size: 2rem;
+        }
+        
+        .overall-score-display {
+            .score-circle {
+                width: 100px;
+                height: 100px;
+                
+                .score-percentage {
+                    font-size: 1.5rem;
+                }
+            }
+            
+            .grade-letter {
+                font-size: 2.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: @widthMobile) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insights-container {
+        gap: 1em;
+    }
+    
+    .insight-item {
+        padding: 1.5em;
+        
+        .insight-text {
+            font-size: 1rem;
+        }
+    }
+}
+
+// Animation enhancements
+.metric-card,
+.insight-item {
+    animation: slideInUp 0.6s ease-out both;
+    
+    &:nth-child(1) { animation-delay: 0.1s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+    &:nth-child(4) { animation-delay: 0.4s; }
+    &:nth-child(5) { animation-delay: 0.5s; }
+    &:nth-child(6) { animation-delay: 0.6s; }
+    &:nth-child(7) { animation-delay: 0.7s; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Print styles
+@media print {
+    .visual-comparison-header {
+        background: @brand-light-gray !important;
+        color: @brand-black !important;
+    }
+    
+    .metric-card,
+    .insight-item {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid @brand-gray !important;
+    }
+    
+    .footer-cta {
+        display: none !important;
+    }
+}

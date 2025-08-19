@@ -1,0 +1,989 @@
+title: "Visual Page Comparison - {{page1.pageId}} vs {{page2.pageId}} | MrAnalyze"
+description: "Detailed visual comparison between two specific pages including layout, colors, typography, responsive
+design and visual hierarchy analysis."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/report_visual_page.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#visualPage}}
+
+    <!-- Header Section -->
+    <header class="visual-page-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="/report/{{report}}/visual/">Visual Summary Analysis</a></li>
+                        <li><a href="/report/{{report}}/visual/compare/{{comparison}}/">Site Comparison</a></li>
+                        <li>Page Comparison</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="page-comparison-info">
+                    <h1 class="page-title">Visual Page Comparison</h1>
+                    <div class="pages-display">
+                        <div class="page-item">
+                            <span class="page-label">{{#getFirstSite}}{{page1.folder}}{{/getFirstSite}}</span>
+                            <span class="page-name">{{page1.pageId}}</span>
+                            <span class="folder-name">Folder: {{page1.folder}}</span>
+                            <a href="/report/{{report}}/page/{{page1.folder}}/{{page1.pageId}}/" class="button-blue">Route Analysis</a>
+                        </div>
+                        <div class="vs-separator">VS</div>
+                        <div class="page-item">
+                            <span class="page-label">{{#getFirstSite}}{{page2.folder}}{{/getFirstSite}}</span>
+                            <span class="page-name">{{page2.pageId}}</span>
+                            <span class="folder-name">Folder: {{page2.folder}}</span>
+                            <a href="/report/{{report}}/page/{{page2.folder}}/{{page2.pageId}}/" class="button-blue">Route Analysis</a>
+                        </div>
+                    </div>
+                    <div class="page-meta">
+                        <span class="page-index">Page {{pageIndex}} Comparison</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="overall-score-display">
+                    <div class="score-circle" data-score="{{visual.overallScore}}">
+                        <div class="score-percentage">{{#multiply}}{{visual.overallScore}} 100{{/multiply}}%</div>
+                        <div class="score-label">Visual Similarity</div>
+                    </div>
+                    <div class="score-breakdown">
+                        <div class="mini-score">
+                            <span class="mini-value">{{#multiply}}{{visual.layout.score}} 100{{/multiply}}%</span>
+                            <span class="mini-label">Layout</span>
+                        </div>
+                        <div class="mini-score">
+                            <span class="mini-value">{{#multiply}}{{visual.colors.score}} 100{{/multiply}}%</span>
+                            <span class="mini-label">Colors</span>
+                        </div>
+                        <div class="mini-score">
+                            <span class="mini-value">{{#multiply}}{{visual.typography.score}} 100{{/multiply}}%</span>
+                            <span class="mini-label">Typography</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Dashboard -->
+    <section class="interactive-dashboard paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Interactive Analysis Dashboard</h2>
+
+            <div class="dashboard-tabs">
+                <button class="tab-button active" data-tab="overview">Overview</button>
+                <button class="tab-button" data-tab="layout">Layout Structure</button>
+                <button class="tab-button" data-tab="colors">Color Analysis</button>
+                <button class="tab-button" data-tab="typography">Typography</button>
+                <button class="tab-button" data-tab="responsive">Responsive Design</button>
+                <button class="tab-button" data-tab="design-system">🎨 Design System</button>
+                <button class="tab-button" data-tab="hierarchy">Visual Hierarchy</button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="overview-tab">
+                <div class="overview-grid">
+                    <div class="metric-card layout-card" data-score="{{visual.layout.score}}">
+                        <div class="card-header">
+                            <div class="metric-icon">📐</div>
+                            <div class="metric-title">Layout Structure</div>
+                            <div class="metric-score">{{#multiply}}{{visual.layout.score}} 100{{/multiply}}%</div>
+                        </div>
+                        <div class="metric-details">
+                            <div class="detail-item">
+                                <span>Structural Similarity:</span>
+                                <span>{{#multiply}}{{visual.layout.structuralSimilarity}} 100{{/multiply}}%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Dimension Similarity:</span>
+                                <span>{{#multiply}}{{visual.layout.dimensionSimilarity}} 100{{/multiply}}%</span>
+                            </div>
+                        </div>
+                        <div class="progress-ring"
+                            data-progress="{{#multiply}}{{visual.layout.score}} 100{{/multiply}}">
+                            <svg class="progress-ring-svg" viewBox="0 0 100 100">
+                                <circle class="progress-ring-circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="progress-ring-circle" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="metric-card colors-card" data-score="{{visual.colors.score}}">
+                        <div class="card-header">
+                            <div class="metric-icon">🎨</div>
+                            <div class="metric-title">Color Schemes</div>
+                            <div class="metric-score">{{#multiply}}{{visual.colors.score}} 100{{/multiply}}%</div>
+                        </div>
+                        <div class="metric-details">
+                            <div class="detail-item">
+                                <span>Overall Similarity:</span>
+                                <span>{{#multiply}}{{visual.colors.overallColorSimilarity}} 100{{/multiply}}%</span>
+                            </div>
+                            {{#visual.colors.elementComparisons}}
+                            <div class="detail-item">
+                                <span>{{#titleCase}}{{elementName}}{{/titleCase}} Similarity:</span>
+                                <span>{{#multiply}}{{score}} 100{{/multiply}}%</span>
+                            </div>
+                            {{/visual.colors.elementComparisons}}
+                        </div>
+                        <div class="progress-ring"
+                            data-progress="{{#multiply}}{{visual.colors.score}} 100{{/multiply}}">
+                            <svg class="progress-ring-svg" viewBox="0 0 100 100">
+                                <circle class="progress-ring-circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="progress-ring-circle" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="metric-card typography-card" data-score="{{visual.typography.score}}">
+                        <div class="card-header">
+                            <div class="metric-icon">📝</div>
+                            <div class="metric-title">Typography</div>
+                            <div class="metric-score">{{#multiply}}{{visual.typography.score}} 100{{/multiply}}%</div>
+                        </div>
+                        <div class="metric-details">
+                            {{#visual.typography.elementComparisons}}
+                            <div class="detail-item">
+                                <span>{{#titleCase}}{{elementName}}{{/titleCase}} Similarity:</span>
+                                <span>{{#multiply}}{{score}} 100{{/multiply}}%</span>
+                            </div>
+                            {{/visual.typography.elementComparisons}}
+                        </div>
+                        <div class="progress-ring"
+                            data-progress="{{#multiply}}{{visual.typography.score}} 100{{/multiply}}">
+                            <svg class="progress-ring-svg" viewBox="0 0 100 100">
+                                <circle class="progress-ring-circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="progress-ring-circle" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="metric-card responsive-card" data-score="{{visual.responsiveDesign.score}}">
+                        <div class="card-header">
+                            <div class="metric-icon">📱</div>
+                            <div class="metric-title">Responsive Design</div>
+                            <div class="metric-score">{{#multiply}}{{visual.responsiveDesign.score}} 100{{/multiply}}%
+                            </div>
+                        </div>
+                        <div class="metric-details">
+                            {{#visual.responsiveDesign.viewportScores}}
+                            <div class="detail-item">
+                                <span>{{#titleCase}}{{viewportName}}{{/titleCase}} Score:</span>
+                                <span>{{#multiply}}{{overall}} 100{{/multiply}}%</span>
+                            </div>
+                            {{/visual.responsiveDesign.viewportScores}}
+                        </div>
+                        <div class="progress-ring"
+                            data-progress="{{#multiply}}{{visual.responsiveDesign.score}} 100{{/multiply}}">
+                            <svg class="progress-ring-svg" viewBox="0 0 100 100">
+                                <circle class="progress-ring-circle-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="progress-ring-circle" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layout Tab -->
+            <div class="tab-content" id="layout-tab">
+                <div class="layout-analysis">
+                    <div class="analysis-header">
+                        <h3>Layout Structure Analysis</h3>
+                        <div class="score-badge">{{#multiply}}{{visual.layout.score}} 100{{/multiply}}% Similarity</div>
+                    </div>
+
+                    <div class="layout-grid">
+                        <div class="layout-details-grid">
+                            {{#visual.layout.details}}
+                            <div class="layout-detail-card {{#booleanClass}}{{match}}{{/booleanClass}}">
+                                <div class="detail-header">
+                                    <span class="detail-name">{{name}}</span>
+                                    <span class="match-indicator {{#booleanClass}}{{match}}{{/booleanClass}}">
+                                        {{#booleanText}}{{match}}{{/booleanText}}
+                                    </span>
+                                </div>
+                                <div class="page-comparison">
+                                    <div class="page-detail">
+                                        <span class="page-label">{{page1.pageId}}</span>
+                                        <span class="page-value {{#booleanClass}}{{page1}}{{/booleanClass}}">
+                                            {{#booleanText}}{{page1}}{{/booleanText}}
+                                        </span>
+                                    </div>
+                                    <div class="page-detail">
+                                        <span class="page-label">{{page2.pageId}}</span>
+                                        <span class="page-value {{#booleanClass}}{{page2}}{{/booleanClass}}">
+                                            {{#booleanText}}{{page2}}{{/booleanText}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/visual.layout.details}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colors Tab -->
+            <div class="tab-content" id="colors-tab">
+                <div class="colors-analysis">
+                    <div class="analysis-header">
+                        <h3>Color Scheme Analysis</h3>
+                        <div class="score-badge">{{#multiply}}{{visual.colors.score}} 100{{/multiply}}% Similarity</div>
+                    </div>
+
+                    <div class="color-comparisons">
+                        {{#visual.colors.elementComparisons}}
+                        <div class="color-element-card">
+                            <div class="element-header">
+                                <h4>{{elementName}} Element</h4>
+                                <div class="element-score">{{#multiply}}{{score}} 100{{/multiply}}%</div>
+                            </div>
+
+                            <div class="color-details">
+                                <div class="color-comparison">
+                                    <div class="color-type">Background Color</div>
+                                    <div class="color-swatches">
+                                        <div class="color-swatch">
+                                            <div class="swatch" style="background-color: {{backgroundColor.color1}};">
+                                            </div>
+                                            <span class="color-value">{{backgroundColor.color1}}</span>
+                                        </div>
+                                        <div class="vs-indicator">vs</div>
+                                        <div class="color-swatch">
+                                            <div class="swatch" style="background-color: {{backgroundColor.color2}};">
+                                            </div>
+                                            <span class="color-value">{{backgroundColor.color2}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="similarity-score">{{#multiply}}{{backgroundColor.similarity}}
+                                        100{{/multiply}}% similar</div>
+                                </div>
+
+                                <div class="color-comparison">
+                                    <div class="color-type">Text Color</div>
+                                    <div class="color-swatches">
+                                        <div class="color-swatch">
+                                            <div class="swatch" style="background-color: {{textColor.color1}};"></div>
+                                            <span class="color-value">{{textColor.color1}}</span>
+                                        </div>
+                                        <div class="vs-indicator">vs</div>
+                                        <div class="color-swatch">
+                                            <div class="swatch" style="background-color: {{textColor.color2}};"></div>
+                                            <span class="color-value">{{textColor.color2}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="similarity-score">{{#multiply}}{{textColor.similarity}}
+                                        100{{/multiply}}% similar</div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/visual.colors.elementComparisons}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typography Tab -->
+            <div class="tab-content" id="typography-tab">
+                <div class="typography-analysis">
+                    <div class="analysis-header">
+                        <h3>Typography Analysis</h3>
+                        <div class="score-badge">{{#multiply}}{{visual.typography.score}} 100{{/multiply}}% Similarity
+                        </div>
+                    </div>
+
+                    <div class="typography-comparisons">
+                        {{#visual.typography.elementComparisons}}
+                        <div class="typography-element-card">
+                            <div class="element-header">
+                                <h4>{{elementName}} Typography</h4>
+                                <div class="element-score">{{#multiply}}{{score}} 100{{/multiply}}%</div>
+                            </div>
+
+                            <div class="typography-details">
+                                <div class="typo-comparison">
+                                    <div class="typo-property">Font Size</div>
+                                    <div class="typo-values">
+                                        <span class="value-1">{{fontSize.value1}}</span>
+                                        <span class="vs">vs</span>
+                                        <span class="value-2">{{fontSize.value2}}</span>
+                                    </div>
+                                    <div class="property-score">{{#multiply}}{{fontSize.score}} 100{{/multiply}}%</div>
+                                </div>
+
+                                <div class="typo-comparison">
+                                    <div class="typo-property">Font Family</div>
+                                    <div class="typo-values">
+                                        <span class="value-1">{{fontFamily.value1}}</span>
+                                        <span class="vs">vs</span>
+                                        <span class="value-2">{{fontFamily.value2}}</span>
+                                    </div>
+                                    <div class="property-score">{{#multiply}}{{fontFamily.score}} 100{{/multiply}}%
+                                    </div>
+                                </div>
+
+                                <div class="typo-comparison">
+                                    <div class="typo-property">Font Weight</div>
+                                    <div class="typo-values">
+                                        <span class="value-1">{{fontWeight.value1}}</span>
+                                        <span class="vs">vs</span>
+                                        <span class="value-2">{{fontWeight.value2}}</span>
+                                    </div>
+                                    <div class="property-score">{{#multiply}}{{fontWeight.score}} 100{{/multiply}}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/visual.typography.elementComparisons}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsive Tab -->
+            <div class="tab-content" id="responsive-tab">
+                <div class="responsive-analysis">
+                    <div class="analysis-header">
+                        <h3>Responsive Design Analysis</h3>
+                        <div class="score-badge">{{#multiply}}{{visual.responsiveDesign.score}} 100{{/multiply}}%
+                            Similarity</div>
+                    </div>
+
+                    <div class="viewport-scores">
+                        {{#visual.responsiveDesign.viewportScores}}
+                        <div class="viewport-card">
+                            <div class="viewport-header">
+                                <div class="viewport-icon">
+                                    {{#ifEquals}}{{viewportName}}|||desktop|||📖{{/ifEquals}}
+                                    {{#ifEquals}}{{viewportName}}|||tablet|||📱{{/ifEquals}}
+                                    {{#ifEquals}}{{viewportName}}|||mobile|||📱{{/ifEquals}}
+                                </div>
+                                <h4>{{#titleCase}}{{viewportName}}{{/titleCase}}</h4>
+                                <div class="viewport-score">{{#multiply}}{{overall}} 100{{/multiply}}%</div>
+                            </div>
+
+                            <div class="viewport-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">Layout:</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill"
+                                            style="width: {{#multiply}}{{layout}} 100{{/multiply}}%;"></div>
+                                    </div>
+                                    <span class="metric-value">{{#multiply}}{{layout}} 100{{/multiply}}%</span>
+                                </div>
+
+                                <div class="metric-item">
+                                    <span class="metric-label">Visibility:</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill"
+                                            style="width: {{#multiply}}{{visibility}} 100{{/multiply}}%;"></div>
+                                    </div>
+                                    <span class="metric-value">{{#multiply}}{{visibility}} 100{{/multiply}}%</span>
+                                </div>
+
+                                <div class="metric-item">
+                                    <span class="metric-label">Navigation:</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill"
+                                            style="width: {{#multiply}}{{navigation}} 100{{/multiply}}%;"></div>
+                                    </div>
+                                    <span class="metric-value">{{#multiply}}{{navigation}} 100{{/multiply}}%</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{/visual.responsiveDesign.viewportScores}}
+                    </div>
+
+                    <!-- Responsive Patterns Section -->
+                    <div class="responsive-patterns">
+                        <h4>Responsive Implementation Patterns</h4>
+                        <div class="patterns-comparison">
+                            <div class="pattern-card">
+                                <div class="pattern-header">
+                                    <h5>Page 1 Patterns</h5>
+                                    <div class="page-label">{{page1.pageId}}</div>
+                                </div>
+                                <div class="pattern-features">
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page1.hasResponsiveImages}}{{/booleanClass}}">
+                                        <span class="feature-icon">🖼️</span>
+                                        <span class="feature-name">Responsive Images</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page1.hasResponsiveImages}}{{/booleanText}}</span>
+                                    </div>
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page1.hasFluidTypography}}{{/booleanClass}}">
+                                        <span class="feature-icon">📝</span>
+                                        <span class="feature-name">Fluid Typography</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page1.hasFluidTypography}}{{/booleanText}}</span>
+                                    </div>
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page1.hasGridSystem}}{{/booleanClass}}">
+                                        <span class="feature-icon">⚡</span>
+                                        <span class="feature-name">Grid System</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page1.hasGridSystem}}{{/booleanText}}</span>
+                                    </div>
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page1.hasMobileFirst}}{{/booleanClass}}">
+                                        <span class="feature-icon">📱</span>
+                                        <span class="feature-name">Mobile First</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page1.hasMobileFirst}}{{/booleanText}}</span>
+                                    </div>
+                                    <div class="layout-strategy">
+                                        <span class="strategy-label">Layout Strategy:</span>
+                                        <span
+                                            class="strategy-value">{{#titleCase}}{{visual.responsiveDesign.responsivePatterns.page1.layoutStrategy}}{{/titleCase}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pattern-similarity">
+                                <div class="similarity-score">
+                                    <div class="score-circle">
+                                        <span
+                                            class="score-number">{{#multiply}}{{visual.responsiveDesign.responsivePatterns.similarity}}
+                                            100{{/multiply}}%</span>
+                                    </div>
+                                    <div class="score-label">Pattern Similarity</div>
+                                </div>
+                            </div>
+
+                            <div class="pattern-card">
+                                <div class="pattern-header">
+                                    <h5>Page 2 Patterns</h5>
+                                    <div class="page-label">{{page2.pageId}}</div>
+                                </div>
+                                <div class="pattern-features">
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page2.hasResponsiveImages}}{{/booleanClass}}">
+                                        <span class="feature-icon">🖼️</span>
+                                        <span class="feature-name">Responsive Images</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page2.hasResponsiveImages}}{{/booleanText}}</span>
+                                    </div>
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page2.hasFluidTypography}}{{/booleanClass}}">
+                                        <span class="feature-icon">📝</span>
+                                        <span class="feature-name">Fluid Typography</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page2.hasFluidTypography}}{{/booleanText}}</span>
+                                    </div>
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page2.hasGridSystem}}{{/booleanClass}}">
+                                        <span class="feature-icon">⚡</span>
+                                        <span class="feature-name">Grid System</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page2.hasGridSystem}}{{/booleanText}}</span>
+                                    </div>
+                                    <div
+                                        class="feature-item {{#booleanClass}}{{visual.responsiveDesign.responsivePatterns.page2.hasMobileFirst}}{{/booleanClass}}">
+                                        <span class="feature-icon">📱</span>
+                                        <span class="feature-name">Mobile First</span>
+                                        <span
+                                            class="feature-status">{{#booleanText}}{{visual.responsiveDesign.responsivePatterns.page2.hasMobileFirst}}{{/booleanText}}</span>
+                                    </div>
+                                    <div class="layout-strategy">
+                                        <span class="strategy-label">Layout Strategy:</span>
+                                        <span
+                                            class="strategy-value">{{#titleCase}}{{visual.responsiveDesign.responsivePatterns.page2.layoutStrategy}}{{/titleCase}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Breakpoint Consistency -->
+                        <div class="breakpoint-consistency">
+                            <h5>Breakpoint Consistency</h5>
+                            <div class="consistency-meter">
+                                <div class="meter-bar">
+                                    <div class="meter-fill"
+                                        style="width: {{#multiply}}{{visual.responsiveDesign.breakpointConsistency}} 100{{/multiply}}%;">
+                                    </div>
+                                </div>
+                                <span
+                                    class="consistency-score">{{#multiply}}{{visual.responsiveDesign.breakpointConsistency}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                            <p class="consistency-description">
+                                {{#ifEquals}}{{visual.responsiveDesign.breakpointConsistency}}|||0|||Pages use different
+                                breakpoint strategies{{/ifEquals}}
+                                {{#gt}}{{visual.responsiveDesign.breakpointConsistency}} 0.5|||Pages have similar
+                                breakpoint approaches{{/gt}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design System Tab -->
+            <div class="tab-content" id="design-system-tab">
+                <div class="design-system-analysis">
+                    <div class="analysis-header">
+                        <h3>Design System Analysis</h3>
+                        <div class="score-badge">{{#multiply}}{{visual.designSystem.score}} 100{{/multiply}}% Similarity
+                        </div>
+                    </div>
+
+                    <!-- Detected Systems -->
+                    <div class="detected-systems">
+                        <h4>Detected Design Systems</h4>
+                        <div class="systems-comparison">
+                            <div class="system-card">
+                                <div class="system-header">
+                                    <h5>Page 1 System</h5>
+                                    <div class="page-label">{{page1.pageId}}</div>
+                                </div>
+                                <div class="system-details">
+                                    <div class="system-name">
+                                        {{#titleCase}}{{visual.designSystem.detectedSystems.page1.name}}{{/titleCase}}
+                                    </div>
+                                    <div class="confidence-meter">
+                                        <span class="confidence-label">Confidence:</span>
+                                        <div class="confidence-bar">
+                                            <div class="confidence-fill"
+                                                style="width: {{#multiply}}{{visual.designSystem.detectedSystems.page1.confidence}} 100{{/multiply}}%;">
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="confidence-value">{{#multiply}}{{visual.designSystem.detectedSystems.page1.confidence}}
+                                            100{{/multiply}}%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="match-indicator">
+                                <div
+                                    class="match-status {{#booleanClass}}{{visual.designSystem.detectedSystems.match}}{{/booleanClass}}">
+                                    {{#booleanText}}{{visual.designSystem.detectedSystems.match}}{{/booleanText}} Match
+                                </div>
+                            </div>
+
+                            <div class="system-card">
+                                <div class="system-header">
+                                    <h5>Page 2 System</h5>
+                                    <div class="page-label">{{page2.pageId}}</div>
+                                </div>
+                                <div class="system-details">
+                                    <div class="system-name">
+                                        {{#titleCase}}{{visual.designSystem.detectedSystems.page2.name}}{{/titleCase}}
+                                    </div>
+                                    <div class="confidence-meter">
+                                        <span class="confidence-label">Confidence:</span>
+                                        <div class="confidence-bar">
+                                            <div class="confidence-fill"
+                                                style="width: {{#multiply}}{{visual.designSystem.detectedSystems.page2.confidence}} 100{{/multiply}}%;">
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="confidence-value">{{#multiply}}{{visual.designSystem.detectedSystems.page2.confidence}}
+                                            100{{/multiply}}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Design System Metrics -->
+                    <div class="design-metrics">
+                        <h4>Design System Consistency</h4>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon">🧩</div>
+                                <div class="metric-content">
+                                    <div class="metric-title">Components</div>
+                                    <div class="metric-score">{{#multiply}}{{visual.designSystem.components.similarity}}
+                                        100{{/multiply}}%</div>
+                                    <div class="metric-description">
+                                        {{^visual.designSystem.components.sharedPatterns}}
+                                        <p>No shared component patterns detected</p>
+                                        {{/visual.designSystem.components.sharedPatterns}}
+                                        {{#visual.designSystem.components.sharedPatterns}}
+                                        <p>Shared patterns found</p>
+                                        {{/visual.designSystem.components.sharedPatterns}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon">📐</div>
+                                <div class="metric-content">
+                                    <div class="metric-title">Spacing System</div>
+                                    <div class="metric-score">{{#multiply}}{{visual.designSystem.spacing.similarity}}
+                                        100{{/multiply}}%</div>
+                                    <div class="metric-description">
+                                        {{#visual.designSystem.spacing.similarity}}
+                                        <p>Base unit: {{visual.designSystem.spacing.baseUnit1}}px</p>
+                                        <p>Base unit: {{visual.designSystem.spacing.baseUnit2}}px</p>
+                                        {{/visual.designSystem.spacing.similarity}}
+                                        {{^visual.designSystem.spacing.similarity}}
+                                        <p>No consistent spacing detected</p>
+                                        {{/visual.designSystem.spacing.similarity}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon">🎨</div>
+                                <div class="metric-content">
+                                    <div class="metric-title">Color System</div>
+                                    <div class="metric-score">
+                                        {{#multiply}}{{visual.designSystem.colorSystem.primaryMatch}} 100{{/multiply}}%
+                                    </div>
+                                    <div class="metric-description">
+                                        Primary color match
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Recommendations -->
+                    <div class="system-recommendations">
+                        <h4>Design System Recommendations</h4>
+                        <div class="recommendations-list">
+                            {{^visual.designSystem.detectedSystems.match}}
+                            <div class="recommendation-item high">
+                                <span class="rec-icon">⚠️</span>
+                                <span class="rec-text">Pages use different design systems - consider standardizing on
+                                    one framework</span>
+                            </div>
+                            {{/visual.designSystem.detectedSystems.match}}
+
+
+                            {{#eval}}{{visual.designSystem.components.similarity}} < 0.5||| <div
+                                class="recommendation-item medium">
+                                <span class="rec-icon">🧩</span>
+                                <span class="rec-text">Low component consistency - establish shared component
+                                    library</span>
+                        </div>
+                        {{/eval}}
+
+                        {{^visual.designSystem.spacing.similarity}}
+                        <div class="recommendation-item medium">
+                            <span class="rec-icon">📐</span>
+                            <span class="rec-text">No consistent spacing system detected - implement standardized
+                                spacing scale</span>
+                        </div>
+                        {{/visual.designSystem.spacing.similarity}}
+
+
+                        {{#eval}}{{visual.designSystem.colorSystem.similarity}} > 0.8|||
+                        <div class="recommendation-item low">
+                            <span class="rec-icon">✅</span>
+                            <span class="rec-text">Good color system consistency - maintain current approach</span>
+                        </div>
+                        {{/eval}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hierarchy Tab -->
+        <div class="tab-content" id="hierarchy-tab">
+            <div class="hierarchy-analysis">
+                <div class="analysis-header">
+                    <h3>Visual Hierarchy Analysis</h3>
+                    <div class="score-badge">{{#multiply}}{{visual.visualHierarchy.score}} 100{{/multiply}}%
+                        Similarity</div>
+                </div>
+
+                <div class="hierarchy-details">
+                    <div class="hierarchy-section">
+                        <h4>Typography Emphasis</h4>
+                        <div class="emphasis-comparison">
+                            <div class="page-emphasis">
+                                <h5>{{page1.pageId}}</h5>
+                                <div class="emphasis-details">
+                                    <div class="size-detail">Primary:
+                                        {{visual.visualHierarchy.emphasis.page1.primarySize}}px</div>
+                                    <div class="size-detail">Secondary:
+                                        {{visual.visualHierarchy.emphasis.page1.secondarySize}}px</div>
+                                    <div class="size-detail">Body:
+                                        {{visual.visualHierarchy.emphasis.page1.bodySize}}px</div>
+                                    <div class="size-detail">Ratio:
+                                        {{visual.visualHierarchy.emphasis.page1.sizeRatio}}</div>
+                                </div>
+                            </div>
+
+                            <div class="page-emphasis">
+                                <h5>{{page2.pageId}}</h5>
+                                <div class="emphasis-details">
+                                    <div class="size-detail">Primary:
+                                        {{visual.visualHierarchy.emphasis.page2.primarySize}}px</div>
+                                    <div class="size-detail">Secondary:
+                                        {{visual.visualHierarchy.emphasis.page2.secondarySize}}px</div>
+                                    <div class="size-detail">Body:
+                                        {{visual.visualHierarchy.emphasis.page2.bodySize}}px</div>
+                                    <div class="size-detail">Ratio:
+                                        {{visual.visualHierarchy.emphasis.page2.sizeRatio}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similarity-score">{{#multiply}}{{visual.visualHierarchy.emphasis.similarity}}
+                            100{{/multiply}}% similar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Comparison -->
+    <section class="screenshots-section">
+        <div class="container">
+            <h2 class="section-title">Visual Screenshots Comparison</h2>
+
+            <div class="screenshots-tabs">
+                <button class="screenshot-tab active" data-viewport="desktop">🖥️ Desktop</button>
+                <button class="screenshot-tab" data-viewport="tablet">📱 Tablet</button>
+                <button class="screenshot-tab" data-viewport="mobile">📱 Mobile</button>
+            </div>
+
+            <div class="screenshots-content">
+                {{#visual.screenshots.viewports}}
+                <div class="screenshot-viewport {{viewportName}}" data-viewport="{{viewportName}}">
+                    <div class="viewport-info">
+                        <div class="viewport-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Structural Similarity:</span>
+                                <span class="stat-value">{{#multiply}}{{structuralSimilarity}} 100{{/multiply}}%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Dimensions Similarity:</span>
+                                <span class="stat-value">{{#multiply}}{{dimensionsSimilarity}} 100{{/multiply}}%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Overall Score:</span>
+                                <span class="stat-value">{{#multiply}}{{score}} 100{{/multiply}}%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-mock">
+
+                            <div class="mock-browser show-scrollbar">
+                                <div class="browser-header">
+                                    <div class="browser-controls">
+                                        <span class="control red"></span>
+                                        <span class="control yellow"></span>
+                                        <span class="control green"></span>
+                                    </div>
+                                    <div class="url-bar">{{page1.pageId}}</div>
+                                </div>
+                                <div class="browser-content">
+                                    <img
+                                        src="/_/report/{{report}}/{{page1.folder}}/{{page1.pageId}}/screenshot_{{viewportName}}.png" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vs-divider">VS</div>
+
+                        <div class="screenshot-mock">
+                            <div class="mock-browser show-scrollbar">
+                                <div class="browser-header">
+                                    <div class="browser-controls">
+                                        <span class="control red"></span>
+                                        <span class="control yellow"></span>
+                                        <span class="control green"></span>
+                                    </div>
+                                    <div class="url-bar">{{page2.pageId}}</div>
+                                </div>
+                                <div class="browser-content">
+                                    <img
+                                        src="/_/report/{{report}}/{{page2.folder}}/{{page2.pageId}}/screenshot_{{viewportName}}.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/visual.screenshots.viewports}}
+            </div>
+        </div>
+    </section>
+
+    <!-- CSS Classes Analysis -->
+    <section class="css-classes-section">
+        <div class="container">
+            <h2 class="section-title">CSS Classes Analysis</h2>
+
+            <div class="classes-overview">
+                <div class="overview-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">{{visual.cssClasses.sharedClasses.length}}</div>
+                        <div class="stat-label">Shared Classes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">{{visual.cssClasses.uniqueToPage1.length}}</div>
+                        <div class="stat-label">Page 1 Unique</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">{{#length}}{{visual.cssClasses.uniqueToPage2}}{{/length}}</div>
+                        <div class="stat-label">Page 2 Unique</div>
+                    </div>
+                    <div class="stat-item similarity-stat">
+                        <div
+                            class="stat-number {{#getSimilarityClass}}{{visual.cssClasses.jaccardSimilarity}}{{/getSimilarityClass}}">
+                            {{#multiply}}{{visual.cssClasses.jaccardSimilarity}} 100{{/multiply}}%
+                        </div>
+                        <div class="stat-label">Jaccard Similarity</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="classes-analysis">
+                <!-- Shared Classes -->
+                <div class="classes-section shared-classes">
+                    <div class="section-header">
+                        <h3>Shared CSS Classes</h3>
+                        <div class="count-badge">{{#length}}{{visual.cssClasses.sharedClasses}}{{/length}} classes</div>
+                    </div>
+                    <div class="classes-grid">
+                        {{#visual.cssClasses.sharedClasses}}
+                        <div class="class-tag shared">{{.}}</div>
+                        {{/visual.cssClasses.sharedClasses}}
+                    </div>
+                </div>
+
+                <!-- Page Unique Classes -->
+                <div class="unique-classes-comparison">
+                    <div class="classes-section unique-page1">
+                        <div class="section-header">
+                            <h3>Page 1 Unique Classes</h3>
+                            <div class="page-label">{{page1.pageId}}</div>
+                            <div class="count-badge">{{#length}}{{visual.cssClasses.uniqueToPage1}}{{/length}} classes
+                            </div>
+                        </div>
+                        <div class="classes-grid">
+                            {{#visual.cssClasses.uniqueToPage1}}
+                            <div class="class-tag unique-1">{{.}}</div>
+                            {{/visual.cssClasses.uniqueToPage1}}
+                            {{^visual.cssClasses.uniqueToPage1}}
+                            <div class="no-classes">No unique classes found</div>
+                            {{/visual.cssClasses.uniqueToPage1}}
+                        </div>
+                    </div>
+
+                    <div class="similarity-indicator">
+                        <div
+                            class="similarity-circle {{#getSimilarityClass}}{{visual.cssClasses.jaccardSimilarity}}{{/getSimilarityClass}}">
+                            <span class="similarity-score">{{#multiply}}{{visual.cssClasses.jaccardSimilarity}}
+                                100{{/multiply}}%</span>
+                            <span class="similarity-label">Similarity</span>
+                        </div>
+                        {{#eval}}{{visual.cssClasses.jaccardSimilarity}} > 0.8|||
+                        <div class="warning-message">
+                            <span class="warning-icon">⚠️</span>
+                            <span class="warning-text">High CSS similarity detected</span>
+                        </div>
+                        {{/eval}}
+                    </div>
+
+                    <div class="classes-section unique-page2">
+                        <div class="section-header">
+                            <h3>Page 2 Unique Classes</h3>
+                            <div class="page-label">{{page2.pageId}}</div>
+                            <div class="count-badge">{{#length}}{{visual.cssClasses.uniqueToPage2}}{{/length}} classes
+                            </div>
+                        </div>
+                        <div class="classes-grid">
+                            {{#visual.cssClasses.uniqueToPage2}}
+                            <div class="class-tag unique-2">{{.}}</div>
+                            {{/visual.cssClasses.uniqueToPage2}}
+                            {{^visual.cssClasses.uniqueToPage2}}
+                            <div class="no-classes">No unique classes found</div>
+                            {{/visual.cssClasses.uniqueToPage2}}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Insights -->
+                <div class="css-insights">
+                    <h3>CSS Analysis Insights</h3>
+                    <div class="insights-grid">
+                        {{#eval}}{{visual.cssClasses.jaccardSimilarity}} > 0.9|||
+                        <div class="insight-card critical">
+                            <div class="insight-icon">🚨</div>
+                            <div class="insight-content">
+                                <div class="insight-title">Critical Similarity</div>
+                                <div class="insight-text">Pages share over 90% of CSS classes - potential template
+                                    duplication</div>
+                            </div>
+                        </div>
+                        {{/eval}}
+
+                        {{#eval}}{{visual.cssClasses.jaccardSimilarity}} > 0.7 &&
+                        {{visual.cssClasses.jaccardSimilarity}} <= 0.9||| <div class="insight-card warning">
+                            <div class="insight-icon">⚠️</div>
+                            <div class="insight-content">
+                                <div class="insight-title">High Similarity</div>
+                                <div class="insight-text">Significant CSS overlap suggests similar frameworks or copying
+                                </div>
+                            </div>
+                    </div>
+                    {{/eval}}
+
+                    {{#visual.cssClasses.sharedClasses.length}}
+                    {{#eval}}{{visual.cssClasses.sharedClasses.length}} > 20|||
+                    <div class="insight-card info">
+                        <div class="insight-icon">ℹ️</div>
+                        <div class="insight-content">
+                            <div class="insight-title">Common Framework</div>
+                            <div class="insight-text">Many shared classes indicate use of similar CSS frameworks or
+                                libraries</div>
+                        </div>
+                    </div>
+                    {{/eval}}
+                    {{/visual.cssClasses.sharedClasses.length}}
+
+
+                    {{#eval}}{{visual.cssClasses.jaccardSimilarity}} < 0.3||| <div class="insight-card success">
+                        <div class="insight-icon">✅</div>
+                        <div class="insight-content">
+                            <div class="insight-title">Good Uniqueness</div>
+                            <div class="insight-text">Low CSS similarity indicates unique styling approaches</div>
+                        </div>
+                </div>
+                {{/eval}}
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Detailed Visual Analysis Complete</h2>
+                <p>Use these insights to improve visual consistency and user experience across your pages.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Analysis</button>
+                    <a href="/report/visual/compare/{{comparison}}" class="button-blue">Back to Comparison</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{/visualPage}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+    <script src="/_/js/visual_page.js?{{assetsDate.js}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,583 @@
+title: "SEO Analysis - {{seoAnalysis.pageId}} | MrAnalyze"
+description: "Detailed SEO analysis for {{seoAnalysis.url}} including title tags, content quality, technical SEO, and
+actionable recommendations."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+
+    <link rel="stylesheet" href="/_/css/seo_single_analysis.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#seoAnalysis}}
+    <!-- Header Section -->
+    <header class="analysis-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="/report/{{report}}/seo/">SEO Master Summary</a></li>
+                        <li>Page Analysis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="page-info">
+                    <h1 class="page-title">SEO Analysis Page Report</h1>
+                    <div class="page-url">
+                        <span class="url-label">Analyzing URL:</span>
+                        <a href="{{url}}" target="_blank" class="url-link">{{url}}</a>
+                    </div>
+                    <div class="page-url">
+                        <span class="url-label">Page Analysis:</span>
+                        <a href="/report/{{report}}/page/{{site}}/{{pageId}}/" class="url-link">{{site}}/{{pageId}}</a>
+                    </div>
+                    <div class="page-meta">
+                        <span class="page-id">Page ID: {{pageId}}</span>
+                        <span class="site-name" data-site="{{site}}">{{site}}</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="overall-score-display">
+                    <div class="score-circle" data-score="{{seoAnalysis.overallScore}}">
+                        <div class="score-percentage">{{#multiply}}{{seoAnalysis.overallScore}} 100{{/multiply}}%</div>
+                        <div class="score-label">Overall SEO Score</div>
+                    </div>
+                    <div class="score-grade" data-grade="{{seoAnalysis.overallScore}}">
+                        <span class="grade-letter">{{#getGrade}}{{seoAnalysis.overallScore}}{{/getGrade}}</span>
+                        <span
+                            class="grade-description">{{#getGradeDescription}}{{seoAnalysis.overallScore}}{{/getGradeDescription}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Summary Cards -->
+    <section class="quick-summary paddingtopbottom">
+        <div class="container">
+            <div class="summary-grid">
+                <div class="summary-card title-tag">
+                    <div class="card-icon">📝</div>
+                    <div class="card-content">
+                        <div class="card-score">{{#multiply}}{{seoAnalysis.titleTagAnalysis.score}} 100{{/multiply}}%
+                        </div>
+                        <div class="card-label">Title Tag</div>
+                        <div class="card-detail">{{seoAnalysis.titleTagAnalysis.length}} characters</div>
+                    </div>
+                </div>
+
+                <div class="summary-card meta-description">
+                    <div class="card-icon">📄</div>
+                    <div class="card-content">
+                        <div class="card-score">{{#multiply}}{{seoAnalysis.metaDescriptionAnalysis.score}}
+                            100{{/multiply}}%</div>
+                        <div class="card-label">Meta Description</div>
+                        <div class="card-detail">{{seoAnalysis.metaDescriptionAnalysis.length}} characters</div>
+                    </div>
+                </div>
+
+                <div class="summary-card content-quality">
+                    <div class="card-icon">✍️</div>
+                    <div class="card-content">
+                        <div class="card-score">{{#multiply}}{{seoAnalysis.contentQuality.score}} 100{{/multiply}}%
+                        </div>
+                        <div class="card-label">Content Quality</div>
+                        <div class="card-detail">{{seoAnalysis.contentQuality.wordCount}} words</div>
+                    </div>
+                </div>
+
+                <div class="summary-card technical-seo">
+                    <div class="card-icon">⚙️</div>
+                    <div class="card-content">
+                        <div class="card-score">{{#multiply}}{{seoAnalysis.technicalSEO.score}} 100{{/multiply}}%</div>
+                        <div class="card-label">Technical SEO</div>
+                        <div class="card-detail">{{#length}}{{seoAnalysis.technicalSEO.issues}}{{/length}} issues</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Analysis Sections -->
+    <section class="detailed-analysis">
+        <div class="container">
+
+            <!-- Title Tag Analysis -->
+            <div class="analysis-section">
+                <div class="section-header">
+                    <h2 class="section-title">📝 Title Tag Analysis</h2>
+                    <div class="section-score" data-score="{{seoAnalysis.titleTagAnalysis.score}}">
+                        {{#multiply}}{{seoAnalysis.titleTagAnalysis.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="tite code-block">Title: {{seoAnalysis.titleTagAnalysis.title}}</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Character Length:</span>
+                                <span
+                                    class="detail-value {{#gt}}{{seoAnalysis.titleTagAnalysis.length}} 60{{/gt}}">{{seoAnalysis.titleTagAnalysis.length}}
+                                    / 60</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Contains Keywords:</span>
+                                <span
+                                    class="detail-value {{#booleanClass}}{{seoAnalysis.titleTagAnalysis.hasKeywords}}{{/booleanClass}}">
+                                    {{#booleanText}}{{seoAnalysis.titleTagAnalysis.hasKeywords}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Brand Position:</span>
+                                <span
+                                    class="detail-value">{{#titleCase}}{{seoAnalysis.titleTagAnalysis.brandingPosition}}{{/titleCase}}</span>
+                            </div>
+                        </div>
+
+                        <div class="keywords-section">
+                            <h4>Meaningful Keywords Found:</h4>
+                            <div class="keywords-list">
+                                {{#seoAnalysis.titleTagAnalysis.meaningfulWords}}
+                                <span class="keyword-tag">{{.}}</span>
+                                {{/seoAnalysis.titleTagAnalysis.meaningfulWords}}
+                            </div>
+                        </div>
+                    </div>
+
+                    {{#seoAnalysis.titleTagAnalysis.issues}}
+                    <div class="issues-section">
+                        <h4>Issues Found:</h4>
+                        <div class="issues-list">
+                            {{#seoAnalysis.titleTagAnalysis.issues}}
+                            <div class="issue-item">
+                                <span class="issue-icon">⚠️</span>
+                                <span class="issue-text">{{.}}</span>
+                            </div>
+                            {{/seoAnalysis.titleTagAnalysis.issues}}
+                        </div>
+                    </div>
+                    {{/seoAnalysis.titleTagAnalysis.issues}}
+                </div>
+            </div>
+
+            <!-- Meta Description Analysis -->
+            <div class="analysis-section">
+                <div class="section-header">
+                    <h2 class="section-title">📄 Meta Description Analysis</h2>
+                    <div class="section-score" data-score="{{seoAnalysis.metaDescriptionAnalysis.score}}">
+                        {{#multiply}}{{seoAnalysis.metaDescriptionAnalysis.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="description code-block">Description: {{seoAnalysis.metaDescriptionAnalysis.description}}</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Character Length:</span>
+                                <span class="detail-value">{{seoAnalysis.metaDescriptionAnalysis.length}} / 160</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Has Call-to-Action:</span>
+                                <span
+                                    class="detail-value {{#booleanClass}}{{seoAnalysis.metaDescriptionAnalysis.hasCallToAction}}{{/booleanClass}}">
+                                    {{#booleanText}}{{seoAnalysis.metaDescriptionAnalysis.hasCallToAction}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Keyword Presence:</span>
+                                <span
+                                    class="detail-value {{#booleanClass}}{{seoAnalysis.metaDescriptionAnalysis.keywordPresence}}{{/booleanClass}}">
+                                    {{#booleanText}}{{seoAnalysis.metaDescriptionAnalysis.keywordPresence}}{{/booleanText}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="keywords-section">
+                            <h4>Keywords in Meta Description:</h4>
+                            <div class="keywords-list">
+                                {{#seoAnalysis.metaDescriptionAnalysis.meaningfulWords}}
+                                <span class="keyword-tag">{{.}}</span>
+                                {{/seoAnalysis.metaDescriptionAnalysis.meaningfulWords}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heading Structure Analysis -->
+            <div class="analysis-section">
+                <div class="section-header">
+                    <h2 class="section-title">🏗️ Heading Structure Analysis</h2>
+                    <div class="section-score" data-score="{{seoAnalysis.headingStructure.score}}">
+                        {{#multiply}}{{seoAnalysis.headingStructure.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="heading-stats">
+                        <div class="heading-count">
+                            <div class="count-item">
+                                <span class="count-number">{{seoAnalysis.headingStructure.h1Count}}</span>
+                                <span class="count-label">H1 Tags</span>
+                            </div>
+                            <div class="count-item">
+                                <span class="count-number">{{seoAnalysis.headingStructure.h2Count}}</span>
+                                <span class="count-label">H2 Tags</span>
+                            </div>
+                            <div class="count-item">
+                                <span class="count-number">{{seoAnalysis.headingStructure.h3Count}}</span>
+                                <span class="count-label">H3 Tags</span>
+                            </div>
+                        </div>
+
+                        <div class="heading-quality">
+                            <div class="detail-item">
+                                <span class="detail-label">Hierarchy:</span>
+                                <span
+                                    class="detail-value good">{{#titleCase}}{{seoAnalysis.headingStructure.hierarchy}}{{/titleCase}}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Contains Keywords:</span>
+                                <span
+                                    class="detail-value {{#booleanClass}}{{seoAnalysis.headingStructure.hasKeywords}}{{/booleanClass}}">
+                                    {{#booleanText}}{{seoAnalysis.headingStructure.hasKeywords}}{{/booleanText}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Quality Analysis -->
+            <div class="analysis-section">
+                <div class="section-header">
+                    <h2 class="section-title">✍️ Content Quality Analysis</h2>
+                    <div class="section-score" data-score="{{seoAnalysis.contentQuality.score}}">
+                        {{#multiply}}{{seoAnalysis.contentQuality.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="content-metrics">
+                        <div class="metric-grid">
+                            <div class="metric-item">
+                                <span class="metric-value">{{seoAnalysis.contentQuality.wordCount}}</span>
+                                <span class="metric-label">Total Words</span>
+                            </div>
+                            <div class="metric-item">
+                                <span
+                                    class="metric-value">{{#titleCase}}{{seoAnalysis.contentQuality.readabilityEstimate}}{{/titleCase}}</span>
+                                <span class="metric-label">Readability</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value">{{#multiply}}{{seoAnalysis.contentQuality.uniquenessScore}}
+                                    100{{/multiply}}%</span>
+                                <span class="metric-label">Uniqueness</span>
+                            </div>
+                            <div class="metric-item">
+                                <span
+                                    class="metric-value">{{#titleCase}}{{seoAnalysis.contentQuality.contentDepth}}{{/titleCase}}</span>
+                                <span class="metric-label">Content Depth</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="keyword-density">
+                        <h4>Keyword Density Analysis:</h4>
+                        <div class="density-list">
+                            {{#seoAnalysis.contentQuality.keywordDensity}}
+                            <div class="density-item">
+                                <span class="density-keyword">{{word}}</span>
+                                <div class="density-bar">
+                                    <div class="density-fill" style="width: {{density}}%;"></div>
+                                </div>
+                                <span class="density-percentage">{{density}}%</span>
+                            </div>
+                            {{/seoAnalysis.contentQuality.keywordDensity}}
+                        </div>
+                    </div>
+
+                    {{#seoAnalysis.contentQuality.issues}}
+                    <div class="issues-section">
+                        <h4>Content Issues:</h4>
+                        <div class="issues-list">
+                            {{#seoAnalysis.contentQuality.issues}}
+                            <div class="issue-item">
+                                <span class="issue-icon">⚠️</span>
+                                <span class="issue-text">{{.}}</span>
+                            </div>
+                            {{/seoAnalysis.contentQuality.issues}}
+                        </div>
+                    </div>
+                    {{/seoAnalysis.contentQuality.issues}}
+                </div>
+            </div>
+
+            <!-- Keyword Optimization Analysis -->
+            <div class="analysis-section">
+                <div class="section-header">
+                    <h2 class="section-title">🎯 Keyword Optimization Analysis</h2>
+                    <div class="section-score" data-score="{{seoAnalysis.keywordOptimization.score}}">
+                        {{#multiply}}{{seoAnalysis.keywordOptimization.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="primary-keywords">
+                        <h4>Primary Keywords:</h4>
+                        <div class="keywords-list primary">
+                            {{#seoAnalysis.keywordOptimization.primaryKeywords}}
+                            <span class="keyword-tag primary">{{.}}</span>
+                            {{/seoAnalysis.keywordOptimization.primaryKeywords}}
+                        </div>
+                    </div>
+
+                    <div class="keyword-placement">
+                        <div class="placement-table">
+                            <div class="placement-table-header">
+                                <h4>Keyword Placement Analysis:</h4>
+                                <p class="table-description">Shows how well each keyword is positioned across your page
+                                    elements and content.</p>
+
+                                <div class="placement-header-row">
+                                    <div class="header-keyword">Keyword</div>
+                                    <div class="header-placement">
+                                        <span class="header-indicators">Placement</span>
+                                        <div class="indicator-legend">
+                                            <span class="legend-item"><strong>T</strong> = Title Tag</span>
+                                            <span class="legend-item"><strong>M</strong> = Meta Description</span>
+                                            <span class="legend-item"><strong>H</strong> = Headings</span>
+                                        </div>
+                                    </div>
+                                    <div class="header-density">Content Density</div>
+                                    <div class="header-score">Optimization Score</div>
+                                </div>
+                            </div>
+                            {{#seoAnalysis.keywordOptimization.keywordPlacement}}
+                            <div class="placement-row">
+                                <div class="keyword-name">{{keyword}}</div>
+                                <div class="placement-indicators">
+                                    <span class="indicator {{#booleanClass}}{{inTitle}}{{/booleanClass}}"
+                                        title="In Title">T</span>
+                                    <span class="indicator {{#booleanClass}}{{inMetaDesc}}{{/booleanClass}}"
+                                        title="In Meta Description">M</span>
+                                    <span class="indicator {{#booleanClass}}{{inHeadings}}{{/booleanClass}}"
+                                        title="In Headings">H</span>
+                                </div>
+                                <div class="keyword-density">{{density}}%</div>
+                                <div class="keyword-score">{{#multiply}}{{score}} 100{{/multiply}}%</div>
+                            </div>
+                            {{/seoAnalysis.keywordOptimization.keywordPlacement}}
+                        </div>
+                    </div>
+
+                    <div class="semantic-keywords">
+                        <h4>Semantic Keyword Groups:</h4>
+                        <div class="semantic-groups">
+                            {{#groupSemanticKeywords}}{{seoAnalysis.keywordOptimization.semanticKeywords}}{{/groupSemanticKeywords}}
+                        </div>
+                    </div>
+
+                    {{#seoAnalysis.keywordOptimization.opportunities.length}}
+                    <div class="opportunities-section">
+                        <h4>Optimization Opportunities:</h4>
+                        <div class="opportunities-list">
+                            {{#seoAnalysis.keywordOptimization.opportunities}}
+                            <div class="opportunity-item">
+                                <span class="opportunity-icon">💡</span>
+                                <span class="opportunity-text">{{.}}</span>
+                            </div>
+                            {{/seoAnalysis.keywordOptimization.opportunities}}
+                        </div>
+                    </div>
+                    {{/seoAnalysis.keywordOptimization.opportunities.length}}
+                </div>
+            </div>
+
+            <!-- Technical SEO Analysis -->
+            <div class="analysis-section">
+                <div class="section-header">
+                    <h2 class="section-title">⚙️ Technical SEO Analysis</h2>
+                    <div class="section-score" data-score="{{seoAnalysis.technicalSEO.score}}">
+                        {{#multiply}}{{seoAnalysis.technicalSEO.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="technical-overview">
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <span class="tech-label">Structured Data:</span>
+                                <span
+                                    class="tech-value {{#booleanClass}}{{seoAnalysis.technicalSEO.hasStructuredData}}{{/booleanClass}}">
+                                    {{#booleanText}}{{seoAnalysis.technicalSEO.hasStructuredData}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-label">Images:</span>
+                                <span
+                                    class="tech-value">{{seoAnalysis.technicalSEO.performanceIndicators.imageCount}}</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-label">Links:</span>
+                                <span
+                                    class="tech-value">{{seoAnalysis.technicalSEO.performanceIndicators.linkCount}}</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-label">Alt Tags:</span>
+                                <span
+                                    class="tech-value {{#booleanClass}}{{seoAnalysis.technicalSEO.performanceIndicators.hasAltTags}}{{/booleanClass}}">
+                                    {{#booleanText}}{{seoAnalysis.technicalSEO.performanceIndicators.hasAltTags}}{{/booleanText}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="meta-tags-section">
+                        <div class="meta-present">
+                            <h4>Meta Tags Present:</h4>
+                            <div class="tags-list">
+                                {{#seoAnalysis.technicalSEO.metaTagsPresent}}
+                                <span class="tag-item present">{{.}}</span>
+                                {{/seoAnalysis.technicalSEO.metaTagsPresent}}
+                            </div>
+                        </div>
+
+                        {{#seoAnalysis.technicalSEO.missingMetaTags}}
+                        <div class="meta-missing">
+                            <h4>Missing Meta Tags:</h4>
+                            <div class="tags-list">
+                                {{#seoAnalysis.technicalSEO.missingMetaTags}}
+                                <span class="tag-item missing">{{.}}</span>
+                                {{/seoAnalysis.technicalSEO.missingMetaTags}}
+                            </div>
+                        </div>
+                        {{/seoAnalysis.technicalSEO.missingMetaTags}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Uniqueness Analysis -->
+            <div class="analysis-section">
+                <div class="section-header">
+                    <h2 class="section-title">🔍 Content Uniqueness Analysis</h2>
+                    <div class="section-score" data-score="{{seoAnalysis.uniquenessIndicators.uniquenessScore}}">
+                        {{#multiply}}{{seoAnalysis.uniquenessIndicators.uniquenessScore}} 100{{/multiply}}%
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="uniqueness-breakdown">
+                        <div class="unique-elements">
+                            <h4>Unique Elements Found:</h4>
+                            {{#seoAnalysis.uniquenessIndicators.uniqueElements.length}}
+                            <div class="elements-list">
+                                {{#seoAnalysis.uniquenessIndicators.uniqueElements}}
+                                <span class="element-tag unique">{{.}}</span>
+                                {{/seoAnalysis.uniquenessIndicators.uniqueElements}}
+                            </div>
+                            {{/seoAnalysis.uniquenessIndicators.uniqueElements.length}}
+                            {{^seoAnalysis.uniquenessIndicators.uniqueElements}}
+                            <p class="no-elements">No unique elements detected</p>
+                            {{/seoAnalysis.uniquenessIndicators.uniqueElements}}
+                        </div>
+
+                        {{#seoAnalysis.uniquenessIndicators.genericElements.length}}
+                        <div class="generic-elements">
+                            <h4>Generic Elements:</h4>
+                            <div class="elements-list">
+                                {{#seoAnalysis.uniquenessIndicators.genericElements}}
+                                <span class="element-tag generic">{{.}}</span>
+                                {{/seoAnalysis.uniquenessIndicators.genericElements}}
+                            </div>
+                        </div>
+                        {{/seoAnalysis.uniquenessIndicators.genericElements.length}}
+                    </div>
+
+                    {{#seoAnalysis.uniquenessIndicators.opportunities.length}}
+                    <div class="opportunities-section">
+                        <h4>Uniqueness Opportunities:</h4>
+                        <div class="opportunities-list">
+                            {{#seoAnalysis.uniquenessIndicators.opportunities}}
+                            <div class="opportunity-item">
+                                <span class="opportunity-icon">💡</span>
+                                <span class="opportunity-text">{{.}}</span>
+                            </div>
+                            {{/seoAnalysis.uniquenessIndicators.opportunities}}
+                        </div>
+                    </div>
+                    {{/seoAnalysis.uniquenessIndicators.opportunities.length}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Items Summary -->
+    <section class="action-items-summary paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">📋 Actionable Recommendations</h2>
+
+            <div class="action-items-grid">
+                {{#seoAnalysis.actionableItems}}
+                <div class="action-item {{priority}}">
+                    <div class="action-header">
+                        <span class="priority-badge {{priority}}">{{priority}}</span>
+                        <span class="category-tag">{{category}}</span>
+                    </div>
+
+                    <div class="action-content">
+                        <h3 class="action-title">{{title}}</h3>
+                        <p class="action-description">{{description}}</p>
+
+                        <div class="action-details">
+                            <div class="action-impact">
+                                <span class="impact-label">Impact:</span>
+                                <span class="impact-badge {{impact}}">{{impact}}</span>
+                            </div>
+                        </div>
+
+                        <div class="specific-action">
+                            <h4>Recommended Action:</h4>
+                            <p>{{specificAction}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/seoAnalysis.actionableItems}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Implement These SEO Improvements?</h2>
+                <p>Start with the high-priority items to see the biggest impact on your search rankings.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Report</button>
+                    <a href="/seo-summary" class="button-blue">Back to Summary</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{/seoAnalysis}}
+
+
+    {{> FOOTER }}
+    {{> FOOT }}
+</body>
+
+</html>

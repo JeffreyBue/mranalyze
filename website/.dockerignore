@@ -1,0 +1,7 @@
+.git
+.gitignore
+.editorconfig
+.eslintrc.js
+README.md
+Dockerfile
+node_modules/

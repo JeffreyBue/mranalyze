@@ -1,0 +1,237 @@
+{
+  "site": "truthfinder_com_20250811_2154",
+  "pageIndex": 1,
+  "pageId": "001_people-search_diane-baacke",
+  "url": "https://www.truthfinder.com/people-search/diane-baacke/",
+  "seoAnalysis": {
+    "pageId": "001_people-search_diane-baacke",
+    "url": "https://www.truthfinder.com/people-search/diane-baacke/",
+    "titleTagAnalysis": {
+      "title": "Diane Baacke - Phone, Address, Criminal & Traffic Records | TruthFinder",
+      "score": 0.8,
+      "issues": [
+        "Title too long (over 60 characters) - may be truncated in search results"
+      ],
+      "length": 71,
+      "hasKeywords": true,
+      "brandingPosition": "beginning",
+      "meaningfulWords": [
+        "diane",
+        "baacke",
+        "phone",
+        "address",
+        "criminal",
+        "traffic",
+        "records",
+        "truthfinder"
+      ]
+    },
+    "metaDescriptionAnalysis": {
+      "description": "Trying to find Diane Baacke? We found 2 public records in all 50 states. View Diane's age, phone number, home address, email, and background check information now.",
+      "score": 0.9,
+      "issues": [
+        "Meta description too long (over 160 characters) - may be truncated"
+      ],
+      "length": 163,
+      "hasCallToAction": true,
+      "keywordPresence": true,
+      "meaningfulWords": [
+        "trying",
+        "find",
+        "diane",
+        "baacke",
+        "found",
+        "public",
+        "records",
+        "all",
+        "states",
+        "view",
+        "diane",
+        "age",
+        "phone",
+        "number",
+        "home",
+        "address",
+        "email",
+        "background",
+        "check",
+        "information",
+        "now"
+      ]
+    },
+    "headingStructure": {
+      "score": 1,
+      "issues": [],
+      "h1Count": 1,
+      "h2Count": 5,
+      "h3Count": 16,
+      "hasKeywords": true,
+      "hierarchy": "good"
+    },
+    "contentQuality": {
+      "score": 0.7,
+      "issues": [
+        "Content appears generic - lacks unique information"
+      ],
+      "wordCount": 1122,
+      "readabilityEstimate": "difficult",
+      "keywordDensity": {
+        "baacke": "3.65",
+        "truthfinder": "1.60",
+        "diana": "1.52",
+        "about": "1.25",
+        "search": "0.98",
+        "diane": "0.98",
+        "not": "0.89",
+        "details": "0.89",
+        "use": "0.80",
+        "information": "0.71"
+      },
+      "contentDepth": "detailed",
+      "uniquenessScore": 0.2
+    },
+    "keywordOptimization": {
+      "score": 0.8200000000000003,
+      "issues": [],
+      "primaryKeywords": [
+        "baacke",
+        "diane",
+        "phone",
+        "address",
+        "criminal"
+      ],
+      "keywordPlacement": {
+        "baacke": {
+          "score": 1.0000000000000002,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": true,
+          "density": 3.65
+        },
+        "diane": {
+          "score": 0.9000000000000001,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": true,
+          "density": 0.98
+        },
+        "phone": {
+          "score": 0.9000000000000001,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": true,
+          "density": 0.53
+        },
+        "address": {
+          "score": 0.9000000000000001,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": true,
+          "density": 0.45
+        },
+        "criminal": {
+          "score": 0.4,
+          "inTitle": true,
+          "inMetaDesc": false,
+          "inHeadings": false,
+          "density": 0.18
+        }
+      },
+      "semanticKeywords": [
+        {
+          "group": "business",
+          "keyword": "service"
+        },
+        {
+          "group": "location",
+          "keyword": "location"
+        },
+        {
+          "group": "location",
+          "keyword": "address"
+        },
+        {
+          "group": "contact",
+          "keyword": "phone"
+        },
+        {
+          "group": "contact",
+          "keyword": "email"
+        },
+        {
+          "group": "contact",
+          "keyword": "contact"
+        },
+        {
+          "group": "experience",
+          "keyword": "years"
+        }
+      ],
+      "opportunities": [
+        "Increase \"diane\" density in content",
+        "Increase \"phone\" density in content",
+        "Increase \"address\" density in content",
+        "Include \"criminal\" in headings",
+        "Increase \"criminal\" density in content"
+      ]
+    },
+    "technicalSEO": {
+      "score": 0.9,
+      "issues": [
+        "Missing essential meta tags: robots"
+      ],
+      "hasStructuredData": true,
+      "metaTagsPresent": [
+        "viewport",
+        "description"
+      ],
+      "missingMetaTags": [
+        "robots"
+      ],
+      "performanceIndicators": {
+        "imageCount": 12,
+        "linkCount": 140,
+        "hasAltTags": false
+      }
+    },
+    "uniquenessIndicators": {
+      "uniqueElements": [
+        "email_address"
+      ],
+      "genericElements": [
+        "about us",
+        "contact us"
+      ],
+      "uniquenessScore": 0,
+      "opportunities": [
+        "Add more specific, unique information about the subject",
+        "Include location-specific information",
+        "Add personal or company-specific details"
+      ]
+    },
+    "actionableItems": [
+      {
+        "priority": "HIGH",
+        "category": "Content Uniqueness",
+        "title": "Increase Content Uniqueness",
+        "description": "Content lacks unique, specific information",
+        "impact": "HIGH",
+        "pageId": "001_people-search_diane-baacke",
+        "url": "https://www.truthfinder.com/people-search/diane-baacke/",
+        "specificAction": "Add more specific, unique information about the subject; Include location-specific information; Add personal or company-specific details"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "Technical SEO",
+        "title": "Fix Technical SEO Issues",
+        "description": "Missing essential meta tags: robots",
+        "impact": "MEDIUM",
+        "pageId": "001_people-search_diane-baacke",
+        "url": "https://www.truthfinder.com/people-search/diane-baacke/",
+        "specificAction": "Review and fix technical SEO issue"
+      }
+    ],
+    "overallScore": 0.832
+  },
+  "timestamp": "2025-08-11T21:54:22.769Z"
+}

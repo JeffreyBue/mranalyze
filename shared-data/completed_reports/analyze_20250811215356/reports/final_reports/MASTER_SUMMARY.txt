@@ -1,0 +1,37 @@
+MASTER ANALYSIS SUMMARY
+Generated: 8/11/2025, 9:54:22 PM
+
+OVERVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Comparisons: 1
+🚨 High Similarity (≥80%):     0
+📈 Moderate Similarity (50-80%): 1
+✅ Low Similarity (<50%):       0
+
+ANALYSIS COMPLETENESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 Visual Analysis:    1/1 completed
+📝 Content Analysis:   1/1 completed
+⚙️ Technical Analysis: 1/1 completed
+🔍 SEO Analysis:       1/1 completed
+
+TOP SIMILARITIES WITH SEO RISK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. instantcheckmate_com_20250811_2153_vs_truthfinder_com_20250811_2154
+   Similarity: 71.0% (VERY_SIMILAR)
+   SEO Risk: HIGH
+
+
+SEO ANALYSIS SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 Critical Issues: 0
+⚡ High Priority Actions: 3
+📊 Total Actionable Items: 6
+
+DUPLICATE CONTENT RISK DISTRIBUTION
+🚨 Critical Risk: 0 comparisons
+⚠️ High Risk: 1 comparisons
+📊 Medium Risk: 0 comparisons
+✅ Low Risk: 0 comparisons
+
+✅ No critical similarity or SEO issues detected.

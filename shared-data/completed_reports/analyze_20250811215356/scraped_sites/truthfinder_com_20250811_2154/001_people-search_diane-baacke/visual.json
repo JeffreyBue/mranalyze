@@ -1,0 +1,100 @@
+{
+  "url": "https://www.truthfinder.com/people-search/diane-baacke/",
+  "elementStyles": {
+    "body": {
+      "backgroundColor": "rgb(240, 242, 244)",
+      "color": "rgb(59, 59, 59)",
+      "fontSize": "14px",
+      "fontFamily": "Lato, Helvetica, Arial, sans-serif",
+      "fontWeight": "400"
+    },
+    "h1": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(59, 59, 59)",
+      "fontSize": "24px",
+      "fontFamily": "Lato, Helvetica, Arial, sans-serif",
+      "fontWeight": "400"
+    },
+    "h2": {
+      "backgroundColor": "rgb(32, 157, 210)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "26.25px",
+      "fontFamily": "Lato, Helvetica, Arial, sans-serif",
+      "fontWeight": "600"
+    },
+    "nav": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(59, 59, 59)",
+      "fontSize": "16px",
+      "fontFamily": "Lato, Helvetica, Arial, sans-serif",
+      "fontWeight": "400"
+    },
+    "button": {
+      "backgroundColor": "rgba(255, 255, 255, 0)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "20px",
+      "fontFamily": "Lato, Helvetica, Arial, sans-serif",
+      "fontWeight": "700"
+    }
+  },
+  "layout": {
+    "hasHeader": true,
+    "hasNav": true,
+    "hasSidebar": true,
+    "hasFooter": true,
+    "containerWidth": 1200,
+    "containerHeight": 3545
+  },
+  "cssClasses": [
+    "no-scroll",
+    "cky-hide",
+    "cky-overlay",
+    "cky-btn-revisit-wrapper",
+    "cky-revisit-hide",
+    "cky-revisit-bottom-left",
+    "cky-btn-revisit",
+    "cky-consent-container",
+    "cky-modal",
+    "cky-preference-center",
+    "cky-preference-header",
+    "cky-preference-title",
+    "cky-btn-close",
+    "cky-preference-body-wrapper",
+    "cky-preference-content-wrapper",
+    "cky-show-desc-btn",
+    "cky-horizontal-separator",
+    "cky-opt-out-wrapper",
+    "cky-opt-out-checkbox-wrapper",
+    "cky-opt-out-checkbox",
+    "cky-opt-out-checkbox-label",
+    "cky-footer-wrapper",
+    "cky-opt-out-btn-wrapper",
+    "cky-btn",
+    "cky-btn-cancel",
+    "cky-btn-confirm",
+    "ae-blurb-noaudio",
+    "audioeye-skip-link",
+    "logo",
+    "active",
+    "warning-modal-container",
+    "modal-container",
+    "modal",
+    "intro",
+    "red",
+    "secure",
+    "overlay-inner",
+    "verify",
+    "squaredFour",
+    "check-wrapper",
+    "inside-copy",
+    "gray-shield",
+    "blue-shield",
+    "green-shield",
+    "h1",
+    "h2",
+    "slim",
+    "hightlighted-label",
+    "bg-search",
+    "search-label"
+  ]
+}

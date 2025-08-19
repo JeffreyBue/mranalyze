@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  app:
+    image: mranalyze
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-8787}:${PORT:-8787}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command:
+      - npm
+      - run
+      - dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - PORT=${PORT:-8787}
+      - API_VIEW_FLAG=${API_VIEW_FLAG:-true}
+      - KRYPTOPASS=${KRYPTOPASS:-n0SecritKeywOrds}
+      - API_BASE_URL=${API_BASE_URL:-https://seo-people-directory-hlwo534jbq-uk.a.run.app}

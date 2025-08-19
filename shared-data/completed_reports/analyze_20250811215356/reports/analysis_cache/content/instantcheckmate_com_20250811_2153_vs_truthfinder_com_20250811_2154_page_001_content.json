@@ -1,0 +1,64 @@
+{
+  "comparison": "instantcheckmate_com_20250811_2153_vs_truthfinder_com_20250811_2154",
+  "pageIndex": 1,
+  "page1": {
+    "folder": "instantcheckmate_com_20250811_2153",
+    "pageId": "001_people_diane-baacke",
+    "url": "https://www.instantcheckmate.com/people/diane-baacke/"
+  },
+  "page2": {
+    "folder": "truthfinder_com_20250811_2154",
+    "pageId": "001_people-search_diane-baacke",
+    "url": "https://www.truthfinder.com/people-search/diane-baacke/"
+  },
+  "content": {
+    "jaccard": {
+      "score": 0.7014925373134329,
+      "stats": {
+        "tokens1": 411,
+        "tokens2": 387,
+        "intersection": 329,
+        "union": 469
+      }
+    },
+    "cosine": {
+      "score": 0.8886728021794045,
+      "vectorSize": 468
+    },
+    "contentFingerprint": {
+      "score": 0.01,
+      "fingerprints1": 100,
+      "fingerprints2": 100,
+      "matches": 1
+    },
+    "semantic": {
+      "score": 0.8415839797943352,
+      "headingSimilarity": 0.7608695652173914,
+      "paragraphSimilarity": 0.9626556016597511
+    },
+    "topicSimilarity": {
+      "score": 0.75,
+      "commonTopics": 15,
+      "totalTopics1": 20,
+      "totalTopics2": 20
+    },
+    "metadata": {
+      "score": 0.525,
+      "titleSimilarity": 0.5,
+      "descriptionSimilarity": 0.55
+    },
+    "stats": {
+      "text1Length": 7462,
+      "text2Length": 6887,
+      "tokens1": 917,
+      "tokens2": 862,
+      "processingTimeMs": 4
+    },
+    "overallScore": 0.6428581308320765
+  },
+  "performance": {
+    "analysisTimeMs": 11,
+    "memoryUsedMB": 70
+  },
+  "timestamp": "2025-08-11T21:54:20.472Z"
+}

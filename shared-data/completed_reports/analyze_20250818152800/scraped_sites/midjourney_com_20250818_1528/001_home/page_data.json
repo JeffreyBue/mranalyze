@@ -1,0 +1,226 @@
+{
+  "url": "https://www.midjourney.com/home",
+  "pageId": "001_home",
+  "urlIndex": 1,
+  "scrapedAt": "2025-08-18T15:28:51.512Z",
+  "content": {
+    "url": "https://www.midjourney.com/home",
+    "meta": {
+      "title": "Midjourney",
+      "description": "An independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.",
+      "keywords": ""
+    },
+    "headings": {
+      "h1": [
+        "About",
+        "Careers",
+        "Contact"
+      ],
+      "h2": [
+        "Executives",
+        "Advisors",
+        "Research and Engineering",
+        "Legal and Finance",
+        "Community Management",
+        "Discord Moderators and Guides"
+      ],
+      "h3": [
+        "David Holz",
+        "Jim Keller",
+        "Nat Friedman",
+        "Philip Rosedale",
+        "Bill Warner"
+      ]
+    },
+    "paragraphs": [
+      "Midjourney is an independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.",
+      "We are a small self-funded team focused on design, human infrastructure, and AI. We have 11 full-time staff and an incredible set of advisors.",
+      "Previously: Founder Leap Motion, Researcher at NASA, Max Planck",
+      "Lead Silicon at Apple, AMD, Tesla, Intel, Coauthor X86-64, CTO Tenstorrent",
+      "CEO Github, Chairman of GNOME Foundation",
+      "Founder of Second Life, CTO RealNetworks",
+      "Founder of Avid Technology, inventor of nonlinear video editing",
+      "legal advisor",
+      "fnuckle (Katryna)",
+      "Ancient Chaos",
+      "Afterburner",
+      "DigitalDragon",
+      "MatthewHaggett",
+      "Sanne (Ms. Unicorn)",
+      "starshadowx2",
+      "bonnie bear",
+      "classpectanon",
+      "dafyomilimerick",
+      "Eojin's Reviews",
+      "gigglethumps",
+      "SunshineyDay",
+      "Weaving Light",
+      "========================================================================================================================================================================================================================================================================================================================================================================================================================================================================",
+      "We're a small, self-funded, fully-distributed team and we're actively hiring!",
+      "Come help us scale, explore, and build humanist infrastructure focused on amplifying the human mind and spirit.",
+      "If you're sure you can help, but don't see a position that fits, email us.",
+      "========================================================================================================================================================================================================================================================================================================================================================================================================================================================================",
+      "For product support or questions please join our Discord and ask questions in our #support chatrooms.",
+      "For billing support:",
+      "For Journalist inquiries:"
+    ],
+    "navigation": [],
+    "forms": [
+      "Sign Up",
+      "Log In",
+      "Explore",
+      "Sign Up",
+      "Log In",
+      "Explore",
+      "Privacy Settings"
+    ],
+    "fullText": "Sign Up Log In Documentation Explore Sign Up Log In Explore About Midjourney is an independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species. We are a small self-funded team focused on design, human infrastructure, and AI. We have 11 full-time staff and an incredible set of advisors. Executives David Holz Previously: Founder Leap Motion, Researcher at NASA, Max Planck Advisors Jim Keller Lead Silicon at Apple, AMD, Tesla, Intel, Coauthor X86-64, CTO Tenstorrent Nat Friedman CEO Github, Chairman of GNOME Foundation Philip Rosedale Founder of Second Life, CTO RealNetworks Bill Warner Founder of Avid Technology, inventor of nonlinear video editing Research and Engineering Daniel Max Jack Thomas Red Sam Nadir Sebastian Legal and Finance Max Sills legal advisor Nadia Ali Community Management fnuckle (Katryna) Ancient Chaos Discord Moderators and Guides Afterburner AmirKerr bartek Blue Man ChrisViau cody boy croakie dezm0n DigitalDragon Eikyuu Feonix fractl isaacq jayscott kav2k MatthewHaggett Meggirbot Reiko Sanne (Ms. Unicorn) schofe Shade Sirkut Spookydan SquireZed starshadowx2 Tallath Xaphedo ajmars ameades Apricus bonnie bear clarinet classpectanon dafyomilimerick Dee dudu eku Eojin's Reviews fab1an fl4min_xX firefly gigglethumps Goofball Historian Hoxxonia Ippity jrdsctt Kath Kevazy Kinky Kong Krakput Kyun Larc Marigold Molang noodlecake PtitCitron Replicant Roc ShaneMcG Soar STON3ZY SunshineyDay TaylorV theo3 Trent Weaving Light Zu ======================================================================================================================================================================================================================================================================================================================================================================================================================================================================== Careers We're a small, self-funded, fully-distributed team and we're actively hiring! Come help us scale, explore, and build humanist infrastructure focused on amplifying the human mind and spirit. If you're sure you can help, but don't see a position that fits, email us. We look forward to hearing from you. ======================================================================================================================================================================================================================================================================================================================================================================================================================================================================== Contact For product support or questions please join our Discord and ask questions in our #support chatrooms. For billing support: billing@midjourney.com For Journalist inquiries: press@midjourney.com Terms of Service Privacy Policy Privacy Settings",
+    "stats": {
+      "wordCount": 299,
+      "charCount": 2988,
+      "imageCount": 0,
+      "linkCount": 7
+    }
+  },
+  "visual": {
+    "url": "https://www.midjourney.com/home",
+    "elementStyles": {
+      "body": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(46, 48, 56)",
+        "fontSize": "16px",
+        "fontFamily": "\"DM Sans\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "fontWeight": "400"
+      },
+      "h1": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "30px",
+        "fontFamily": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+        "fontWeight": "400"
+      },
+      "h2": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklch(0.968 0.007 247.896)",
+        "fontSize": "20px",
+        "fontFamily": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+        "fontWeight": "400"
+      },
+      "nav": null,
+      "button": {
+        "backgroundColor": "oklab(0.378 -0.0755699 0.0147714 / 0.2)",
+        "color": "oklch(0.979 0.021 166.113)",
+        "fontSize": "16px",
+        "fontFamily": "\"DM Sans\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "fontWeight": "500"
+      }
+    },
+    "layout": {
+      "hasHeader": false,
+      "hasNav": false,
+      "hasSidebar": false,
+      "hasFooter": false,
+      "containerWidth": 1200,
+      "containerHeight": 3159
+    },
+    "cssClasses": [
+      "light",
+      "bg-[#040409]",
+      "font-mono",
+      "flex",
+      "flex-col",
+      "items-stretch",
+      "justify-start",
+      "z-10",
+      "fixed",
+      "w-screen",
+      "overscroll-y-none",
+      "z-20",
+      "bg-[#060522]/20",
+      "top-0",
+      "py-4",
+      "px-12",
+      "gap-4",
+      "items-center",
+      "max-h-fit",
+      "font-sans",
+      "md:flex-row-reverse",
+      "md:gap-8",
+      "md:justify-between",
+      "justify-end",
+      "flex-center",
+      "gap-2",
+      "w-fit",
+      "font-medium",
+      "basis-1",
+      "p-2",
+      "px-5",
+      "min-w-max",
+      "text-sm",
+      "font-bold",
+      "text-center",
+      "rounded-full",
+      "transition-all",
+      "md:text-base",
+      "outline-[#09073a]/50",
+      "border-[0.5px]",
+      "border-white/10",
+      "hover:border-white/20",
+      "shadow-md",
+      "hover:shadow-lg",
+      "bg-emerald-900/20",
+      "text-emerald-50",
+      "hover:bg-emerald-900",
+      "bg-yellow-900/20",
+      "text-yellow-50",
+      "hover:bg-yellow-900"
+    ]
+  },
+  "technical": {
+    "url": "https://www.midjourney.com/home",
+    "metaTags": {
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "apple-mobile-web-app-title": "Midjourney",
+      "mobile-web-app-title": "Midjourney",
+      "p:domain_verify": "ec968d86273fc56701c53348ee92f9d2",
+      "robots": "index,follow",
+      "googlebot": "index,follow",
+      "og:type": "website",
+      "og:url": "website",
+      "description": "An independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.",
+      "og:title": "Midjourney",
+      "og:description": "An independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.",
+      "og:locale": "en",
+      "og:site_name": "Midjourney",
+      "theme-color": "#FCFDFD"
+    },
+    "schemas": [],
+    "resources": {
+      "stylesheets": [
+        "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=JetBrains+Mono&display=swap",
+        "https://www.midjourney.com/public/out/clientSideEntry-b06trkrg.css"
+      ],
+      "scripts": [
+        "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit",
+        "https://www.googletagmanager.com/gtag/js?id=AW-16508112792",
+        "https://pagead2.googlesyndication.com/pagead/conversion/16508112792/?random=1755530929143&cv=11&fst=1755530929143&bg=ffffff&guid=ON&async=1&en=page_view&gtm=45be58d1v9180911394za200zd9180911394xec&gcs=G100&gcd=13m3m3m3m5l1&dma_cps=-&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528500~104684208~104684211~104948813~105033763~105033765~105103161~105103163~105231383~105231385&u_w=800&u_h=600&url=https%3A%2F%2Fwww.midjourney.com%2Fhome&gtm_ee=1&hn=www.googleadservices.com&frm=0&tiba=Midjourney&npa=1&pscdl=denied&uaa=&uab=&uafvl=&uamb=0&uam=&uap=&uapv=&uaw=0&label=S0-DCJDlgJ8ZEJif1789&fdr=Cw&data=event%3Dgtag.config&rfmt=3&fmt=4",
+        "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/16508112792/?random=1755530929152&cv=11&fst=1755530929152&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be58d1v9180911394za200zd9180911394xec&gcd=13n3n3n3n5l1&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528500~104684208~104684211~104948813~105033763~105033765~105103161~105103163~105231383~105231385&npa=0&pscdl=noapi&auid=2049670267.1755530929&uaa=&uab=&uafvl=&uamb=0&uam=&uap=&uapv=&uaw=0&fledge=1&data=event%3Dgtag.config&rfmt=3&fmt=4",
+        "https://www.midjourney.com/public/out/clientSideEntry-41p9tdsk.js"
+      ]
+    },
+    "frameworks": {
+      "jquery": false,
+      "react": false,
+      "angular": false,
+      "vue": false,
+      "bootstrap": false
+    },
+    "structure": {
+      "doctype": "html",
+      "lang": "en",
+      "charset": "UTF-8",
+      "headElementCount": 23,
+      "bodyElementCount": 9
+    }
+  }
+}

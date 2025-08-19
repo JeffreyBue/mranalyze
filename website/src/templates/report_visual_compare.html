@@ -1,0 +1,222 @@
+title: "Visual Comparison - {{comparison}} | MrAnalyze."
+description: "Visual design comparison between sites including layout, typography, colors, and responsive design
+analysis."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/report_visual_compare.css">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#visualComparison}}
+
+    <!-- Header Section -->
+    <header class="visual-comparison-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="/report/{{report}}/visual/">Visual Summary Analysis</a></li>
+                        <li>Visual Design Comparison</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="comparison-info">
+                    <h1 class="page-title">Visual Design Comparison</h1>
+                    <div class="comparison-sites">
+                        <span class="site-name" data-comparison="{{comparison}}">{{comparison}}</span>
+                    </div>
+                    <div class="comparison-meta">
+                        <span class="analysis-type">{{#titleCase}}{{analysisType}}{{/titleCase}}</span>
+                        <span class="total-pages">{{totalPages}} pages analyzed</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="overall-score-display">
+                    <div class="score-circle" data-score="{{avgScore}}">
+                        <div class="score-percentage">{{#multiply}}{{avgScore}} 100{{/multiply}}%</div>
+                        <div class="score-label">Visual Similarity</div>
+                    </div>
+                    <div class="score-grade" data-grade="{{avgScore}}">
+                        <span class="grade-letter">{{#getGrade}}{{avgScore}}{{/getGrade}}</span>
+                        <span
+                            class="grade-description">{{#getGradeDescription}}{{avgScore}}{{/getGradeDescription}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Visual Metrics Overview -->
+    <section class="metrics-overview paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Visual Metrics Breakdown</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card layout">
+                    <div class="metric-icon">📐</div>
+                    <div class="metric-content">
+                        <div class="metric-score">{{#multiply}}{{metrics.layout}} 100{{/multiply}}%</div>
+                        <div class="metric-label">Layout Structure</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill layout" style="width: {{#multiply}}{{metrics.layout}} 100{{/multiply}}%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card colors">
+                    <div class="metric-icon">🎨</div>
+                    <div class="metric-content">
+                        <div class="metric-score">{{#multiply}}{{metrics.colors}} 100{{/multiply}}%</div>
+                        <div class="metric-label">Color Schemes</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill colors" style="width: {{#multiply}}{{metrics.colors}} 100{{/multiply}}%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card typography">
+                    <div class="metric-icon">📝</div>
+                    <div class="metric-content">
+                        <div class="metric-score">{{#multiply}}{{metrics.typography}} 100{{/multiply}}%</div>
+                        <div class="metric-label">Typography</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill typography"
+                                style="width: {{#multiply}}{{metrics.typography}} 100{{/multiply}}%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card responsive">
+                    <div class="metric-icon">📱</div>
+                    <div class="metric-content">
+                        <div class="metric-score">{{#multiply}}{{metrics.responsive}} 100{{/multiply}}%</div>
+                        <div class="metric-label">Responsive Design</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill responsive"
+                                style="width: {{#multiply}}{{metrics.responsive}} 100{{/multiply}}%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card design-system">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-content">
+                        <div class="metric-score">{{#multiply}}{{metrics.designSystem}} 100{{/multiply}}%</div>
+                        <div class="metric-label">Design System</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill design-system"
+                                style="width: {{#multiply}}{{metrics.designSystem}} 100{{/multiply}}%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card hierarchy">
+                    <div class="metric-icon">🏗️</div>
+                    <div class="metric-content">
+                        <div class="metric-score">{{#multiply}}{{metrics.hierarchy}} 100{{/multiply}}%</div>
+                        <div class="metric-label">Visual Hierarchy</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill hierarchy"
+                                style="width: {{#multiply}}{{metrics.hierarchy}} 100{{/multiply}}%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card spacing">
+                    <div class="metric-icon">📏</div>
+                    <div class="metric-content">
+                        <div class="metric-score">{{#multiply}}{{metrics.spacing}} 100{{/multiply}}%</div>
+                        <div class="metric-label">Spacing</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill spacing" style="width: {{#multiply}}{{metrics.spacing}} 100{{/multiply}}%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Insights -->
+    <section class="insights-section">
+        <div class="container">
+            <h2 class="section-title">Key Insights</h2>
+
+            <div class="insights-container">
+                {{#insights}}
+                <div class="insight-item">
+                    <div class="insight-content">
+                        <span class="insight-text">{{.}}</span>
+                    </div>
+                </div>
+                {{/insights}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Individual Page Comparisons -->
+    <section class="page-comparisons paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Individual Page Visual Comparisons ({{visualFiles.length}})</h2>
+            <p class="section-subtitle">Detailed visual analysis for each page in this comparison {{#titleCase}}{{#getSiteNames}}{{comparison}}{{/getSiteNames}}{{/titleCase}}</p>
+
+            <div class="page-reports-grid">
+                {{#visualFiles}}
+                <div class="report-item">
+                    <a href="/report/{{report}}/visual/page/{{#removeExtension}}{{url}}{{/removeExtension}}/"
+                        class="report-link">
+                        <div class="report-icon">🎨</div>
+                        <div class="report-content">
+                            <h3 class="report-title">{{#titleCase}}{{titles.page1}} vs. {{titles.page2}}{{/titleCase}}</h3>
+                            <p class="report-description"><b><em>{{overallSimilarity}}%</em> Similarity</b>: Visual design comparison and analysis</p>
+                        </div>
+                        <div class="report-arrow">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                        <div class="gradient-overlay"></div>
+                    </a>
+                </div>
+                {{/visualFiles}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need More Detailed Analysis?</h2>
+                <p>Explore individual page comparisons for granular visual design insights.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Report</button>
+                    <a href="/report/visual" class="button-blue">Back to Visual Summary</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/_/js/visual_comparison.js"></script>
+
+    {{/visualComparison}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+</body>
+
+</html>

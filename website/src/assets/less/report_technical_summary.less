@@ -1,0 +1,822 @@
+// Technical Master Summary Styles
+@import (reference) "./seo";
+
+// Technical Color Scheme
+@tech-primary: #2c3e50;      // Dark blue
+@tech-secondary: #34495e;    // Slightly lighter dark blue
+@tech-silver: #bdc3c7;       // Silver
+@tech-dark-silver: #95a5a6;  // Darker silver
+@tech-black: #2c2c2c;        // Near black
+@tech-light: #ecf0f1;        // Very light gray
+
+// Technical Header
+.technical-header {
+    background: linear-gradient(135deg, @tech-primary 0%, @tech-black 100%);
+    color: @brand-white;
+    padding: 3em 0;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="technical" width="30" height="30" patternUnits="userSpaceOnUse"><rect x="5" y="5" width="20" height="20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/><circle cx="15" cy="15" r="2" fill="rgba(255,255,255,0.08)"/><rect x="10" y="10" width="10" height="10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></pattern></defs><rect width="60" height="60" fill="url(%23technical)"/></svg>');
+        animation: backgroundMove 30s linear infinite;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .header-breadcrumbs {
+        margin-bottom: 1.5em;
+        
+        .breadcrumbs ul {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            
+            li {
+                color: @brand-white;
+                
+                a {
+                    color: @brand-white;
+                    opacity: 0.8;
+                    transition: opacity 0.3s ease;
+                    
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    
+    .header-content {
+        // display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 3em;
+        
+        @media (max-width: @widthTablet) {
+            flex-direction: column;
+            gap: 2em;
+        }
+    }
+    
+    .analysis-info {
+        flex: 1;
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+            color: @brand-white;
+            
+            @media (max-width: @widthMobile) {
+                font-size: 2rem;
+            }
+        }
+        
+        .analysis-meta {
+            display: flex;
+            gap: 2em;
+            font-family: @data;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            
+            @media (max-width: @widthMobile) {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+            
+            span {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 0.5em 1em;
+                border-radius: 6px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+    
+    .technical-overview {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2em;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        min-width: 350px;
+        margin-top: 2em;
+        
+        @media (max-width: @widthTablet) {
+            min-width: auto;
+        }
+        
+        h3 {
+            margin-bottom: 1.5em;
+            color: @brand-white;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .overview-metrics {
+            display: flex;
+            flex-direction: row;
+            gap: 1.5em;
+            
+            .metric-item {
+                display: flex;
+                flex-grow: 1;
+                align-items: center;
+                gap: 1em;
+                padding: 1em;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                
+                .metric-icon {
+                    font-size: 1.8rem;
+                    flex-shrink: 0;
+                }
+                
+                .metric-info {
+                    flex: 1;
+                    
+                    .metric-label {
+                        display: block;
+                        font-size: 0.9rem;
+                        opacity: 0.9;
+                        margin-bottom: 0.25em;
+                    }
+                    
+                    .metric-value {
+                        font-family: @data;
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        color: @tech-silver;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Technical Analysis Overview
+.technical-analysis-overview {
+    background: @brand-white;
+    
+    .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+        position: relative;
+    }
+    
+    .component-card {
+        background: @tech-light;
+        border-radius: 16px;
+        padding: 2em;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 3px solid @tech-silver;
+        position: relative;
+        
+        &.html-structure {
+            border-color: @tech-primary;
+            
+            .component-avg {
+                color: @tech-primary;
+            }
+        }
+        
+        &.meta-tags {
+            border-color: @tech-secondary;
+            
+            .component-avg {
+                color: @tech-secondary;
+            }
+        }
+        
+        &.frameworks {
+            border-color: @tech-dark-silver;
+            
+            .component-avg {
+                color: @tech-dark-silver;
+            }
+        }
+        
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(44, 62, 80, 0.2);
+            border-color: @tech-black;
+        }
+        
+        .component-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1em;
+            margin-bottom: 1.5em;
+            
+            .component-icon {
+                font-size: 3rem;
+                color: @tech-primary;
+            }
+            
+            .component-info {
+                h3 {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: @tech-black;
+                    margin-bottom: 0.5em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5em;
+                    
+                    .tooltip-trigger {
+                        cursor: help;
+                        font-size: 0.8rem;
+                        opacity: 0.7;
+                        transition: opacity 0.3s ease;
+                        color: @tech-dark-silver;
+                        
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+                
+                .component-avg {
+                    font-family: @data;
+                    font-size: 2rem;
+                    font-weight: 700;
+                }
+            }
+        }
+        
+        .component-description {
+            font-size: 0.9rem;
+            color: @tech-secondary;
+            line-height: 1.5;
+            font-style: italic;
+        }
+    }
+}
+
+// Tooltip System
+.tooltip {
+    position: absolute;
+    background: @tech-black;
+    color: @brand-white;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(44, 44, 44, 0.3);
+    max-width: 300px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    border: 1px solid @tech-silver;
+    
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .tooltip-content {
+        h4 {
+            margin: 0 0 0.5em 0;
+            color: @tech-silver;
+            font-size: 1.1rem;
+        }
+        
+        p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+    }
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 8px solid transparent;
+        border-top-color: @tech-black;
+    }
+}
+
+// Technical Similarity Dashboard
+.technical-similarity-dashboard {
+    background: @tech-light;
+    padding: 4em 0;
+    
+    .similarity-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2em;
+        
+        @media (max-width: @widthTablet) {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .similarity-card {
+        background: @brand-white;
+        border-radius: 16px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 6px 25px rgba(44, 62, 80, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid @tech-silver;
+        
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px rgba(44, 62, 80, 0.25);
+            border-color: @tech-primary;
+        }
+        
+        .card-header {
+            background: @tech-primary;
+            color: @brand-white;
+            padding: 1.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 115px;
+            
+            @media (max-width: @widthMobile) {
+                flex-direction: column;
+                gap: 1em;
+                text-align: center;
+            }
+            
+            .comparison-title {
+                font-size: 1.1rem;
+                font-weight: 700;
+                margin: 0;
+                font-family: @data;
+                color: @brand-white;
+            }
+            
+            .overall-score {
+                text-align: center;
+                padding: 1em;
+                border-radius: 8px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                background: rgba(255, 255, 255, 0.1);
+                
+                &.excellent { 
+                    border-color: @viz-green;
+                    background: rgba(39, 174, 96, 0.2);
+                }
+                &.good { 
+                    border-color: @viz-yellow;
+                    background: rgba(241, 196, 15, 0.2);
+                }
+                &.warning { 
+                    border-color: @viz-orange;
+                    background: rgba(243, 156, 18, 0.2);
+                }
+                &.error { 
+                    border-color: @viz-red;
+                    background: rgba(231, 76, 60, 0.2);
+                }
+                
+                .score-number {
+                    font-family: @data;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    display: block;
+                    line-height: 1;
+                }
+                
+                .score-label {
+                    font-size: 0.8rem;
+                    opacity: 0.9;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+            }
+        }
+        
+        .technical-breakdown {
+            padding: 2em;
+            
+            .metric-item {
+                margin-bottom: 1.5em;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                
+                .metric-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 0.5em;
+                    
+                    .metric-name {
+                        font-weight: 600;
+                        color: @tech-black;
+                    }
+                    
+                    .metric-value {
+                        font-family: @data;
+                        font-weight: 700;
+                        
+                        &.excellent { color: @viz-green; }
+                        &.good { color: @viz-yellow; }
+                        &.warning { color: @viz-orange; }
+                        &.error { color: @viz-red; }
+                    }
+                }
+                
+                .metric-bar {
+                    height: 10px;
+                    background: @tech-light;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    border: 1px solid @tech-silver;
+                    
+                    .metric-fill {
+                        height: 100%;
+                        border-radius: 5px;
+                        transition: width 1s ease-out;
+                        
+                        &.excellent { background: @viz-green; }
+                        &.good { background: @viz-yellow; }
+                        &.warning { background: @viz-orange; }
+                        &.error { background: @viz-red; }
+                    }
+                }
+            }
+        }
+        
+        .card-footer {
+            background: @tech-light;
+            padding: 1.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid @tech-silver;
+            
+            .technical-info {
+                font-family: @data;
+                font-size: 0.9rem;
+                color: @tech-secondary;
+                
+                .pages-count {
+                    font-weight: 700;
+                    color: @tech-primary;
+                }
+            }
+            
+            .view-details-btn {
+                display: flex;
+                align-items: center;
+                gap: 0.5em;
+                background: @tech-primary;
+                color: @brand-white;
+                padding: 0.75em 1.5em;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    background: @tech-black;
+                    transform: translateX(3px);
+                }
+                
+                svg {
+                    transition: transform 0.3s ease;
+                }
+                
+                &:hover svg {
+                    transform: translateX(3px);
+                }
+            }
+        }
+    }
+}
+
+// Technical Analysis Insights
+.technical-analysis-insights {
+    background: @brand-white;
+    
+    .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+    }
+    
+    .insight-card {
+        background: @tech-light;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+        transition: transform 0.3s ease;
+        border: 2px solid @tech-silver;
+        
+        &:hover {
+            transform: translateY(-5px);
+            border-color: @tech-primary;
+        }
+        
+        .insight-header {
+            background: @tech-primary;
+            padding: 1.5em;
+            
+            h3 {
+                margin: 0;
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: @brand-white;
+            }
+        }
+        
+        .insight-content {
+            padding: 2em;
+        }
+    }
+    
+    .risk-levels {
+        .risk-item {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            padding: 1em 0;
+            border-bottom: 1px solid @tech-silver;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            
+            .risk-icon {
+                font-size: 1.5rem;
+                flex-shrink: 0;
+            }
+            
+            .risk-number {
+                font-family: @data;
+                font-size: 2rem;
+                font-weight: 700;
+                min-width: 50px;
+                
+                &.critical { color: @viz-red; }
+                &.high { color: @viz-orange; }
+                &.moderate { color: @viz-yellow; }
+                &.low { color: @viz-green; }
+            }
+            
+            .risk-label {
+                flex: 1;
+                font-weight: 600;
+                color: @tech-black;
+            }
+        }
+    }
+    
+    .component-insights {
+        .insight-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em 0;
+            border-bottom: 1px solid @tech-silver;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            
+            .insight-label {
+                font-weight: 600;
+                color: @tech-black;
+            }
+            
+            .insight-value {
+                font-family: @data;
+                font-weight: 700;
+                color: @tech-primary;
+            }
+        }
+    }
+    
+    .patterns-list {
+        .pattern-item {
+            padding: 1em 0;
+            border-bottom: 1px solid @tech-silver;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            
+            .pattern-text {
+                color: @tech-black;
+                line-height: 1.5;
+                font-weight: 500;
+            }
+        }
+    }
+    
+    .recommendations-list {
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1em;
+            padding: 1em 0;
+            border-bottom: 1px solid @tech-silver;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            
+            .rec-priority {
+                padding: 0.25em 0.75em;
+                border-radius: 15px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                flex-shrink: 0;
+                
+                &.critical {
+                    background: @viz-red;
+                    color: @brand-white;
+                }
+                
+                &.high {
+                    background: @viz-orange;
+                    color: @brand-white;
+                }
+                
+                &.medium {
+                    background: @viz-yellow;
+                    color: @brand-white;
+                }
+            }
+            
+            .rec-text {
+                color: @tech-black;
+                line-height: 1.5;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+// Footer CTA
+.footer-cta {
+    background: linear-gradient(135deg, @tech-primary 0%, @tech-black 100%);
+    color: @brand-white;
+    padding: 4em 0;
+    text-align: center;
+    
+    .cta-content {
+        max-width: 600px;
+        margin: 0 auto;
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1em;
+            color: @brand-white;
+            
+            @media (max-width: @widthTablet) {
+                font-size: 2rem;
+            }
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2em;
+            opacity: 0.9;
+        }
+    }
+    
+    .cta-buttons {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        
+        @media (max-width: @widthMobile) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+// Animations
+@keyframes backgroundMove {
+    from {
+        transform: translateX(0) translateY(0);
+    }
+    to {
+        transform: translateX(-30px) translateY(-30px);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.component-card,
+.similarity-card,
+.insight-card {
+    animation: slideInUp 0.6s ease-out both;
+    
+    &:nth-child(1) { animation-delay: 0.1s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+    &:nth-child(4) { animation-delay: 0.4s; }
+    &:nth-child(5) { animation-delay: 0.5s; }
+    &:nth-child(6) { animation-delay: 0.6s; }
+}
+
+// Responsive Design
+@media (max-width: @widthTablet) {
+    .components-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .similarity-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: @widthMobile) {
+    .technical-header {
+        .page-title {
+            font-size: 2rem;
+        }
+        
+        .analysis-meta {
+            flex-direction: column;
+            gap: 0.5em;
+        }
+    }
+    
+    .components-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .risk-levels .risk-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5em;
+    }
+}
+
+// Print styles
+@media print {
+    .technical-header {
+        background: @tech-light !important;
+        color: @tech-black !important;
+    }
+    
+    .component-card,
+    .similarity-card,
+    .insight-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid @tech-silver !important;
+    }
+    
+    .footer-cta {
+        display: none !important;
+    }
+    
+    .tooltip {
+        display: none !important;
+    }
+}

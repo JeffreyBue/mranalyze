@@ -1,0 +1,32 @@
+title: "Something went wrong. That page is not found."
+description: "Sorry about that! Try going back or returning home."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{> HEAD }}
+        <meta name="robots" content="noindex, follow">
+    </head>
+    <body>
+        {{> HEADER }}
+
+        <div id="error">
+            <section class="half paddingtopbottom">
+                <div class="container">
+                    <h1>{{title}}</h1>
+                    <p class="error-code">Error: {{status}}</p>
+                    <p class="text">{{error_message}}</p>
+                    <p>{{description}}</p>
+            
+                    <div class="button-container">
+                        <a href="javascript:void(0);"><button class="green goBack" type="button" name="Go Back">Go Back</button></a>
+                        <a href="/"><button class="white" type="button" name="button">Return Home</button></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        {{> FOOTER }}
+        {{> FOOT }}
+    </body>
+</html>

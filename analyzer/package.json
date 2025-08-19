@@ -1,0 +1,65 @@
+{
+  "name": "site-comparison-engine",
+  "version": "1.0.0",
+  "description": "Multi-dimensional website similarity analysis engine",
+  "main": "comparison_engine.js",
+  "scripts": {
+    "start": "node api-server.js",
+    "dev": "nodemon --ext js api-server.js",
+    "scrape": "node scripts/scraper.js",
+    "scrape-file": "node scripts/scraper.js --",
+    "scrape-all": "node scripts/scraper_batch.js",
+    "test": "node /scripts/scraper.js --test",
+    "visual": "node ./analyzers/visual_analysis_enhanced.js",
+    "visual-light": "node --max-old-space-size=8192 ./analyzers/visual_analysis.js --screenshots",
+    "content": "node --max-old-space-size=8192 ./analyzers/content_analysis_optimized.js --deep",
+    "content-light": "node --max-old-space-size=8192 ./analyzers/content_light_analysis.js",
+    "content-deep": "node --max-old-space-size=8192 ./analyzers/content_analysis_optimized.js --deep",
+    "content-fast": "node --max-old-space-size=8192 ./analyzers/content_analysis_optimized.js --batch=20",
+    "technical": "node --max-old-space-size=8192 ./analyzers/technical_analysis.js",
+    "seo": "node --max-old-space-size=8192 ./analyzers/seo_analysis.js",
+    "final": "node scripts/report.js",
+    "final-legacy": "node scripts/report_legacy.js",
+    "analyze-all": "npm run visual && npm run content && npm run technical && npm run seo && npm run final",
+    "analyze-content": "npm run content && npm run final",
+    "analyze-visual": "npm run visual && npm run final",
+    "analyze-technical": "npm run technical && npm run final",
+    "analyze-seo": "npm run seo && npm run final",
+    "SAR": "node scripts/scrape_analyze_report.js",
+    "scrape-analysis-report": "npm run SAR",
+    "clean-all": "rm -rf reports scraped_sites",
+    "clean": "rm -rf reports",
+    "clean-cache": "rm -rf reports/analysis_cache",
+    "clean-reports": "rm -rf reports/final_reports",
+    "memory-test": "node --max-old-space-size=16384 -e \"console.log('Memory test passed:', process.memoryUsage())\""
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "express": "^5.1.0",
+    "natural": "^6.5.0",
+    "puppeteer": "^19.11.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "sharp": "^0.32.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "website-analysis",
+    "similarity-detection",
+    "similarity-analysis",
+    "content-analysis",
+    "visual-analysis",
+    "technical-analysis",
+    "web-scraping",
+    "comparison-engine",
+    "seo",
+    "puppeteer"
+  ],
+  "author": "Jeffrey J. Bue",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

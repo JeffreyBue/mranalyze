@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  website:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "${PORT:-8787}:${PORT:-8787}"
+    volumes:
+      # In production, don't override app files with local files
+      - ./website:/app
+      - /app/node_modules
+      - ./shared-data:/app/shared-data  # bind shared-data on host to /app/shared-data in container
+    environment:
+      - PORT=${PORT:-8787}
+      - API_VIEW_FLAG=${API_VIEW_FLAG:-true}
+      - ANALYZER_SERVICE_URL=http://analyzer:3001
+      - NODE_ENV=${NODE_ENV:-development}
+    depends_on:
+      - analyzer
+    networks:
+      - mranalyze-network
+    command: sh -c 'if [ "$NODE_ENV" = "production" ]; then npm start; else npm run dev; fi'
+
+  analyzer:
+    build:
+      context: ./analyzer
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3001:3001"  # Internal API port for communication
+    volumes:
+      # In production, don't override app files with local files
+      - ./analyzer:/app
+      - /app/node_modules
+      - ./shared-data:/app/shared-data  # bind shared-data on host to /app/shared-data in container
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - REPORTS_DIR=/app/shared-data/reports
+      - COMPLETED_REPORTS_DIR=/app/shared-data/completed_reports
+      - LOCKS_DIR=/app/shared-data/locks
+    networks:
+      - mranalyze-network
+    command: sh -c 'if [ "$NODE_ENV" = "production" ]; then npm start; else npm run dev; fi'
+
+networks:
+  mranalyze-network:
+    driver: bridge

@@ -1,0 +1,42 @@
+{
+  "name": "mranalyze",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#APPROOT/*": "./*"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon --ext js,json,html,less,css,md server/server.js",
+    "gulp": "dotenv -e .env -- gulp"
+  },
+  "dependencies": {
+    "browser-cookies": "^1.2.0",
+    "collapse-white-space": "^2.1.0",
+    "compression": "^1.8.0",
+    "connect-timeout": "^1.9.0",
+    "cookie-parser": "^1.4.7",
+    "crypto-js": "^4.2.0",
+    "express": "^5.1.0",
+    "js-yaml": "^4.1.0",
+    "json-2-csv": "^5.5.9",
+    "marked": "^15.0.12",
+    "morgan": "^1.10.0",
+    "mustache": "^4.2.0",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
+    "babelify": "^10.0.0",
+    "browser-sync": "^3.0.4",
+    "browserify": "^17.0.0",
+    "dotenv-cli": "^8.0.0",
+    "gulp": "^5.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-less": "^5.0.0",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "license": "MIT"
+}

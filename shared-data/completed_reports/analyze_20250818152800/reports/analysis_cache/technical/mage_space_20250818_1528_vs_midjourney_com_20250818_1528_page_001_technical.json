@@ -1,0 +1,191 @@
+{
+  "comparison": "mage_space_20250818_1528_vs_midjourney_com_20250818_1528",
+  "pageIndex": 1,
+  "page1": {
+    "folder": "mage_space_20250818_1528",
+    "pageId": "001_homepage",
+    "url": "https://www.mage.space/"
+  },
+  "page2": {
+    "folder": "midjourney_com_20250818_1528",
+    "pageId": "001_home",
+    "url": "https://www.midjourney.com/home"
+  },
+  "technical": {
+    "htmlStructure": {
+      "score": 0.75,
+      "details": {
+        "doctype": null,
+        "language": null,
+        "charset": null,
+        "complexity": null
+      },
+      "stats": {
+        "page1": {
+          "headElements": 36,
+          "bodyElements": 208
+        },
+        "page2": {
+          "headElements": 23,
+          "bodyElements": 9
+        }
+      }
+    },
+    "metaTags": {
+      "score": 0.4217253334900394,
+      "details": {
+        "commonTags": 7,
+        "totalTags1": 12,
+        "totalTags2": 14,
+        "sharedImportantTags": [],
+        "exactMatches": [
+          "og:type"
+        ]
+      },
+      "analysis": {
+        "tagOverlap": 0.5,
+        "valueMatch": 0.37202209555150734,
+        "importantTags": 0.42857142857142855
+      }
+    },
+    "schemaMarkup": {
+      "score": 0.4,
+      "details": {
+        "types1": [],
+        "types2": [],
+        "commonTypes": [],
+        "jaccardSimilarity": 0,
+        "contentSimilarity": 1
+      },
+      "schemas": {
+        "count1": 0,
+        "count2": 0,
+        "commonCount": 0
+      }
+    },
+    "frameworks": {
+      "score": 1,
+      "details": {
+        "jquery": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 0.8
+        },
+        "react": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 1
+        },
+        "angular": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 1
+        },
+        "vue": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 1
+        },
+        "bootstrap": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 0.6
+        }
+      },
+      "summary": {
+        "totalFrameworks": 5,
+        "matchingFrameworks": 5,
+        "weightedScore": 1
+      }
+    },
+    "resources": {
+      "score": 0,
+      "stylesheets": {
+        "score": 0,
+        "domainSimilarity": 0,
+        "exactMatches": 0,
+        "commonDomains": [],
+        "stats": {
+          "count1": 4,
+          "count2": 2,
+          "commonDomainCount": 0
+        }
+      },
+      "scripts": {
+        "score": 0,
+        "domainSimilarity": 0,
+        "exactMatches": 0,
+        "commonDomains": [],
+        "stats": {
+          "count1": 14,
+          "count2": 5,
+          "commonDomainCount": 0
+        }
+      },
+      "cdn": {
+        "score": 0,
+        "cdns1": [],
+        "cdns2": [
+          "fonts.googleapis.com"
+        ],
+        "commonCDNs": [],
+        "cdnUsage1": false,
+        "cdnUsage2": true
+      },
+      "summary": {
+        "totalResources1": 18,
+        "totalResources2": 7
+      }
+    },
+    "performance": {
+      "score": 0.23399999999999999,
+      "resourceCount": {
+        "page1": 18,
+        "page2": 7,
+        "similarity": 0.78
+      },
+      "complexity": {
+        "page1": 244,
+        "page2": 32,
+        "similarity": 0
+      },
+      "patterns": {
+        "page1": [
+          "many_scripts"
+        ],
+        "page2": [
+          "analytics"
+        ],
+        "similarity": 0
+      }
+    },
+    "seoTechnical": {
+      "score": 0.3505882352941177,
+      "structuredData": 0.4,
+      "metaSEO": 0.23529411764705888,
+      "technicalSEO": 0.4,
+      "elements": {
+        "page1": {
+          "hasStructuredData": false,
+          "hasViewportMeta": "width=device-width, initial-scale=1",
+          "hasOGTags": true,
+          "hasTwitterTags": true
+        },
+        "page2": {
+          "hasStructuredData": false,
+          "hasRobotsMeta": "index,follow",
+          "hasViewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover",
+          "hasOGTags": true,
+          "hasTwitterTags": false
+        }
+      }
+    },
+    "overallScore": 0.4977744784627138
+  },
+  "timestamp": "2025-08-18T15:28:59.774Z"
+}

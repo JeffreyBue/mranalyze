@@ -1,0 +1,56 @@
+{
+  "url": "https://www.mage.space/",
+  "metaTags": {
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Generate AI images and videos instantly — free, fast, and unlimited. Discover the magic of AI with Mage.",
+    "og:title": "Mage | Free & Unlimited AI Image and Video Generator",
+    "og:description": "Generate AI images and videos instantly — free, fast, and unlimited. Discover the magic of AI with Mage.",
+    "og:url": "https://www.mage.space",
+    "og:site_name": "Mage",
+    "og:image": "https://www.mage.space/mage-banner.jpg",
+    "og:type": "website",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Mage | Free & Unlimited AI Image and Video Generator",
+    "twitter:description": "Generate AI images and videos instantly — free, fast, and unlimited. Discover the magic of AI with Mage.",
+    "twitter:image": "https://www.mage.space/mage-banner.jpg"
+  },
+  "schemas": [],
+  "resources": {
+    "stylesheets": [
+      "https://www.mage.space/_next/static/css/cd9125ae557a3817.css?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/css/9bfa26f00747ab0c.css?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/css/e9c987c6be8d391f.css?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/css/b4c1e37cef985f4b.css?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7"
+    ],
+    "scripts": [
+      "https://www.gstatic.com/recaptcha/releases/07cvpCr3Xe3g2ttJNUkC6W0J/recaptcha__en.js",
+      "https://www.mage.space/_next/static/chunks/52774a7f-821179795fb612fe.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/chunks/4bd1b696-0b8f2f7415599673.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/chunks/586-4a7679d917380849.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/chunks/main-app-156ad2bc1fbc4af5.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/chunks/d441faa4-9929e9c281f5800a.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/chunks/c16f53c3-f80954e6604e7623.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/chunks/9c4e2130-ffa9c4a850db29fc.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.mage.space/_next/static/chunks/polyfills-42372ed130431b0a.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7",
+      "https://www.google.com/recaptcha/enterprise.js",
+      "https://ph.mage.space/static/web-vitals.js?v=1.255.0",
+      "https://ph.mage.space/static/dead-clicks-autocapture.js?v=1.255.0",
+      "https://ph.mage.space/array/phc_lBVvvz084lS4XFbPqGf38TGEa6HnGhmgVHcf4f0NNuX/config.js",
+      "https://www.mage.space/_next/static/chunks/webpack-a4550fec9affd73b.js?dpl=dpl_GuXGe31BweviRP3HJNrZv1TAfVy7"
+    ]
+  },
+  "frameworks": {
+    "jquery": false,
+    "react": false,
+    "angular": false,
+    "vue": false,
+    "bootstrap": false
+  },
+  "structure": {
+    "doctype": "html",
+    "lang": "en",
+    "charset": "UTF-8",
+    "headElementCount": 36,
+    "bodyElementCount": 208
+  }
+}

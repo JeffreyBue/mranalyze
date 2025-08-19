@@ -1,0 +1,550 @@
+title: "SEO Comparison - {{comparison}} | MrAnalyze."
+description: "Detailed SEO comparison between sites including duplicate content analysis, keyword cannibalization, and
+actionable recommendations."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+
+    <link rel="stylesheet" href="/_/css/report_seo_compare.css?{assetsDate.css}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#seoComparison}}
+
+    <!-- Header Section -->
+    <header class="comparison-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="/report/{{report}}/seo/">SEO Master Summary</a></li>
+                        <li>{{#titleCase}}{{#getSiteNames}}{{comparison}}{{/getSiteNames}}{{/titleCase}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="comparison-info">
+                    <h1 class="page-title">SEO Site vs. Site Comparison</h1>
+                    <div class="comparison-sites">
+                        <span class="site-name"
+                            data-site="{{comparison}}">{{#titleCase}}{{#getSiteNames}}{{comparison}}{{/getSiteNames}}{{/titleCase}}</span>
+                    </div>
+                    <div class="comparison-meta">
+                        <span class="analysis-type">{{analysisType}}</span>
+                        <span class="total-pages">{{totalPages}} pages analyzed</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="risk-overview">
+                    <div class="risk-circle {{summary.duplicateRisk.level}}">
+                        <div class="risk-percentage">{{#multiply}}{{summary.duplicateRisk.score}} 100{{/multiply}}%
+                        </div>
+                        <div class="risk-label">Duplicate Risk</div>
+                    </div>
+                    <div class="risk-level-badge {{summary.duplicateRisk.level}}">
+                        <span class="risk-emoji"></span>
+                        <span class="risk-text">{{summary.duplicateRisk.level}} RISK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Summary Overview -->
+    <section class="summary-overview paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Comparison Summary</h2>
+
+            <div class="summary-grid">
+                <div class="summary-card duplicate-risk">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-content">
+                        <div class="card-score {{summary.duplicateRisk.level}}">{{summary.duplicateRisk.level}}</div>
+                        <div class="card-label">Duplicate Content Risk</div>
+                        <div class="card-detail">{{#multiply}}{{summary.duplicateRisk.score}} 100{{/multiply}}%
+                            similarity score</div>
+                    </div>
+                </div>
+
+                <div class="summary-card action-items">
+                    <div class="card-icon">📋</div>
+                    <div class="card-content">
+                        <div class="card-score">{{summary.totalActionableItems}}</div>
+                        <div class="card-label">Action Items</div>
+                        <div class="card-detail">Issues requiring attention</div>
+                    </div>
+                </div>
+
+                <div class="summary-card uniqueness-gap">
+                    <div class="card-icon">🔍</div>
+                    <div class="card-content">
+                        <div class="card-score">{{#multiply}}{{summary.averageUniquenessGap}} 100{{/multiply}}%</div>
+                        <div class="card-label">Uniqueness Gap</div>
+                        <div class="card-detail">Content differentiation opportunity</div>
+                    </div>
+                </div>
+
+                <div class="summary-card critical-pages">
+                    <div class="card-icon">🚨</div>
+                    <div class="card-content">
+                        <div class="card-score critical">{{summary.criticalPages}}</div>
+                        <div class="card-label">Critical Pages</div>
+                        <div class="card-detail">Immediate attention needed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page-by-Page Analysis -->
+    <section class="page-analysis">
+        <div class="container">
+            <h2 class="section-title">Detailed Page Comparisons ({{detailedResults.length}})</h2>
+
+            {{#detailedResults}}
+            <div class="page-comparison-card">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-info">
+                        <h3 class="page-title">Page {{pageIndex}} Comparison</h3>
+                        <div class="page-urls">
+                            <div class="url-pair">
+                                <div class="url-item site1">
+                                    <span class="site-label"
+                                        data-site="{{page1.site}}">{{page1.site}}<br />{{page1.pageId}}</span>
+                                    <a href="{{page1.url}}" target="_blank" class="page-url">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            style="margin-left:4px;vertical-align:-2px" aria-hidden="true">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                        {{page1.url}}
+                                    </a>
+                                    <span class="page-id">
+                                        <a
+                                            href="/report/{{report}}/seo/page/{{#seo_page}}{{page1.site}} {{page1.pageId}}{{/seo_page}}/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                                <path
+                                                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z">
+                                                </path>
+                                                <polyline points="14.5 2 14.5 7.5 20 7.5"></polyline>
+                                            </svg>
+                                            SEO Analysis
+                                        </a>
+                                    </span>
+                                    <span class="page-details-link">
+                                        <a href="/report/{{report}}/page/{{page1.site}}/{{page1.pageId}}/"
+                                            class="page-details-link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                </path>
+                                            </svg>
+                                            Route Analysis</a>
+                                    </span>
+                                </div>
+                                <div class="vs-separator">VS</div>
+                                <div class="url-item site2">
+                                    <span class="site-label"
+                                        data-site="{{page2.site}}">{{page2.site}}<br />{{page2.pageId}}</span>
+                                    <a href="{{page2.url}}" target="_blank" class="page-url"> <svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            style="margin-left:4px;vertical-align:-2px" aria-hidden="true">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                        {{page2.url}}</a>
+                                    <span class="page-id">
+                                        <a
+                                            href="/report/{{report}}/seo/page/{{#seo_page}}{{page2.site}} {{page2.pageId}}{{/seo_page}}/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                                <path
+                                                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z">
+                                                </path>
+                                                <polyline points="14.5 2 14.5 7.5 20 7.5"></polyline>
+                                            </svg>
+                                            SEO Analysis
+                                        </a>
+                                    </span>
+                                    <span class="page-details-link">
+                                        <a href="/report/{{report}}/page/{{page2.site}}/{{page2.pageId}}/"
+                                            class="page-details-link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                </path>
+                                            </svg>
+                                            Route Analysis</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-risk-display">
+                        <div class="risk-score-circle {{comparison.duplicateContentRisk.riskLevel}}">
+                            <span class="risk-value">{{#multiply}}{{comparison.duplicateContentRisk.riskScore}}
+                                100{{/multiply}}%</span>
+                        </div>
+                        <span
+                            class="risk-level {{comparison.duplicateContentRisk.riskLevel}}">{{comparison.duplicateContentRisk.riskLevel}}
+                            RISK</span>
+                    </div>
+                </div>
+
+                <!-- Similarity Breakdown -->
+                <div class="similarity-breakdown">
+                    <h4>Similarity Analysis</h4>
+                    <div class="similarity-metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">Title Similarity</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill"
+                                    style="width: {{#multiply}}{{comparison.titleSimilarity}} 100{{/multiply}}%;"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{comparison.titleSimilarity}}
+                                100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-item">
+                            <span class="metric-label">Meta Description</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill"
+                                    style="width: {{#multiply}}{{comparison.metaSimilarity}} 100{{/multiply}}%;"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{comparison.metaSimilarity}}
+                                100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-item">
+                            <span class="metric-label">Content Text</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill"
+                                    style="width: {{#multiply}}{{comparison.contentSimilarity.textSimilarity}} 100{{/multiply}}%;">
+                                </div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{comparison.contentSimilarity.textSimilarity}}
+                                100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-item">
+                            <span class="metric-label">Heading Structure</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill"
+                                    style="width: {{#multiply}}{{comparison.contentSimilarity.headingSimilarity}} 100{{/multiply}}%;">
+                                </div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{comparison.contentSimilarity.headingSimilarity}}
+                                100{{/multiply}}%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Structural Similarity -->
+                <div class="structural-analysis">
+                    <h4>Structural Comparison</h4>
+                    <div class="structure-grid">
+                        <div class="structure-overview">
+                            <div class="structure-score">
+                                <span class="score-number">{{#multiply}}{{comparison.structuralSimilarity.similarity}}
+                                    100{{/multiply}}%</span>
+                                <span class="score-label">Structural Similarity</span>
+                            </div>
+                        </div>
+
+                        <div class="structure-details">
+                            <div class="structure-comparison">
+                                <div class="structure-site">
+                                    <h5>Site 1 Structure</h5>
+                                    <div class="structure-items">
+                                        <div class="structure-item">
+                                            <span class="item-label">H1 Tags:</span>
+                                            <span
+                                                class="item-value {{#booleanClass}}{{comparison.structuralSimilarity.structure1.hasH1}}{{/booleanClass}}">
+                                                {{#booleanText}}{{comparison.structuralSimilarity.structure1.hasH1}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Navigation:</span>
+                                            <span
+                                                class="item-value {{#booleanClass}}{{comparison.structuralSimilarity.structure1.hasNavigation}}{{/booleanClass}}">
+                                                {{#booleanText}}{{comparison.structuralSimilarity.structure1.hasNavigation}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Forms:</span>
+                                            <span
+                                                class="item-value {{#booleanClass}}{{comparison.structuralSimilarity.structure1.hasForms}}{{/booleanClass}}">
+                                                {{#booleanText}}{{comparison.structuralSimilarity.structure1.hasForms}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Paragraphs:</span>
+                                            <span
+                                                class="item-value">{{comparison.structuralSimilarity.structure1.paragraphCount}}</span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Content Length:</span>
+                                            <span
+                                                class="item-value">{{#titleCase}}{{comparison.structuralSimilarity.structure1.wordCountRange}}{{/titleCase}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="structure-site">
+                                    <h5>Site 2 Structure</h5>
+                                    <div class="structure-items">
+                                        <div class="structure-item">
+                                            <span class="item-label">H1 Tags:</span>
+                                            <span
+                                                class="item-value {{#booleanClass}}{{comparison.structuralSimilarity.structure2.hasH1}}{{/booleanClass}}">
+                                                {{#booleanText}}{{comparison.structuralSimilarity.structure2.hasH1}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Navigation:</span>
+                                            <span
+                                                class="item-value {{#booleanClass}}{{comparison.structuralSimilarity.structure2.hasNavigation}}{{/booleanClass}}">
+                                                {{#booleanText}}{{comparison.structuralSimilarity.structure2.hasNavigation}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Forms:</span>
+                                            <span
+                                                class="item-value {{#booleanClass}}{{comparison.structuralSimilarity.structure2.hasForms}}{{/booleanClass}}">
+                                                {{#booleanText}}{{comparison.structuralSimilarity.structure2.hasForms}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Paragraphs:</span>
+                                            <span
+                                                class="item-value">{{comparison.structuralSimilarity.structure2.paragraphCount}}</span>
+                                        </div>
+                                        <div class="structure-item">
+                                            <span class="item-label">Content Length:</span>
+                                            <span
+                                                class="item-value">{{#titleCase}}{{comparison.structuralSimilarity.structure2.wordCountRange}}{{/titleCase}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keyword Cannibalization -->
+                {{#comparison.keywordCannibalization.cannibalizing}}
+                <div class="keyword-cannibalization">
+                    <h4>Keyword Cannibalization Detected</h4>
+                    <div class="cannibalization-alert {{comparison.keywordCannibalization.riskLevel}}">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <div class="alert-title">{{comparison.keywordCannibalization.riskLevel}} Risk Level</div>
+                            <div class="alert-description">These pages are competing for the same keywords</div>
+                            <div class="conflicting-keywords">
+                                <span class="keywords-label">Conflicting Keywords:</span>
+                                {{#comparison.keywordCannibalization.conflictingKeywords}}
+                                <span class="keyword-tag conflict">{{.}}</span>
+                                {{/comparison.keywordCannibalization.conflictingKeywords}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/comparison.keywordCannibalization.cannibalizing}}
+
+                <!-- Uniqueness Analysis -->
+                <div class="uniqueness-analysis">
+                    <h4>Content Uniqueness Analysis</h4>
+                    <div class="uniqueness-score">
+                        <div class="score-display">
+                            <span class="score-number">{{#multiply}}{{comparison.uniquenessGap.score}}
+                                100{{/multiply}}%</span>
+                            <span class="score-label">Uniqueness Score</span>
+                        </div>
+                    </div>
+
+                    <div class="uniqueness-breakdown">
+                        <div class="unique-content">
+                            <div class="content-section">
+                                <h5>Unique to Site 1 ({{#length}}{{comparison.uniquenessGap.uniqueToFirst}}{{/length}}
+                                    words)</h5>
+                                <div class="word-cloud unique-first">
+                                    {{#comparison.uniquenessGap.uniqueToFirst}}
+                                    <span class="word-tag">{{.}}</span>
+                                    {{/comparison.uniquenessGap.uniqueToFirst}}
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h5>Unique to Site 2 ({{#length}}{{comparison.uniquenessGap.uniqueToSecond}}{{/length}}
+                                    words)</h5>
+                                <div class="word-cloud unique-second">
+                                    {{#comparison.uniquenessGap.uniqueToSecond}}
+                                    <span class="word-tag">{{.}}</span>
+                                    {{/comparison.uniquenessGap.uniqueToSecond}}
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h5>Shared Content ({{#length}}{{comparison.uniquenessGap.sharedWords}}{{/length}}
+                                    words)</h5>
+                                <div class="word-cloud shared">
+                                    {{#comparison.uniquenessGap.sharedWords}}
+                                    <span class="word-tag">{{.}}</span>
+                                    {{/comparison.uniquenessGap.sharedWords}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{#comparison.uniquenessGap.opportunities.length}}
+                    <div class="uniqueness-opportunities">
+                        <h5>Improvement Opportunities:</h5>
+                        <div class="opportunities-list">
+                            {{#comparison.uniquenessGap.opportunities}}
+                            <div class="opportunity-item">
+                                <span class="opportunity-icon">💡</span>
+                                <span class="opportunity-text">{{.}}</span>
+                            </div>
+                            {{/comparison.uniquenessGap.opportunities}}
+                        </div>
+                    </div>
+                    {{/comparison.uniquenessGap.opportunities.length}}
+                </div>
+
+                <!-- Action Items for this Page -->
+                {{#comparison.actionableItems.length}}
+                <div class="page-action-items">
+                    <h4>Recommended Actions</h4>
+                    <div class="action-items-list">
+                        {{#comparison.actionableItems}}
+                        <div class="action-item {{priority}}">
+                            <div class="action-header">
+                                <span class="priority-badge {{priority}}">{{priority}}</span>
+                                <span class="category-tag">{{category}}</span>
+                                <span class="impact-badge {{impact}}">{{impact}} Impact</span>
+                            </div>
+
+                            <div class="action-content">
+                                <h5 class="action-title">{{title}}</h5>
+                                <p class="action-description">{{description}}</p>
+
+                                <div class="action-pages">
+                                    <span class="pages-label">Affected Pages:</span>
+                                    <span class="page-ref">{{page1}}</span>
+                                    <span class="vs-text">vs</span>
+                                    <span class="page-ref">{{page2}}</span>
+                                </div>
+
+                                <div class="specific-action">
+                                    <strong>Recommended Action:</strong>
+                                    <p>{{specificAction}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/comparison.actionableItems}}
+                    </div>
+                </div>
+                {{/comparison.actionableItems.length}}
+            </div>
+            {{/detailedResults}}
+        </div>
+    </section>
+
+    <!-- Overall Recommendations -->
+    <section class="overall-recommendations paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Overall Recommendations</h2>
+
+            <div class="recommendations-grid">
+                <div class="recommendation-card high-priority">
+                    <div class="card-header">
+                        <h3>🚨 High Priority Actions</h3>
+                        <p>Address these issues immediately to reduce duplicate content risk</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="action-list">
+                            <li>Differentiate page titles and meta descriptions</li>
+                            <li>Resolve keyword cannibalization conflicts</li>
+                            <li>Add unique content sections to each page</li>
+                            <li>Implement different content strategies per site</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="recommendation-card medium-priority">
+                    <div class="card-header">
+                        <h3>📊 Content Strategy</h3>
+                        <p>Improve content differentiation and uniqueness</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="action-list">
+                            <li>Develop site-specific content themes</li>
+                            <li>Add location-specific information</li>
+                            <li>Include unique testimonials and case studies</li>
+                            <li>Create different user journey paths</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="recommendation-card low-priority">
+                    <div class="card-header">
+                        <h3>🔍 Long-term Optimization</h3>
+                        <p>Ongoing improvements to maintain uniqueness</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="action-list">
+                            <li>Regular content audits and updates</li>
+                            <li>Monitor keyword performance separately</li>
+                            <li>Implement structured data differently</li>
+                            <li>Track unique visitor engagement metrics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Implement These Recommendations?</h2>
+                <p>Start with high-priority actions to reduce duplicate content risk and improve SEO performance.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Comparison Report</button>
+                    <a href="/seo-summary" class="button-blue">Back to Summary</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/seoComparison}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+</body>
+
+</html>

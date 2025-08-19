@@ -1,0 +1,378 @@
+title: "MrAnalyze Style Guide"
+description: "A comprehensive style guide for creating consistent, data-driven pages with professional design elements optimized for SEO insights and data comparisons."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> HEAD }}
+</head>
+<body>
+    {{> HEADER }}
+
+    <nav class="navigation" style="background-color: #3498db;">
+        <div class="container">
+            <ul>
+                <li><a href="#typography">Typography</a></li>
+                <li><a href="#colors">Colors</a></li>
+                <li><a href="#buttons">Buttons</a></li>
+                <li><a href="#forms">Forms</a></li>
+                <li><a href="#layout">Layout</a></li>
+                <li><a href="#components">Components</a></li>
+                <li><a href="#data-viz">Data Visualization</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="style-section">
+            <h1>MrAnalyze Style Guide</h1>
+            <p>A comprehensive style guide for creating consistent, data-driven pages with professional design elements optimized for SEO insights and data comparisons.</p>
+        </header>
+
+        <section id="typography" class="style-section">
+            <h2>Typography</h2>
+            <p>Our typography system uses three font families for different purposes:</p>
+            
+            <div class="component-demo">
+                <h1>Headline Font (Montserrat) - H1</h1>
+                <h2>Headline Font (Montserrat) - H2</h2>
+                <h3>Headline Font (Montserrat) - H3</h3>
+                <h4>Headline Font (Montserrat) - H4</h4>
+                <h5>Headline Font (Montserrat) - H5</h5>
+                <h6>Headline Font (Montserrat) - H6</h6>
+                
+                <p>This is body text using Open Sans. It's highly readable and perfect for longer content blocks, descriptions, and general text content.</p>
+                
+                <p class="data-font">This is data font using Roboto Mono. Perfect for displaying metrics, code, URLs, and numerical data: 1,234,567 visitors, conversion rate: 3.45%</p>
+            </div>
+
+            <div class="code-block">
+/* Font Variables */
+--headline: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+--body: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+--data: "Roboto Mono", "SF Mono", "Monaco", monospace;
+            </div>
+        </section>
+
+        <section id="colors" class="style-section">
+            <h2>Color Palette</h2>
+            
+            <h3>Brand Colors</h3>
+            <div class="flex column-4">
+                <div>
+                    <div class="color-swatch" style="background: #2c3e50;">Primary</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Primary</div>
+                        <div class="color-hex">#2c3e50</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #27ae60;">Success</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Green</div>
+                        <div class="color-hex">#27ae60</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #3498db;">Secondary</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Secondary</div>
+                        <div class="color-hex">#3498db</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #e74c3c;">Accent</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Accent</div>
+                        <div class="color-hex">#e74c3c</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Data Visualization Colors</h3>
+            <div class="flex column-4">
+                <div>
+                    <div class="color-swatch" style="background: #3498db;">Blue</div>
+                    <div class="color-info">
+                        <div class="color-name">Viz Blue</div>
+                        <div class="color-hex">#3498db</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #2ecc71;">Green</div>
+                    <div class="color-info">
+                        <div class="color-name">Viz Green</div>
+                        <div class="color-hex">#2ecc71</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #9b59b6;">Purple</div>
+                    <div class="color-info">
+                        <div class="color-name">Viz Purple</div>
+                        <div class="color-hex">#9b59b6</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #f39c12;">Orange</div>
+                    <div class="color-info">
+                        <div class="color-name">Viz Orange</div>
+                        <div class="color-hex">#f39c12</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Neutral Colors</h3>
+            <div class="flex column-4">
+                <div>
+                    <div class="color-swatch" style="background: #1a1a1a;">Black</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Black</div>
+                        <div class="color-hex">#1a1a1a</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #95a5a6;">Gray</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Gray</div>
+                        <div class="color-hex">#95a5a6</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #ecf0f1; color: #333;">Light Gray</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Light Gray</div>
+                        <div class="color-hex">#ecf0f1</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #ffffff; color: #333;">White</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand White</div>
+                        <div class="color-hex">#ffffff</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="buttons" class="style-section">
+            <h2>Buttons</h2>
+            <p>Button styles for different actions and contexts:</p>
+            
+            <div class="component-demo">
+                <button class="button-blue">Primary Button</button>
+                <button class="button-green">Success Button</button>
+                <a href="#" class="button-blue">Link Button</a>
+                <a href="#" class="button-green">CTA Button</a>
+            </div>
+
+            <div class="code-block">
+&lt;button class="button-blue"&gt;Primary Button&lt;/button&gt;
+&lt;button class="button-green"&gt;Success Button&lt;/button&gt;
+&lt;a href="#" class="button-blue"&gt;Link Button&lt;/a&gt;
+            </div>
+        </section>
+
+        <section id="forms" class="style-section">
+            <h2>Forms</h2>
+            <p>Form elements with consistent styling and validation states:</p>
+            
+            <div class="component-demo">
+                <div class="flex column-2">
+                    <div>
+                        <label for="text-input">Text Input</label>
+                        <input type="text" id="text-input" placeholder="Enter text here">
+                    </div>
+                    <div>
+                        <label for="email-input">Email Input</label>
+                        <input type="email" id="email-input" placeholder="email@example.com">
+                    </div>
+                </div>
+                
+                <div class="flex column-2">
+                    <div>
+                        <label for="select-input">Select Dropdown</label>
+                        <select id="select-input">
+                            <option>Choose an option</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="error-input">Error State</label>
+                        <input type="text" id="error-input" class="error" placeholder="This field has an error">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="layout" class="style-section">
+            <h2>Layout System</h2>
+            <p>Flexible grid system and layout utilities:</p>
+            
+            <h3>Flex Grid</h3>
+            <div class="component-demo">
+                <div class="flex column-2">
+                    <div class="box-grey">Column 1 of 2</div>
+                    <div class="box-grey">Column 2 of 2</div>
+                </div>
+                
+                <div class="flex column-3">
+                    <div class="box-grey">Column 1 of 3</div>
+                    <div class="box-grey">Column 2 of 3</div>
+                    <div class="box-grey">Column 3 of 3</div>
+                </div>
+                
+                <div class="flex column-4">
+                    <div class="box-grey">Column 1 of 4</div>
+                    <div class="box-grey">Column 2 of 4</div>
+                    <div class="box-grey">Column 3 of 4</div>
+                    <div class="box-grey">Column 4 of 4</div>
+                </div>
+            </div>
+
+            <h3>Utility Classes</h3>
+            <div class="component-demo">
+                <p class="center">Centered text</p>
+                <p class="capitalize">capitalized text</p>
+                <p class="allCaps">uppercase text</p>
+                <div class="paddingtopbottom">Element with top and bottom padding</div>
+            </div>
+        </section>
+
+        <section id="components" class="style-section">
+            <h2>Components</h2>
+            
+            <h3>Breadcrumbs</h3>
+            <div class="component-demo">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li>Home</li>
+                        <li>SEO Analysis</li>
+                        <li>Domain Report</li>
+                        <li>Current Page</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Content Boxes</h3>
+            <div class="component-demo">
+                <div class="box-grey">
+                    <h4>Information Box</h4>
+                    <p>This is a content box with light gray background. Perfect for highlighting important information, <a href="#">links</a>, or <span>interactive elements</span>.</p>
+                </div>
+            </div>
+
+            <h3>Status Badges</h3>
+            <div class="component-demo">
+                <span class="status-badge status-success">Success</span>
+                <span class="status-badge status-warning">Warning</span>
+                <span class="status-badge status-error">Error</span>
+                <span class="status-badge status-progress">In Progress</span>
+            </div>
+        </section>
+
+        <section id="data-viz" class="style-section">
+            <h2>Data Visualization Elements</h2>
+            
+            <h3>Data Cards</h3>
+            <div class="component-demo">
+                <div class="flex column-3">
+                    <div class="data-card">
+                        <div class="data-metric">1,234,567</div>
+                        <div class="data-label">Page Views</div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-metric">89.5%</div>
+                        <div class="data-label">SEO Score</div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-metric">2.3s</div>
+                        <div class="data-label">Load Time</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Chart Legend</h3>
+            <div class="component-demo">
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #3498db;"></div>
+                        <span>Organic Traffic</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #2ecc71;"></div>
+                        <span>Direct Traffic</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #9b59b6;"></div>
+                        <span>Referral Traffic</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f39c12;"></div>
+                        <span>Social Traffic</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Data Table</h3>
+            <div class="component-demo">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Position</th>
+                                <th>Search Volume</th>
+                                <th>Difficulty</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SEO analysis tool</td>
+                                <td class="data-font">3</td>
+                                <td class="data-font">12,000</td>
+                                <td class="data-font">65%</td>
+                                <td><span class="status-badge status-success">Ranking</span></td>
+                            </tr>
+                            <tr>
+                                <td>Website audit</td>
+                                <td class="data-font">15</td>
+                                <td class="data-font">8,500</td>
+                                <td class="data-font">72%</td>
+                                <td><span class="status-badge status-warning">Improving</span></td>
+                            </tr>
+                            <tr>
+                                <td>Technical SEO</td>
+                                <td class="data-font">45</td>
+                                <td class="data-font">15,200</td>
+                                <td class="data-font">89%</td>
+                                <td><span class="status-badge status-error">Needs Work</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="style-section">
+            <h2>Usage Guidelines</h2>
+            <div class="box-grey">
+                <h4>Best Practices</h4>
+                <ul>
+                    <li>Use <strong>Montserrat</strong> for headings and important UI elements</li>
+                    <li>Use <strong>Open Sans</strong> for body text and general content</li>
+                    <li>Use <strong>Roboto Mono</strong> for data, metrics, and code</li>
+                    <li>Maintain consistent spacing with the <code>paddingtopbottom</code> and <code>margintopbottom</code> utilities</li>
+                    <li>Use the flex grid system for responsive layouts</li>
+                    <li>Apply status badges to indicate data states and progress</li>
+                    <li>Use data cards for highlighting key metrics</li>
+                    <li>Implement proper color contrast for accessibility</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+	{{> FOOTER }}
+</body>
+</html>

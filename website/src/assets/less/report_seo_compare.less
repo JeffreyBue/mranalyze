@@ -1,0 +1,1107 @@
+// SEO Comparison Page Styles
+@import (reference) "./seo";
+
+// Comparison Header
+.comparison-header {
+    background: linear-gradient(135deg, @brand-secondary 0%, darken(@brand-secondary, 15%) 100%);
+    color: @brand-white;
+    padding: 3em 0;
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="comparison" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M0 25L25 0L50 25L25 50Z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23comparison)"/></svg>');
+        opacity: 0.3;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .header-breadcrumbs {
+        margin-bottom: 1.5em;
+        
+        .breadcrumbs ul {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+            li {
+                color: @brand-white;
+                
+                a {
+                    color: @brand-white;
+                    opacity: 0.8;
+                    
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2em;
+        
+        @media (max-width: @widthTablet) {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    
+    .comparison-info {
+        flex: 1;
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+            color: @brand-white;
+            
+            @media (max-width: @widthMobile) {
+                font-size: 2rem;
+            }
+        }
+        
+        .comparison-sites {
+            margin-bottom: 1em;
+            
+            .site-name {
+                font-family: @data;
+                font-size: 1.1rem;
+                font-weight: 600;
+                background: rgba(255, 255, 255, 0.2);
+                padding: 0.5em 1em;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+        }
+        
+        .comparison-meta {
+            display: flex;
+            gap: 2em;
+            font-family: @data;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            
+            @media (max-width: @widthMobile) {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+            
+            span {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 0.25em 0.75em;
+                border-radius: 4px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+    
+    .risk-overview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        
+        .risk-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 8px solid;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            
+            &.LOW {
+                border-color: @viz-green;
+                background: rgba(39, 174, 96, 0.1);
+            }
+            
+            &.MEDIUM {
+                border-color: @viz-orange;
+                background: rgba(243, 156, 18, 0.1);
+            }
+            
+            &.HIGH {
+                border-color: @viz-red;
+                background: rgba(231, 76, 60, 0.1);
+            }
+            
+            .risk-percentage {
+                font-family: @data;
+                font-size: 2rem;
+                font-weight: 700;
+                color: @brand-white;
+                line-height: 1;
+            }
+            
+            .risk-label {
+                font-size: 0.4em;
+                opacity: 0.9;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+        
+        .risk-level-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            padding: 0.75em 1.5em;
+            border-radius: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            
+            &.LOW {
+                background: @viz-green;
+                color: @brand-white;
+                
+                .risk-emoji::before {
+                    content: '✅';
+                }
+            }
+            
+            &.MEDIUM {
+                background: @viz-orange;
+                color: @brand-white;
+                
+                .risk-emoji::before {
+                    content: '⚠️';
+                }
+            }
+            
+            &.HIGH {
+                background: @viz-red;
+                color: @brand-white;
+                
+                .risk-emoji::before {
+                    content: '🚨';
+                }
+            }
+        }
+    }
+}
+
+// Summary Overview
+.summary-overview {
+    background: @brand-white;
+    
+    .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2em;
+    }
+    
+    .summary-card {
+        background: @brand-light-gray;
+        border-radius: 12px;
+        padding: 2em;
+        text-align: center;
+        border-left: 5px solid;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        &.duplicate-risk { border-left-color: @viz-red; }
+        &.action-items { border-left-color: @viz-orange; }
+        &.uniqueness-gap { border-left-color: @viz-blue; }
+        &.critical-pages { border-left-color: @viz-purple; }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1em;
+        }
+        
+        .card-content {
+            .card-score {
+                font-family: @data;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: @brand-primary;
+                line-height: 1;
+                margin-bottom: 0.25em;
+                
+                &.LOW { color: @viz-green; }
+                &.MEDIUM { color: @viz-orange; }
+                &.HIGH { color: @viz-red; }
+                &.critical { color: @viz-red; }
+            }
+            
+            .card-label {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: @brand-text;
+                margin-bottom: 0.5em;
+            }
+            
+            .card-detail {
+                font-size: 0.9rem;
+                color: @brand-gray;
+            }
+        }
+    }
+}
+
+// Page Analysis
+.page-analysis {
+    background: @brand-light-gray;
+    padding: 4em 0;
+    
+    .page-comparison-card {
+        background: @brand-white;
+        border-radius: 16px;
+        margin-bottom: 3em;
+        overflow: hidden;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    .page-header {
+        background: @brand-primary;
+        color: @brand-white;
+        padding: 2em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        
+        @media (max-width: @widthTablet) {
+            flex-direction: column;
+            gap: 1.5em;
+            text-align: center;
+        }
+        
+        .page-info {
+            flex: 1;
+            min-width: 100%;
+            
+            .page-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 1em;
+                color: @brand-white;
+            }
+            
+            .page-urls {
+                .url-pair {
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+                    
+                    @media (max-width: @widthMobile) {
+                        flex-direction: column;
+                        gap: 0.5em;
+                    }
+                    
+                    .url-item {
+                        flex: 1;
+                        background: rgba(255, 255, 255, 0.1);
+                        padding: 1em;
+                        border-radius: 8px;
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        
+                        .site-label {
+                            display: block;
+                            font-family: @data;
+                            font-weight: 700;
+                            margin-bottom: 0.5em;
+                            font-size: 0.9rem;
+                        }
+                        
+                        .page-url {
+                            display: block;
+                            color: @brand-white;
+                            text-decoration: underline;
+                            font-family: @data;
+                            font-size: 0.8rem;
+                            margin-bottom: 0.5em;
+                            word-break: break-all;
+                            
+                            &:hover {
+                                opacity: 0.8;
+                            }
+                        }
+                        
+                        .page-id {
+                            display: block;
+                            font-family: @data;
+                            font-size: 0.75rem;
+                            margin-bottom: 0.5em;
+                            
+                            a {
+                                color: @brand-white;
+                                
+                                &:hover {
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+                        
+                        .page-details-link {
+                            display: block;
+                            font-family: @data;
+                            font-size: 0.75rem;
+                            
+                            a {
+                                color: @brand-white;
+                                
+                                &:hover {
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+                    }
+                    
+                    .vs-separator {
+                        font-weight: 700;
+                        font-size: 1.2rem;
+                        opacity: 0.8;
+                        padding: 0.5em;
+                        
+                        @media (max-width: @widthMobile) {
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
+            }
+        }
+        
+        .page-risk-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5em;
+            margin: 2em auto 0;
+            
+            .risk-score-circle {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                border: 6px solid;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: @data;
+                font-weight: 700;
+                font-size: 1.2rem;
+                
+                &.LOW { border-color: @viz-green; }
+                &.MEDIUM { border-color: @viz-orange; }
+                &.HIGH { border-color: @viz-red; }
+            }
+            
+            .risk-level {
+                font-weight: 700;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                
+                &.LOW { color: @viz-green; }
+                &.MEDIUM { color: @viz-orange; }
+                &.HIGH { color: @viz-red; }
+            }
+        }
+    }
+}
+
+// Similarity Breakdown
+.similarity-breakdown {
+    padding: 2em;
+    border-bottom: 1px solid @brand-light-gray;
+    
+    h4 {
+        margin-bottom: 1.5em;
+        color: @brand-primary;
+        font-size: 1.3rem;
+    }
+    
+    .similarity-metrics {
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            margin-bottom: 1em;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+            
+            .metric-label {
+                min-width: 140px;
+                font-weight: 600;
+                color: @brand-text;
+                font-size: 0.95rem;
+            }
+            
+            .metric-bar {
+                flex: 1;
+                height: 8px;
+                background: @brand-light-gray;
+                border-radius: 4px;
+                overflow: hidden;
+                
+                .metric-fill {
+                    height: 100%;
+                    background: linear-gradient(90deg, @viz-green 0%, @viz-orange 50%, @viz-red 100%);
+                    transition: width 0.8s ease;
+                }
+            }
+            
+            .metric-value {
+                font-family: @data;
+                font-weight: 700;
+                color: @brand-primary;
+                min-width: 50px;
+                text-align: right;
+            }
+        }
+    }
+}
+
+// Structural Analysis
+.structural-analysis {
+    padding: 2em;
+    border-bottom: 1px solid @brand-light-gray;
+    
+    h4 {
+        margin-bottom: 1.5em;
+        color: @brand-primary;
+        font-size: 1.3rem;
+    }
+    
+    .structure-grid {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 2em;
+        align-items: center;
+        
+        @media (max-width: @widthTablet) {
+            grid-template-columns: 1fr;
+            gap: 1.5em;
+        }
+    }
+    
+    .structure-overview {
+        .structure-score {
+            text-align: center;
+            
+            .score-number {
+                font-family: @data;
+                font-size: 3rem;
+                font-weight: 700;
+                color: @brand-primary;
+                display: block;
+                line-height: 1;
+            }
+            
+            .score-label {
+                font-size: 1rem;
+                color: @brand-gray;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+    
+    .structure-details {
+        .structure-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            
+            @media (max-width: @widthMobile) {
+                grid-template-columns: 1fr;
+            }
+            
+            .structure-site {
+                background: @brand-light-gray;
+                padding: 1.5em;
+                border-radius: 8px;
+                
+                h5 {
+                    margin-bottom: 1em;
+                    color: @brand-primary;
+                    font-size: 1.1rem;
+                }
+                
+                .structure-items {
+                    .structure-item {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 0.5em 0;
+                        border-bottom: 1px solid #ddd;
+                        
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                        
+                        .item-label {
+                            font-weight: 600;
+                            color: @brand-text;
+                        }
+                        
+                        .item-value {
+                            font-family: @data;
+                            font-weight: 600;
+                            
+                            &.good { color: @viz-green; }
+                            &.bad { color: @viz-red; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Keyword Cannibalization
+.keyword-cannibalization {
+    padding: 2em;
+    border-bottom: 1px solid @brand-light-gray;
+    
+    h4 {
+        margin-bottom: 1.5em;
+        color: @brand-primary;
+        font-size: 1.3rem;
+    }
+    
+    .cannibalization-alert {
+        display: flex;
+        align-items: flex-start;
+        gap: 1em;
+        padding: 1.5em;
+        border-radius: 8px;
+        border-left: 5px solid;
+        
+        &.LOW {
+            background: @viz-light-green;
+            border-left-color: @viz-green;
+        }
+        
+        &.MEDIUM {
+            background: @viz-light-orange;
+            border-left-color: @viz-orange;
+        }
+        
+        &.HIGH {
+            background: @viz-light-red;
+            border-left-color: @viz-red;
+        }
+        
+        .alert-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+        
+        .alert-content {
+            flex: 1;
+            
+            .alert-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: @brand-primary;
+                margin-bottom: 0.5em;
+            }
+            
+            .alert-description {
+                color: @brand-text;
+                margin-bottom: 1em;
+                line-height: 1.5;
+            }
+            
+            .conflicting-keywords {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.5em;
+                
+                .keywords-label {
+                    font-weight: 600;
+                    color: @brand-text;
+                }
+                
+                .keyword-tag {
+                    background: @viz-red;
+                    color: @brand-white;
+                    padding: 0.25em 0.75em;
+                    border-radius: 15px;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    
+                    &.conflict {
+                        animation: pulse 2s infinite;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Uniqueness Analysis
+.uniqueness-analysis {
+    padding: 2em;
+    border-bottom: 1px solid @brand-light-gray;
+    
+    h4 {
+        margin-bottom: 1.5em;
+        color: @brand-primary;
+        font-size: 1.3rem;
+    }
+    
+    .uniqueness-score {
+        text-align: center;
+        margin-bottom: 2em;
+        
+        .score-display {
+            .score-number {
+                font-family: @data;
+                font-size: 3rem;
+                font-weight: 700;
+                color: @brand-primary;
+                display: block;
+                line-height: 1;
+            }
+            
+            .score-label {
+                font-size: 1rem;
+                color: @brand-gray;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+    
+    .uniqueness-breakdown {
+        .unique-content {
+            .content-section {
+                margin-bottom: 2em;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                
+                h5 {
+                    margin-bottom: 1em;
+                    color: @brand-primary;
+                    font-size: 1.1rem;
+                }
+                
+                .word-cloud {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5em;
+                    max-height: 200px;
+                    overflow-y: auto;
+                    padding: 1em;
+                    background: @brand-light-gray;
+                    border-radius: 8px;
+                    
+                    &.unique-first .word-tag {
+                        background: @viz-light-blue;
+                        color: @viz-blue;
+                    }
+                    
+                    &.unique-second .word-tag {
+                        background: @viz-light-purple;
+                        color: @viz-purple;
+                    }
+                    
+                    &.shared .word-tag {
+                        background: @viz-light-orange;
+                        color: @viz-orange;
+                    }
+                    
+                    .word-tag {
+                        padding: 0.25em 0.5em;
+                        border-radius: 12px;
+                        font-size: 0.8rem;
+                        font-weight: 500;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+    
+    .uniqueness-opportunities {
+        margin-top: 2em;
+        
+        h5 {
+            margin-bottom: 1em;
+            color: @brand-primary;
+            font-size: 1.1rem;
+        }
+        
+        .opportunities-list {
+            .opportunity-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75em;
+                padding: 0.75em 0;
+                border-bottom: 1px solid @brand-light-gray;
+                
+                &:last-child {
+                    border-bottom: none;
+                }
+                
+                .opportunity-icon {
+                    font-size: 1.2rem;
+                    margin-top: 0.1em;
+                }
+                
+                .opportunity-text {
+                    color: @brand-text;
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
+}
+
+// Page Action Items
+.page-action-items {
+    padding: 2em;
+    
+    h4 {
+        margin-bottom: 1.5em;
+        color: @brand-primary;
+        font-size: 1.3rem;
+    }
+    
+    .action-items-list {
+        .action-item {
+            background: @brand-light-gray;
+            border-radius: 8px;
+            padding: 1.5em;
+            margin-bottom: 1em;
+            border-left: 5px solid;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+            
+            &.CRITICAL {
+                border-left-color: @viz-red;
+                background: @viz-light-red;
+            }
+            
+            &.HIGH {
+                border-left-color: @viz-orange;
+                background: @viz-light-orange;
+            }
+            
+            &.MEDIUM {
+                border-left-color: @viz-blue;
+                background: @viz-light-blue;
+            }
+            
+            .action-header {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75em;
+                margin-bottom: 1em;
+                
+                .priority-badge,
+                .category-tag,
+                .impact-badge {
+                    padding: 0.25em 0.75em;
+                    border-radius: 15px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+                
+                .priority-badge {
+                    &.CRITICAL {
+                        background: @viz-red;
+                        color: @brand-white;
+                    }
+                    
+                    &.HIGH {
+                        background: @viz-orange;
+                        color: @brand-white;
+                    }
+                    
+                    &.MEDIUM {
+                        background: @viz-blue;
+                        color: @brand-white;
+                    }
+                }
+                
+                .category-tag {
+                    background: @brand-white;
+                    color: @brand-text;
+                    border: 1px solid @brand-gray;
+                }
+                
+                .impact-badge {
+                    background: @brand-primary;
+                    color: @brand-white;
+                }
+            }
+            
+            .action-content {
+                .action-title {
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    color: @brand-primary;
+                    margin-bottom: 0.75em;
+                }
+                
+                .action-description {
+                    color: @brand-text;
+                    margin-bottom: 1em;
+                    line-height: 1.5;
+                }
+                
+                .action-pages {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5em;
+                    margin-bottom: 1em;
+                    font-family: @data;
+                    font-size: 0.9rem;
+                    
+                    .pages-label {
+                        font-weight: 600;
+                        color: @brand-text;
+                    }
+                    
+                    .page-ref {
+                        background: @brand-white;
+                        padding: 0.25em 0.5em;
+                        border-radius: 4px;
+                        color: @brand-primary;
+                    }
+                    
+                    .vs-text {
+                        font-weight: 700;
+                        color: @brand-gray;
+                    }
+                }
+                
+                .specific-action {
+                    background: @brand-white;
+                    padding: 1em;
+                    border-radius: 6px;
+                    border-left: 4px solid @brand-secondary;
+                    
+                    strong {
+                        color: @brand-primary;
+                        display: block;
+                        margin-bottom: 0.5em;
+                    }
+                    
+                    p {
+                        margin: 0;
+                        line-height: 1.5;
+                        color: @brand-text;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Overall Recommendations
+.overall-recommendations {
+    background: @brand-white;
+    
+    .recommendations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+    }
+    
+    .recommendation-card {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        
+        &.high-priority {
+            border-top: 5px solid @viz-red;
+        }
+        
+        &.medium-priority {
+            border-top: 5px solid @viz-orange;
+        }
+        
+        &.low-priority {
+            border-top: 5px solid @viz-blue;
+        }
+        
+        .card-header {
+            padding: 1.5em;
+            background: @brand-light-gray;
+            
+            h3 {
+                margin-bottom: 0.75em;
+                color: @brand-primary;
+                font-size: 1.3rem;
+            }
+            
+            p {
+                margin: 0;
+                color: @brand-gray;
+                line-height: 1.5;
+            }
+        }
+        
+        .card-content {
+            padding: 1.5em;
+            
+            .action-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                
+                li {
+                    padding: 0.75em 0;
+                    border-bottom: 1px solid @brand-light-gray;
+                    line-height: 1.5;
+                    color: @brand-text;
+                    position: relative;
+                    padding-left: 1.5em;
+                    
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                    
+                    &::before {
+                        content: '•';
+                        position: absolute;
+                        left: 0;
+                        color: @brand-secondary;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Footer CTA
+.footer-cta {
+    background: linear-gradient(135deg, @brand-green 0%, darken(@brand-green, 10%) 100%);
+    color: @brand-white;
+    padding: 4em 0;
+    text-align: center;
+    
+    .cta-content {
+        max-width: 600px;
+        margin: 0 auto;
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1em;
+            color: @brand-white;
+            
+            @media (max-width: @widthTablet) {
+                font-size: 2rem;
+            }
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2em;
+            opacity: 0.9;
+        }
+    }
+    
+    .cta-buttons {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        
+        @media (max-width: @widthMobile) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: @widthTablet) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: @widthMobile) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-header {
+        .page-title {
+            font-size: 2rem;
+        }
+        
+        .risk-overview {
+            .risk-circle {
+                width: 100px;
+                height: 100px;
+                
+                .risk-percentage {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+// Animation enhancements
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+// Print styles
+@media print {
+    .comparison-header {
+        background: @brand-light-gray !important;
+        color: @brand-black !important;
+    }
+    
+    .page-comparison-card,
+    .recommendation-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid @brand-gray !important;
+    }
+    
+    .footer-cta {
+        display: none !important;
+    }
+}

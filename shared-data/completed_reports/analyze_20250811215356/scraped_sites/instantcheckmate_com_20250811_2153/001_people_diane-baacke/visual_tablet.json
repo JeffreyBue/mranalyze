@@ -1,0 +1,61 @@
+{
+  "url": "https://www.instantcheckmate.com/people/diane-baacke/",
+  "layout": {
+    "viewport": "tablet",
+    "hasHamburgerMenu": false,
+    "isStacked": false,
+    "columnCount": 0,
+    "hasStickyHeader": false
+  },
+  "visibility": {
+    "visible": [
+      "nav",
+      "header",
+      "aside",
+      "aside"
+    ],
+    "hidden": []
+  },
+  "navigation": {
+    "type": "standard",
+    "position": "top"
+  },
+  "typography": {
+    "baseFontSize": "18px",
+    "h1Size": "24px",
+    "lineHeight": "30.8571px"
+  },
+  "images": [
+    {
+      "src": "https://cdn-cookieyes.com/assets/images/revisit.svg",
+      "srcset": "",
+      "sizes": "",
+      "responsiveLoading": false
+    },
+    {
+      "src": "https://cdn-cookieyes.com/assets/images/close.svg",
+      "srcset": "",
+      "sizes": "",
+      "responsiveLoading": false
+    },
+    {
+      "src": "https://www.instantcheckmate.com/people/_/images/logo-instantcheckmate.svg",
+      "srcset": "",
+      "sizes": "",
+      "responsiveLoading": false
+    },
+    {
+      "src": "https://assets.instantcheckmate.com/funnel/assets/themes/columbo/img/home/shield/shield-gray.png",
+      "srcset": "",
+      "sizes": "",
+      "responsiveLoading": false
+    },
+    {
+      "src": "https://assets.instantcheckmate.com/funnel/assets/themes/columbo/img/home/shield/shield-blue.png",
+      "srcset": "",
+      "sizes": "",
+      "responsiveLoading": false
+    }
+  ],
+  "timestamp": "2025-08-11T21:54:05.465Z"
+}

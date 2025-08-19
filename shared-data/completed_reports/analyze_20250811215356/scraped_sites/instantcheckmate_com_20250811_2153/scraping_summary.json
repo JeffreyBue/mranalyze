@@ -1,0 +1,19 @@
+{
+  "scrapedAt": "2025-08-11T21:54:07.061Z",
+  "urlFile": "/app/shared-data/urls/instantcheckmate_com.txt",
+  "outputDirectory": "shared-data/completed_reports/analyze_20250811215356/scraped_sites/instantcheckmate_com_20250811_2153",
+  "dateFolder": "analyze_20250811215356",
+  "totalUrls": 1,
+  "successful": 1,
+  "failed": 0,
+  "pages": [
+    {
+      "pageId": "001_people_diane-baacke",
+      "url": "https://www.instantcheckmate.com/people/diane-baacke/",
+      "urlIndex": 1,
+      "status": "success",
+      "directory": "shared-data/completed_reports/analyze_20250811215356/scraped_sites/instantcheckmate_com_20250811_2153/001_people_diane-baacke",
+      "error": null
+    }
+  ]
+}

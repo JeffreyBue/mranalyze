@@ -1,0 +1,18 @@
+{
+  "comparison": "mage_space_20250818_1528_vs_midjourney_com_20250818_1528",
+  "analysisType": "content_optimized",
+  "totalPages": 1,
+  "avgScore": 0.013065798070262737,
+  "metrics": {
+    "jaccard": 0.02247191011235955,
+    "cosine": 0.01009897447638369,
+    "fingerprint": 0,
+    "semantic": 0.02461538461538462,
+    "topic": 0
+  },
+  "performance": {
+    "avgPageTime": 18,
+    "totalPages": 1
+  },
+  "timestamp": "2025-08-18T15:28:59.334Z"
+}

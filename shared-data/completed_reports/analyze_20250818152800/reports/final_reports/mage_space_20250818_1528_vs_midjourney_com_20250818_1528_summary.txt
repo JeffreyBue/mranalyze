@@ -1,0 +1,42 @@
+FINAL COMPARISON REPORT
+mage_space_20250818_1528_vs_midjourney_com_20250818_1528
+Generated: 8/18/2025, 3:29:01 PM
+
+OVERALL SIMILARITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Score: 20.0%
+Classification: DIFFERENT
+
+DIMENSIONAL BREAKDOWN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 Visual Similarity:    45.2%
+📝 Content Similarity:   1.3%
+⚙️ Technical Similarity: 49.8%
+🔍 SEO Duplicate Risk:   1.3% (LOW)
+
+ANALYSIS COVERAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 Visual Analysis:    ✅ (1 pages)
+📝 Content Analysis:   ✅ (1 pages)
+⚙️ Technical Analysis: ✅ (1 pages)
+🔍 SEO Analysis:       ✅ (LOW risk)
+
+KEY INSIGHTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• ✅ LOW: Sites appear sufficiently different
+• 🔍 LOW SEO RISK: Acceptable content differentiation
+• 📈 Uneven similarity across dimensions - selective copying detected
+
+
+
+DETAILED METRICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ Technical Metrics:
+   HTML Structure:          75.0%
+   Meta Tags:               42.2%
+   Frameworks:              100.0%
+   Schema Markup:           NaN%
+
+🔍 SEO Risk Analysis:
+   Duplicate Content Risk:  1.3% (LOW)
+   Critical Pages:          0

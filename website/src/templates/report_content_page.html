@@ -1,0 +1,461 @@
+title: "Content Page Comparison - {{page1.pageId}} vs {{page2.pageId}} | MrAnalyze"
+description: "Detailed content analysis between two specific pages using Jaccard, Cosine, Fingerprint, Semantic, and
+Topic modeling algorithms."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/report_content_page.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#contentPage}}
+
+    <!-- Header Section -->
+    <header class="content-page-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="/report/{{report}}/content/">Content Summary</a></li>
+                        <li><a href="/report/{{report}}/content/compare/{{comparison}}/">Site Comparison</a></li>
+                        <li>Page {{pageIndex}} Analysis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="page-comparison-info">
+                    <h1 class="page-title">Content Page Analysis</h1>
+                    <div class="pages-display">
+                        <div class="page-item">
+                            <span class="site-label">{{#getFirstSite}}{{page1.folder}}{{/getFirstSite}}</span>
+                            <span class="page-name">{{page1.pageId}}</span>
+                            <span class="folder-name">{{page1.folder}}</span>
+                            <a href="/report/{{report}}/page/{{page1.folder}}/{{page1.pageId}}/" class="button-blue">Route Analysis</a>
+                        </div>
+                        <div class="vs-separator">VS</div>
+                        <div class="page-item">
+                            <span class="site-label">{{#getFirstSite}}{{page2.folder}}{{/getFirstSite}}</span>
+                            <span class="page-name">{{page2.pageId}}</span>
+                            <span class="folder-name">{{page2.folder}}</span>
+                            <a href="/report/{{report}}/page/{{page2.folder}}/{{page2.pageId}}/" class="button-blue">Route Analysis</a>
+                        </div>
+                    </div>
+                    <div class="page-meta">
+                        <span class="page-index">Page {{pageIndex}} Comparison</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="overall-score-display">
+                    <div class="score-circle {{#getSimilarityClass}}{{content.overallScore}}{{/getSimilarityClass}}">
+                        <div class="score-percentage">{{#multiply}}{{content.overallScore}} 100{{/multiply}}%</div>
+                        <div class="score-label">Content Similarity</div>
+                    </div>
+                    <div class="performance-info">
+                        <div class="perf-item">
+                            <span class="perf-value">{{performance.analysisTimeMs}}ms</span>
+                            <span class="perf-label">Analysis Time</span>
+                        </div>
+                        <div class="perf-item">
+                            <span class="perf-value">{{performance.memoryUsedMB}}MB</span>
+                            <span class="perf-label">Memory Used</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Analysis Dashboard -->
+    <section class="content-analysis-dashboard paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Detailed Content Analysis</h2>
+
+            <!-- Algorithm Analysis Grid -->
+            <div class="algorithm-analysis-grid">
+                <!-- Jaccard Similarity -->
+                <div class="analysis-card jaccard">
+                    <div class="card-header">
+                        <div class="algorithm-icon">🎯</div>
+                        <div class="algorithm-info">
+                            <h3>Jaccard Similarity</h3>
+                            <div
+                                class="algorithm-score {{#getSimilarityClass}}{{content.jaccard.score}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{content.jaccard.score}} 100{{/multiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric-bar">
+                            <div class="metric-fill {{#getSimilarityClass}}{{content.jaccard.score}}{{/getSimilarityClass}}"
+                                style="width: {{#multiply}}{{content.jaccard.score}} 100{{/multiply}}%;"></div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Tokens Page 1:</span>
+                                <span class="stat-value">{{content.jaccard.stats.tokens1}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Tokens Page 2:</span>
+                                <span class="stat-value">{{content.jaccard.stats.tokens2}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Intersection:</span>
+                                <span class="stat-value">{{content.jaccard.stats.intersection}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Union:</span>
+                                <span class="stat-value">{{content.jaccard.stats.union}}</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-explanation">
+                            Measures overlap between content sets by comparing shared vs unique elements
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cosine Similarity -->
+                <div class="analysis-card cosine">
+                    <div class="card-header">
+                        <div class="algorithm-icon">📐</div>
+                        <div class="algorithm-info">
+                            <h3>Cosine Similarity</h3>
+                            <div
+                                class="algorithm-score {{#getSimilarityClass}}{{content.cosine.score}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{content.cosine.score}} 100{{/multiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric-bar">
+                            <div class="metric-fill {{#getSimilarityClass}}{{content.cosine.score}}{{/getSimilarityClass}}"
+                                style="width: {{#multiply}}{{content.cosine.score}} 100{{/multiply}}%;"></div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Vector Size:</span>
+                                <span class="stat-value">{{content.cosine.vectorSize}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Similarity Type:</span>
+                                <span class="stat-value">Document Vectors</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-explanation">
+                            Measures content theme similarity using vector space analysis
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Fingerprint -->
+                <div class="analysis-card fingerprint">
+                    <div class="card-header">
+                        <div class="algorithm-icon">🔍</div>
+                        <div class="algorithm-info">
+                            <h3>Content Fingerprint</h3>
+                            <div
+                                class="algorithm-score {{#getSimilarityClass}}{{content.contentFingerprint.score}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{content.contentFingerprint.score}} 100{{/multiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric-bar">
+                            <div class="metric-fill {{#getSimilarityClass}}{{content.contentFingerprint.score}}{{/getSimilarityClass}}"
+                                style="width: {{#multiply}}{{content.contentFingerprint.score}} 100{{/multiply}}%;">
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Fingerprints 1:</span>
+                                <span class="stat-value">{{content.contentFingerprint.fingerprints1}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Fingerprints 2:</span>
+                                <span class="stat-value">{{content.contentFingerprint.fingerprints2}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Exact Matches:</span>
+                                <span class="stat-value">{{content.contentFingerprint.matches}}</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-explanation">
+                            Detects exact or near-exact duplicate content blocks
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semantic Analysis -->
+                <div class="analysis-card semantic">
+                    <div class="card-header">
+                        <div class="algorithm-icon">🧠</div>
+                        <div class="algorithm-info">
+                            <h3>Semantic Analysis</h3>
+                            <div
+                                class="algorithm-score {{#getSimilarityClass}}{{content.semantic.score}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{content.semantic.score}} 100{{/multiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric-bar">
+                            <div class="metric-fill {{#getSimilarityClass}}{{content.semantic.score}}{{/getSimilarityClass}}"
+                                style="width: {{#multiply}}{{content.semantic.score}} 100{{/multiply}}%;"></div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Heading Similarity:</span>
+                                <span class="stat-value">{{#multiply}}{{content.semantic.headingSimilarity}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Paragraph Similarity:</span>
+                                <span class="stat-value">{{#multiply}}{{content.semantic.paragraphSimilarity}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-explanation">
+                            AI-powered meaning analysis to detect paraphrased content
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic Similarity -->
+                <div class="analysis-card topic">
+                    <div class="card-header">
+                        <div class="algorithm-icon">📚</div>
+                        <div class="algorithm-info">
+                            <h3>Topic Modeling</h3>
+                            <div
+                                class="algorithm-score {{#getSimilarityClass}}{{content.topicSimilarity.score}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{content.topicSimilarity.score}} 100{{/multiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric-bar">
+                            <div class="metric-fill {{#getSimilarityClass}}{{content.topicSimilarity.score}}{{/getSimilarityClass}}"
+                                style="width: {{#multiply}}{{content.topicSimilarity.score}} 100{{/multiply}}%;"></div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Common Topics:</span>
+                                <span class="stat-value">{{content.topicSimilarity.commonTopics}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total Topics 1:</span>
+                                <span class="stat-value">{{content.topicSimilarity.totalTopics1}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total Topics 2:</span>
+                                <span class="stat-value">{{content.topicSimilarity.totalTopics2}}</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-explanation">
+                            Identifies shared themes and subject matter overlap
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metadata Analysis -->
+                <div class="analysis-card metadata">
+                    <div class="card-header">
+                        <div class="algorithm-icon">📋</div>
+                        <div class="algorithm-info">
+                            <h3>Metadata Analysis</h3>
+                            <div
+                                class="algorithm-score {{#getSimilarityClass}}{{content.metadata.score}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{content.metadata.score}} 100{{/multiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric-bar">
+                            <div class="metric-fill {{#getSimilarityClass}}{{content.metadata.score}}{{/getSimilarityClass}}"
+                                style="width: {{#multiply}}{{content.metadata.score}} 100{{/multiply}}%;"></div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Title Similarity:</span>
+                                <span class="stat-value">{{#multiply}}{{content.metadata.titleSimilarity}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Description Similarity:</span>
+                                <span class="stat-value">{{#multiply}}{{content.metadata.descriptionSimilarity}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-explanation">
+                            Compares page titles, descriptions, and meta information
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Statistics -->
+    <section class="content-statistics">
+        <div class="container">
+            <h2 class="section-title">Content Statistics & Analysis Summary</h2>
+
+            <div class="statistics-grid">
+                <!-- Page Content Stats -->
+                <div class="stats-card content-stats">
+                    <div class="stats-header">
+                        <h3>📊 Content Statistics</h3>
+                    </div>
+                    <div class="stats-content">
+                        <div class="content-comparison">
+                            <div class="page-stats">
+                                <h4>{{page1.pageId}}</h4>
+                                <div class="stat-list">
+                                    <div class="stat-row">
+                                        <span class="stat-label">Text Length:</span>
+                                        <span class="stat-value">{{content.stats.text1Length}} chars</span>
+                                    </div>
+                                    <div class="stat-row">
+                                        <span class="stat-label">Total Tokens:</span>
+                                        <span class="stat-value">{{content.stats.tokens1}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-divider">VS</div>
+
+                            <div class="page-stats">
+                                <h4>{{page2.pageId}}</h4>
+                                <div class="stat-list">
+                                    <div class="stat-row">
+                                        <span class="stat-label">Text Length:</span>
+                                        <span class="stat-value">{{content.stats.text2Length}} chars</span>
+                                    </div>
+                                    <div class="stat-row">
+                                        <span class="stat-label">Total Tokens:</span>
+                                        <span class="stat-value">{{content.stats.tokens2}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="processing-stats">
+                            <h4>Processing Performance</h4>
+                            <div class="stat-row">
+                                <span class="stat-label">Processing Time:</span>
+                                <span class="stat-value">{{content.stats.processingTimeMs}}ms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Insights -->
+                <div class="stats-card analysis-insights">
+                    <div class="stats-header">
+                        <h3>🔍 Analysis Insights</h3>
+                    </div>
+                    <div class="stats-content">
+                        <div class="insights-list">
+                            {{#eval}}{{content.overallScore}} >= 0.75|||
+                            <div class="insight-item critical">
+                                <span class="insight-icon">🚨</span>
+                                <span class="insight-text">Critical similarity level - potential content copying
+                                    detected</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{content.semantic.paragraphSimilarity}} > 0.9|||
+                            <div class="insight-item warning">
+                                <span class="insight-icon">⚠️</span>
+                                <span class="insight-text">Very high paragraph similarity suggests possible
+                                    paraphrasing</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{content.contentFingerprint.score}} > 0.1|||
+                            <div class="insight-item critical">
+                                <span class="insight-icon">🔍</span>
+                                <span class="insight-text">Exact content blocks detected - investigate for direct
+                                    copying</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{content.topicSimilarity.commonTopics}} > 10|||
+                            <div class="insight-item warning">
+                                <span class="insight-icon">📚</span>
+                                <span class="insight-text">Many shared topics - similar content focus areas</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{content.overallScore}} < 0.3||| <div class="insight-item good">
+                                <span class="insight-icon">✅</span>
+                                <span class="insight-text">Good content uniqueness - acceptable similarity levels</span>
+                        </div>
+                        {{/eval}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Assessment -->
+            <div class="stats-card risk-analysis">
+                <div class="stats-header">
+                    <h3>⚖️ Risk Assessment</h3>
+                </div>
+                <div class="stats-content">
+                    {{#eval}}{{content.overallScore}} >= 0.75|||
+                    <div class="risk-level critical">
+                        <span class="risk-badge">CRITICAL RISK</span>
+                        <p>This level of similarity strongly suggests content copying or template reuse. Immediate
+                            investigation recommended.</p>
+                    </div>
+                    {{/eval}}
+                    {{#eval}}{{content.overallScore}} >= 0.5 && {{content.overallScore}} < 0.75||| <div
+                        class="risk-level high">
+                        <span class="risk-badge">HIGH RISK</span>
+                        <p>Significant content overlap detected. Review for potential intellectual property concerns.
+                        </p>
+                </div>
+                {{/eval}}
+                {{#eval}}{{content.overallScore}} >= 0.25 && {{content.overallScore}} < 0.5||| <div
+                    class="risk-level moderate">
+                    <span class="risk-badge">MODERATE RISK</span>
+                    <p>Some content similarities present. Monitor for patterns across multiple pages.</p>
+            </div>
+            {{/eval}}
+            {{#eval}}{{content.overallScore}} < 0.25||| <div class="risk-level low">
+                <span class="risk-badge">LOW RISK</span>
+                <p>Content shows good uniqueness. Similarity levels are within acceptable ranges.</p>
+        </div>
+        {{/eval}}
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Detailed Content Analysis Complete</h2>
+                <p>Use these insights to understand content similarities and take appropriate action if needed.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Analysis</button>
+                    <a href="/report/{{report}}/content/compare/{{comparison}}/" class="button-blue">Back to Site
+                        Comparison</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{/contentPage}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+</body>
+
+</html>

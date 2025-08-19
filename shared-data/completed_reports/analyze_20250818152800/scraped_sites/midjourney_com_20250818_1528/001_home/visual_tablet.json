@@ -1,0 +1,25 @@
+{
+  "url": "https://www.midjourney.com/home",
+  "layout": {
+    "viewport": "tablet",
+    "hasHamburgerMenu": false,
+    "isStacked": false,
+    "columnCount": 0,
+    "hasStickyHeader": false
+  },
+  "visibility": {
+    "visible": [],
+    "hidden": []
+  },
+  "navigation": {
+    "type": "standard",
+    "position": "top"
+  },
+  "typography": {
+    "baseFontSize": "16px",
+    "h1Size": "30px",
+    "lineHeight": "24px"
+  },
+  "images": [],
+  "timestamp": "2025-08-18T15:28:54.226Z"
+}

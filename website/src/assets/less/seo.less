@@ -1,0 +1,114 @@
+// Window widths
+@widthDesktop: 68.75em; // 1100px
+@widthIPad: 58.625em; // 938px
+@widthTablet: 52em; // 832px
+@widthMobile: 30em; // 480px
+
+// Brand colors - Professional Infographic Palette
+@brand-primary: #2c3e50;       // Dark blue-slate - primary color
+@brand-blue: #2c3e50;       // Dark blue-slate - primary color
+@brand-green: #27ae60;        // Emerald green - primary color
+@brand-secondary: #3498db;     // Bright blue - secondary color
+@brand-accent: #e74c3c;        // Coral red - accent color
+@brand-error: #ff0000;        // Coral red - accent color
+@brand-black: #1a1a1a;         // Rich black
+@brand-text: #2d3436;          // Dark slate for text
+@brand-gray: #95a5a6;          // Medium gray
+@brand-dark-gray: #7f8c8d;     // Dark gray
+@brand-light-gray: #ecf0f1;    // Light gray for backgrounds
+@brand-light-grey: @brand-light-gray;
+@brand-white: #ffffff;         // Pure white
+@brand-grey: @brand-gray;      // Consistency alias
+
+// Data visualization colors
+@viz-blue: #3498db;            // Blue
+@viz-light-blue: #d6eaf8;      // Light blue
+@viz-green: #2ecc71;           // Green
+@viz-light-green: #e8f8f5;     // Light green
+@viz-purple: #9b59b6;          // Purple
+@viz-light-purple: #f4ecf7;    // Light purple
+@viz-orange: #f39c12;          // Orange
+@viz-light-orange: #fef5e7;    // Light orange
+@viz-red: #e74c3c;             // Red
+@viz-light-red: #fdedec;       // Light red
+@viz-teal: #1abc9c;            // Teal
+@viz-light-teal: #e8f8f5;      // Light teal
+@viz-yellow: #f1c40f;          // Yellow
+@viz-light-yellow: #fef9e7;    // Light yellow
+@viz-pink: #ff69b4;            // Pink
+@viz-light-pink: #ffeef8;      // Light pink
+
+@text-muted: #7f8c8d;          // Muted text color
+@text-light: #ecf0f1;          // Light text color
+@text-dark: #2c3e50;           // Dark text color
+
+// Status colors
+@status-success: @viz-green;
+@status-warning: @viz-yellow;
+@status-error: @viz-red;
+@status-progress: @viz-blue;
+
+// Fonts
+@body: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+@headline: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+@data: "Roboto Mono", "SF Mono", "Monaco", monospace;
+
+// Grid
+.make-row(@padding: @grid-column-padding) {
+    // Negative margin the row out to align the content of columns
+    margin-left: -@padding;
+    margin-right: -@padding;
+    // Then clear the floated columns
+    .clearfix();
+}
+
+.make-column(@columns, @total-columns: @grid-columns, @breakpoint: @grid-float-breakpoint, @padding: @grid-column-padding) {
+    @media (min-width: @breakpoint) {
+      float: left;
+      // Calculate width based on number of columns available
+      width: percentage(@columns / @total-columns);
+    }
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Set inner padding as gutters instead of margin
+    padding-left: @padding;
+    padding-right: @padding;
+    // Proper box-model (padding doesn't add to width)
+    box-sizing: border-box;
+}
+
+.make-column-offset(@columns, @total-columns: @grid-columns, @breakpoint: @grid-float-breakpoint, @padding: @grid-column-padding) {
+    @media (min-width: @breakpoint) {
+      margin-left: percentage(@columns / @total-columns);
+    }
+}
+  
+.clearfix() {
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+      line-height: 0;
+    }
+    &:after {
+      clear: both;
+    }
+}
+  
+.make-triangle(@color) {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 50vw 50px 50vw;
+    border-color: transparent transparent @color transparent;
+    position: absolute;
+    left: 0;
+    top: -50px;
+
+    @media (max-width: @widthTablet) {
+        border-width: 0 50vw 22px 50vw;
+        top: -22px;
+    }
+}

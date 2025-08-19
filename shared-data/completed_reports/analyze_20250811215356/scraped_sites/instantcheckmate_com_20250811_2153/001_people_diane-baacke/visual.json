@@ -1,0 +1,100 @@
+{
+  "url": "https://www.instantcheckmate.com/people/diane-baacke/",
+  "elementStyles": {
+    "body": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(62, 62, 62)",
+      "fontSize": "18px",
+      "fontFamily": "Lato, system-ui, Helvetica, Arial, sans-serif",
+      "fontWeight": "400"
+    },
+    "h1": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(62, 62, 62)",
+      "fontSize": "24px",
+      "fontFamily": "Lato, system-ui, Helvetica, Arial, sans-serif",
+      "fontWeight": "400"
+    },
+    "h2": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(62, 62, 62)",
+      "fontSize": "32.4px",
+      "fontFamily": "Lato, system-ui, Helvetica, Arial, sans-serif",
+      "fontWeight": "600"
+    },
+    "nav": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(62, 62, 62)",
+      "fontSize": "16px",
+      "fontFamily": "Lato, system-ui, Helvetica, Arial, sans-serif",
+      "fontWeight": "400"
+    },
+    "button": {
+      "backgroundColor": "rgba(255, 255, 255, 0)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "18px",
+      "fontFamily": "Lato, Helvetica, Arial, sans-serif",
+      "fontWeight": "700"
+    }
+  },
+  "layout": {
+    "hasHeader": true,
+    "hasNav": true,
+    "hasSidebar": true,
+    "hasFooter": true,
+    "containerWidth": 1200,
+    "containerHeight": 4160
+  },
+  "cssClasses": [
+    "no-scroll",
+    "ae-blurb-noaudio",
+    "cky-hide",
+    "cky-overlay",
+    "cky-btn-revisit-wrapper",
+    "cky-revisit-hide",
+    "cky-revisit-bottom-left",
+    "cky-btn-revisit",
+    "cky-consent-container",
+    "cky-modal",
+    "cky-preference-center",
+    "cky-preference-header",
+    "cky-preference-title",
+    "cky-btn-close",
+    "cky-preference-body-wrapper",
+    "cky-preference-content-wrapper",
+    "cky-show-desc-btn",
+    "cky-horizontal-separator",
+    "cky-opt-out-wrapper",
+    "cky-opt-out-checkbox-wrapper",
+    "cky-opt-out-checkbox",
+    "cky-opt-out-checkbox-label",
+    "cky-footer-wrapper",
+    "cky-opt-out-btn-wrapper",
+    "cky-btn",
+    "cky-btn-cancel",
+    "cky-btn-confirm",
+    "audioeye-skip-link",
+    "btn-login",
+    "active",
+    "modal",
+    "intro",
+    "secure",
+    "overlay-inner",
+    "verify",
+    "squaredFour",
+    "check-wrapper",
+    "inside-copy",
+    "gray-shield",
+    "blue-shield",
+    "green-shield",
+    "h1",
+    "h2",
+    "slim",
+    "hightlighted-label",
+    "bg-search",
+    "search-label",
+    "control-group",
+    "controls",
+    "validate"
+  ]
+}

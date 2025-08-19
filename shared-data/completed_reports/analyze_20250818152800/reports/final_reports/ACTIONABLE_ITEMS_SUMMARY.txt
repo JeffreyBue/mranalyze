@@ -1,0 +1,47 @@
+ACTIONABLE ITEMS SUMMARY
+Generated: 8/18/2025, 3:29:01 PM
+
+PRIORITY BREAKDOWN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 Critical Actions: 1
+⚡ High Priority Actions: 5
+📊 Total Actions: 11
+
+IMMEDIATE ACTIONS (Critical Priority)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Optimize Meta Description
+   Category: Meta Descriptions
+   Page: 001_home
+   Action: Missing call-to-action in meta description
+
+
+HIGH PRIORITY ACTIONS (Next 7 Days)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Increase Content Uniqueness
+   Category: Content Uniqueness
+   Action: Content lacks unique, specific information
+
+2. Fix Title Tag Issues
+   Category: Title Tags
+   Action: Title too short (under 30 characters)
+
+3. Fix Title Tag Issues
+   Category: Title Tags
+   Action: Title lacks descriptive keywords
+
+4. Optimize Meta Description
+   Category: Meta Descriptions
+   Action: Meta description too short (under 120 characters)
+
+5. Increase Content Uniqueness
+   Category: Content Uniqueness
+   Action: Content lacks unique, specific information
+
+
+ACTIONS BY CATEGORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 Meta Descriptions (2 items)
+📋 Content Uniqueness (2 items)
+📋 Title Tags (2 items)
+📋 Content Quality (2 items)
+📋 Technical SEO (3 items)

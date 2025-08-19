@@ -1,0 +1,223 @@
+{
+  "site": "mage_space_20250818_1528",
+  "pageIndex": 1,
+  "pageId": "001_homepage",
+  "url": "https://www.mage.space",
+  "seoAnalysis": {
+    "pageId": "001_homepage",
+    "url": "https://www.mage.space",
+    "titleTagAnalysis": {
+      "title": "Mage | Free & Unlimited AI Image and Video Generator",
+      "score": 1,
+      "issues": [],
+      "length": 52,
+      "hasKeywords": true,
+      "brandingPosition": "beginning",
+      "meaningfulWords": [
+        "mage",
+        "free",
+        "unlimited",
+        "image",
+        "video",
+        "generator"
+      ]
+    },
+    "metaDescriptionAnalysis": {
+      "description": "Generate AI images and videos instantly — free, fast, and unlimited. Discover the magic of AI with Mage.",
+      "score": 0.8,
+      "issues": [
+        "Meta description too short (under 120 characters)"
+      ],
+      "length": 104,
+      "hasCallToAction": true,
+      "keywordPresence": true,
+      "meaningfulWords": [
+        "generate",
+        "images",
+        "videos",
+        "instantly",
+        "free",
+        "fast",
+        "unlimited",
+        "discover",
+        "magic",
+        "mage"
+      ]
+    },
+    "headingStructure": {
+      "score": 0.6,
+      "issues": [
+        "Missing H1 tag"
+      ],
+      "h1Count": 0,
+      "h2Count": 10,
+      "h3Count": 1,
+      "hasKeywords": true,
+      "hierarchy": "good"
+    },
+    "contentQuality": {
+      "score": 0.5,
+      "issues": [
+        "Potential keyword stuffing detected (density > 5%)",
+        "Content appears generic - lacks unique information"
+      ],
+      "wordCount": 1177,
+      "readabilityEstimate": "difficult",
+      "keywordDensity": {
+        "plays": "7.14",
+        "ago": "7.14",
+        "slow": "5.10",
+        "upgrade": "4.67",
+        "flux": "4.42",
+        "mage": "3.74",
+        "official": "3.57",
+        "months": "3.14",
+        "sdxl": "1.87",
+        "days": "1.61"
+      },
+      "contentDepth": "detailed",
+      "uniquenessScore": 0
+    },
+    "keywordOptimization": {
+      "score": 0.8000000000000002,
+      "issues": [],
+      "primaryKeywords": [
+        "mage",
+        "free",
+        "video",
+        "unlimited",
+        "image"
+      ],
+      "keywordPlacement": {
+        "mage": {
+          "score": 1.0000000000000002,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": true,
+          "density": 3.74
+        },
+        "free": {
+          "score": 0.9000000000000001,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": true,
+          "density": 0.08
+        },
+        "video": {
+          "score": 0.9000000000000001,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": true,
+          "density": 0.85
+        },
+        "unlimited": {
+          "score": 0.6000000000000001,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": false,
+          "density": 0
+        },
+        "image": {
+          "score": 0.6000000000000001,
+          "inTitle": true,
+          "inMetaDesc": true,
+          "inHeadings": false,
+          "density": 0.34
+        }
+      },
+      "semanticKeywords": [],
+      "opportunities": [
+        "Increase \"free\" density in content",
+        "Increase \"video\" density in content",
+        "Include \"unlimited\" in headings",
+        "Increase \"unlimited\" density in content",
+        "Include \"image\" in headings",
+        "Increase \"image\" density in content"
+      ]
+    },
+    "technicalSEO": {
+      "score": 0.7000000000000001,
+      "issues": [
+        "No structured data (schema markup) found",
+        "Missing essential meta tags: robots"
+      ],
+      "hasStructuredData": false,
+      "metaTagsPresent": [
+        "viewport",
+        "description",
+        "og:title",
+        "og:description",
+        "og:url",
+        "og:site_name",
+        "og:image",
+        "og:type",
+        "twitter:card",
+        "twitter:title",
+        "twitter:description",
+        "twitter:image"
+      ],
+      "missingMetaTags": [
+        "robots"
+      ],
+      "performanceIndicators": {
+        "imageCount": 5,
+        "linkCount": 42,
+        "hasAltTags": false
+      }
+    },
+    "uniquenessIndicators": {
+      "uniqueElements": [],
+      "genericElements": [],
+      "uniquenessScore": 0,
+      "opportunities": [
+        "Add more specific, unique information about the subject",
+        "Include location-specific information",
+        "Add personal or company-specific details"
+      ]
+    },
+    "actionableItems": [
+      {
+        "priority": "MEDIUM",
+        "category": "Content Quality",
+        "title": "Improve Content Quality",
+        "description": "Content quality score: 50.0%",
+        "impact": "MEDIUM",
+        "pageId": "001_homepage",
+        "url": "https://www.mage.space",
+        "specificAction": "Add more specific, unique information about the subject; Reduce keyword density to avoid over-optimization"
+      },
+      {
+        "priority": "HIGH",
+        "category": "Content Uniqueness",
+        "title": "Increase Content Uniqueness",
+        "description": "Content lacks unique, specific information",
+        "impact": "HIGH",
+        "pageId": "001_homepage",
+        "url": "https://www.mage.space",
+        "specificAction": "Add more specific, unique information about the subject; Include location-specific information; Add personal or company-specific details"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "Technical SEO",
+        "title": "Fix Technical SEO Issues",
+        "description": "No structured data (schema markup) found",
+        "impact": "MEDIUM",
+        "pageId": "001_homepage",
+        "url": "https://www.mage.space",
+        "specificAction": "Add JSON-LD structured data for better search engine understanding"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "Technical SEO",
+        "title": "Fix Technical SEO Issues",
+        "description": "Missing essential meta tags: robots",
+        "impact": "MEDIUM",
+        "pageId": "001_homepage",
+        "url": "https://www.mage.space",
+        "specificAction": "Review and fix technical SEO issue"
+      }
+    ],
+    "overallScore": 0.7350000000000001
+  },
+  "timestamp": "2025-08-18T15:29:01.221Z"
+}

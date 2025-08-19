@@ -1,0 +1,567 @@
+title: "{{report}} SEO Master Summary - Site Analysis Report."
+description: "Comprehensive SEO analysis summary with actionable insights, duplicate content detection, and
+implementation roadmap."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+
+    <link rel="stylesheet" href="/_/css/report_seo_summary.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+    {{#seo_master_summary}}
+    <!-- Header Section -->
+    <header class="seo-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li>SEO Master Summary</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>SEO Master Summary</h1>
+                    <p class="subtitle">Comprehensive Site Analysis & Action Plan</p>
+                </div>
+                <div class="header-meta">
+                    <div class="analysis-type">
+                        <span class="type-label">Analysis Type:</span>
+                        <span class="type-value">{{analysisType}}</span>
+                    </div>
+                    <div class="timestamp">
+                        <span class="timestamp-label">Generated:</span>
+                        <span class="timestamp-value" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Executive Overview -->
+    <section class="executive-overview paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Executive Overview</h2>
+
+            <div class="overview-grid">
+                <div class="overview-card sites">
+                    <div class="card-icon">🌐</div>
+                    <div class="card-content">
+                        <div class="card-number">{{overview.totalSites}}</div>
+                        <div class="card-label">Total Sites</div>
+                    </div>
+                </div>
+
+                <div class="overview-card pages">
+                    <div class="card-icon">📄</div>
+                    <div class="card-content">
+                        <div class="card-number">{{overview.totalPagesAnalyzed}}</div>
+                        <div class="card-label">Pages Analyzed</div>
+                    </div>
+                </div>
+
+                <div class="overview-card comparisons">
+                    <div class="card-icon">⚖️</div>
+                    <div class="card-content">
+                        <div class="card-number">{{overview.totalComparisons}}</div>
+                        <div class="card-label">Comparisons Made</div>
+                    </div>
+                </div>
+
+                <div class="overview-card actions">
+                    <div class="card-icon">📋</div>
+                    <div class="card-content">
+                        <div class="card-number">{{overview.totalActionableItems}}</div>
+                        <div class="card-label">Action Items</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Priority Issues Summary -->
+            <div class="priority-summary">
+                <div class="priority-item critical">
+                    <div class="priority-icon">🚨</div>
+                    <div class="priority-content">
+                        <div class="priority-count">{{overview.criticalIssues}}</div>
+                        <div class="priority-label">Critical Issues</div>
+                        <div class="priority-desc">Immediate attention required</div>
+                    </div>
+                </div>
+
+                <div class="priority-item high">
+                    <div class="priority-icon">⚠️</div>
+                    <div class="priority-content">
+                        <div class="priority-count">{{overview.highPriorityIssues}}</div>
+                        <div class="priority-label">High Priority</div>
+                        <div class="priority-desc">Fix within 1-2 weeks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Duplicate Content Risk Assessment -->
+    <section class="risk-assessment">
+        <div class="container">
+            <h2 class="section-title">Duplicate Content Risk Assessment</h2>
+
+            <div class="risk-grid">
+                {{#duplicateContentRisks}}
+                <div class="report-item risk-item">
+                    <a href="/report/{{report}}/seo/compare/{{comparison}}/" class="report-link risk-link">
+                        <div class="risk-card {{riskLevel}}">
+                            <div class="risk-header">
+                                <div class="risk-comparison">
+                                    <span class="site-name" data-site="{{comparison}}">{{comparison}}</span>
+                                </div>
+                                <div class="risk-level-badge {{riskLevel}}">
+                                    <span class="risk-emoji"></span>
+                                    <span class="risk-text">{{riskLevel}}</span>
+                                </div>
+                            </div>
+
+                            <div class="risk-score-section">
+                                <div class="risk-score-circle" data-score="{{riskScore}}">
+                                    <div class="score-value"></div>
+                                    <div class="score-label">Risk Score</div>
+                                </div>
+
+                                <div class="risk-details">
+                                    <div class="risk-metric">
+                                        <span class="metric-label">Critical Pages:</span>
+                                        <span class="metric-value">{{criticalPages}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gradient-overlay"></div>
+                    </a>
+                </div>
+                {{/duplicateContentRisks}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Priority Actions -->
+    <section class="top-actions paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Top Priority Actions</h2>
+
+            <div class="actions-controls">
+                <button class="control-button expand-all" onclick="expandAllActions()">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M7 14L12 9L17 14H7Z" fill="currentColor" />
+                    </svg>
+                    Expand All
+                </button>
+                <button class="control-button collapse-all" onclick="collapseAllActions()">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M7 10L12 15L17 10H7Z" fill="currentColor" />
+                    </svg>
+                    Collapse All
+                </button>
+            </div>
+
+            <div class="actions-container">
+                {{#topPriorityActions}}
+                <div class="action-card {{priority}} collapsed" data-category="{{category}}">
+                    <div class="action-header">
+                        <div class="action-priority">
+                            <span class="priority-badge {{priority}}">{{priority}}</span>
+                            <span class="category-tag">{{category}}</span>
+                            <span class="category-tag">{{#titleCase}}{{source}}{{/titleCase}}</span>
+                        </div>
+                        <div class="action-score">
+                            <span class="score-number">{{score}}</span>
+                            <span class="score-label">Priority Score</span>
+                        </div>
+                        <div class="toggle-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M7 10L12 15L17 10H7Z" fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="action-contentwrap">
+                        <div class="action-preview">
+                            <h3 class="action-title">{{title}}</h3>
+                            <p class="action-description-short">{{description}}</p>
+                        </div>
+
+                        <div class="action-content">
+                            <div class="action-details">
+                                <div class="action-impact">
+                                    <span class="impact-label">Impact:</span>
+                                    <span class="impact-badge {{impact}}">{{impact}}</span>
+                                </div>
+
+                                <div class="action-source">
+                                    <span class="source-label">Source:</span>
+                                    <span class="source-value">{{source}}</span>
+                                </div>
+                            </div>
+
+                            <div class="specific-action">
+                                <h4>Recommended Action:</h4>
+                                <p>{{specificAction}}</p>
+                            </div>
+
+                            <!-- Page Information -->
+                            {{#page1}}
+                            <div class="affected-pages">
+                                <h4>Affected Pages:</h4>
+                                <div class="page-comparison">
+                                    <div class="page-info">
+                                        <span class="page-site">{{site}}</span>
+                                        <span class="page-id">{{pageId}}</span>
+                                        <a href="{{url}}" class="page-url" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                                </path>
+                                                <polyline points="15 3 21 3 21 9"></polyline>
+                                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                                            </svg>
+                                            View Live Url
+                                        </a>
+                                        <a href="/report/{{report}}/seo/page/{{#seo_page}}{{site}} {{pageId}}{{/seo_page}}/"
+                                            class="page-url">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                                <path
+                                                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z">
+                                                </path>
+                                                <polyline points="14.5 2 14.5 7.5 20 7.5"></polyline>
+                                            </svg>
+                                            View Page Report
+                                        </a>
+                                    </div>
+                                    {{#page2}}
+                                    <div class="vs-separator">VS</div>
+                                    <div class="page-info">
+                                        <span class="page-site">{{site}}</span>
+                                        <span class="page-id">{{pageId}}</span>
+                                        <a href="{{url}}" class="page-url" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                                </path>
+                                                <polyline points="15 3 21 3 21 9"></polyline>
+                                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                                            </svg>
+                                            View Live Url
+                                        </a>
+                                        <a href="/report/{{report}}/seo/page/{{#seo_page}}{{site}} {{pageId}}{{/seo_page}}/"
+                                            class="page-url">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                                <path
+                                                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z">
+                                                </path>
+                                                <polyline points="14.5 2 14.5 7.5 20 7.5"></polyline>
+                                            </svg>
+                                            View Page Report
+                                        </a>
+                                    </div>
+                                    {{/page2}}
+                                </div>
+                            </div>
+                            {{/page1}}
+
+                            {{#pageId}}
+                            <div class="affected-pages">
+                                <h4>Affected Page:</h4>
+                                <div class="single-page">
+                                    <span class="page-site">{{site}}</span>
+                                    <span class="page-id">{{pageId}}</span>
+                                    <a href="{{url}}" class="page-url" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                        View Live Url
+                                    </a>
+                                    <a href="/report/{{report}}/seo/page/{{#seo_page}}{{site}} {{pageId}}{{/seo_page}}/"
+                                        class="page-url">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            style="margin-left:4px;vertical-align:-1px" aria-hidden="true">
+                                            <path
+                                                d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z">
+                                            </path>
+                                            <polyline points="14.5 2 14.5 7.5 20 7.5"></polyline>
+                                        </svg>
+                                        View Page Report
+                                    </a>
+                                </div>
+                            </div>
+                            {{/pageId}}
+                        </div>
+                    </div>
+                </div>
+                {{/topPriorityActions}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Actions by Category -->
+    <section class="actions-by-category">
+        <div class="container">
+            <h2 class="section-title">Actions by Category</h2>
+
+            <div class="category-tabs">
+                <button class="tab-button active" data-category="all">All Categories</button>
+                <button class="tab-button" data-category="Content Uniqueness">Content Uniqueness</button>
+                <button class="tab-button" data-category="Keyword Strategy">Keyword Strategy</button>
+                <button class="tab-button" data-category="Technical SEO">Technical SEO</button>
+                <button class="tab-button" data-category="Content Gaps">Content Gaps</button>
+                <button class="tab-button" data-category="Content Quality">Content Quality</button>
+                <button class="tab-button" data-category="Duplicate Content">Duplicate Content</button>
+            </div>
+
+            <div class="category-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Site-Specific Summaries -->
+    <section class="site-summaries paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Site-Specific Analysis</h2>
+
+            <div class="sites-grid">
+                {{#siteSpecificSummaries}}
+                <div class="site-card" data-site="{{key}}">
+                    <div class="site-header">
+                        <h3 class="site-name" data-site-name="{{key}}">{{key}}</h3>
+                        <div class="seo-score-display">
+                            <div class="score-circle" data-score="{{averageSEOScore}}">
+                                <span class="score-percentage"></span>
+                            </div>
+                            <span class="score-label">SEO Score</span>
+                        </div>
+                    </div>
+
+                    <div class="site-metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">Pages Analyzed:</span>
+                            <span class="metric-value">{{totalPages}}</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Action Items:</span>
+                            <span class="metric-value">{{totalActionableItems}}</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Critical Issues:</span>
+                            <span class="metric-value critical">{{criticalIssues}}</span>
+                        </div>
+                    </div>
+
+                    <div class="top-issues">
+                        <h4>Top Issue Categories:</h4>
+                        <div class="issues-list">
+                            {{#topIssues}}
+                            <div class="issue-item">
+                                <span class="issue-category">{{category}}</span>
+                                <span class="issue-count">{{count}}</span>
+                            </div>
+                            {{/topIssues}}
+                        </div>
+                    </div>
+                </div>
+                {{/siteSpecificSummaries}}
+            </div>
+        </div>
+    </section>
+
+    <!-- All SEO Page Reports -->
+    <section class="seo-page-reports paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title center">All SEO Page Reports</h2>
+            <p class="section-subtitle center">Individual page analysis reports with detailed SEO insights and
+                recommendations</p>
+
+            <div class="page-reports-container">
+                <div class="reports-grid">
+                    {{#files.page}}
+                    <div class="report-item">
+                        <a href="/report/{{report}}/seo/page/{{url}}/"
+                            class="report-link">
+                            <div class="report-icon">📄</div>
+                            <div class="report-content">
+                                <h3 class="report-title">
+                                    {{pageUrl}}</h3>
+                                <p class="report-description">Detailed SEO analysis and recommendations</p>
+                            </div>
+                            <div class="report-arrow">
+                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                    <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <div class="gradient-overlay"></div>
+                        </a>
+                    </div>
+                    {{/files.page}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Roadmap -->
+    <section class="implementation-roadmap">
+        <div class="container">
+            <h2 class="section-title">Implementation Roadmap</h2>
+
+            <div class="roadmap-timeline">
+                <div class="phase-card phase-1">
+                    <div class="phase-header">
+                        <div class="phase-number">1</div>
+                        <div class="phase-info">
+                            <h3>Immediate Actions</h3>
+                            <p class="phase-timeframe">{{implementationRoadmap.phase1_immediate.timeframe}}</p>
+                            <p class="phase-description">{{implementationRoadmap.phase1_immediate.description}}</p>
+                        </div>
+                    </div>
+                    <div class="phase-actions-count">
+                        <span class="actions-count"
+                            data-phase="phase1_immediate">{{implementationRoadmap.phase1_immediate.actions.length}}</span>
+                        <span class="actions-label">Actions</span>
+                    </div>
+                </div>
+
+                <div class="phase-card phase-2">
+                    <div class="phase-header">
+                        <div class="phase-number">2</div>
+                        <div class="phase-info">
+                            <h3>High Impact</h3>
+                            <p class="phase-timeframe">{{implementationRoadmap.phase2_high_impact.timeframe}}</p>
+                            <p class="phase-description">{{implementationRoadmap.phase2_high_impact.description}}</p>
+                        </div>
+                    </div>
+                    <div class="phase-actions-count">
+                        <span class="actions-count"
+                            data-phase="phase2_high_impact">{{implementationRoadmap.phase2_high_impact.actions.length}}</span>
+                        <span class="actions-label">Actions</span>
+                    </div>
+                </div>
+
+                <div class="phase-card phase-3">
+                    <div class="phase-header">
+                        <div class="phase-number">3</div>
+                        <div class="phase-info">
+                            <h3>Optimization</h3>
+                            <p class="phase-timeframe">{{implementationRoadmap.phase3_optimization.timeframe}}</p>
+                            <p class="phase-description">{{implementationRoadmap.phase3_optimization.description}}</p>
+                        </div>
+                    </div>
+                    <div class="phase-actions-count">
+                        <span class="actions-count"
+                            data-phase="phase3_optimization">{{implementationRoadmap.phase3_optimization.actions.length}}</span>
+                        <span class="actions-label">Actions</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Phase Actions -->
+            <div class="phase-details">
+                <div class="phase-tabs">
+                    <button class="phase-tab active" data-phase="phase1_immediate">Phase 1: Immediate</button>
+                    <button class="phase-tab" data-phase="phase2_high_impact">Phase 2: High Impact</button>
+                    <button class="phase-tab" data-phase="phase3_optimization">Phase 3: Optimization</button>
+                </div>
+
+                <div class="phase-content">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Statistics -->
+    <section class="summary-stats paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Analysis Summary</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <div class="stat-number">{{overview.totalActionableItems}}</div>
+                        <div class="stat-label">Total Action Items</div>
+                        <div class="stat-desc">Across all sites and categories</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="avg-seo-score">--</div>
+                        <div class="stat-label">Average SEO Score</div>
+                        <div class="stat-desc">Across all analyzed sites</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="high-risk-sites">--</div>
+                        <div class="stat-label">High Risk Sites</div>
+                        <div class="stat-desc">Sites with duplicate content risk</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="completion-estimate">--</div>
+                        <div class="stat-label">Estimated Completion</div>
+                        <div class="stat-desc">Based on implementation phases</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Implement These Recommendations?</h2>
+                <p>Start with the critical issues and work through the implementation roadmap for optimal results.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Report</button>
+                    <button class="button-blue" onclick="exportData()">Export Data</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/seo_master_summary}}
+
+
+    {{> FOOTER }}
+    {{> FOOT }}
+    <script defer src="/_/js/seo_master_summary.js?{{assetsDate.js}}"></script>
+</body>
+
+</html>

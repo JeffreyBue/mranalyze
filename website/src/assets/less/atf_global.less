@@ -1,0 +1,759 @@
+@import (reference) "./seo";
+@import "./_partials/footer";
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: @body;
+	margin: 0;
+	line-height: 1.6;
+	color: @brand-text;
+}
+
+.container {
+	max-width: @widthDesktop;
+	margin: 0 auto;
+	padding: 0 1em;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: @headline;
+	color: @brand-primary;
+	margin: 0 0 1em 0;
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+h4 {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+h5 {
+	font-size: 1.125rem;
+	font-weight: 500;
+}
+
+h6 {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.data-font {
+	font-family: @data;
+}
+
+/* Utility Classes */
+.capitalize {
+	text-transform: capitalize;
+}
+
+.center {
+	text-align: center;
+}
+
+.hide,
+.hidden {
+	display: none;
+}
+
+.paddingtopbottom {
+	padding: 3em 0;
+}
+
+.margintopbottom {
+	margin: 3em 0;
+}
+
+.nomargin {
+	margin: 0 !important;
+}
+
+.nopadding {
+	padding: 0 !important;
+}
+
+.rotate {
+	transform: rotate(180deg);
+}
+
+.blur {
+	color: transparent;
+	text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+}
+
+.allCaps {
+	text-transform: uppercase;
+}
+
+/* Buttons */
+.button-blue {
+	background-color: @brand-blue;
+	color: @brand-white;
+	padding: 1em 2em;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	transition: background-color 0.2s;
+	font-family: @body;
+}
+
+.button-blue:hover {
+	background-color: #1a2332;
+	color: @brand-white;
+}
+
+.button-green {
+	background: @brand-green;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	box-sizing: border-box;
+	padding: 1em 2em;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	transition: background-color 0.2s;
+}
+
+.button-green:hover {
+	background: #2ecc71;
+}
+
+/* Box Styles */
+.box-grey {
+	padding: 1em;
+	margin-bottom: 2em;
+	background: @brand-light-gray;
+	box-sizing: border-box;
+}
+
+.box-grey a,
+.box-grey span {
+	color: var(--brand-black);
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* Flex Grid */
+.flex {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 1em;
+}
+
+.flex.column-2>div {
+	width: calc(50% - 0.5em);
+}
+
+.flex.column-3>div {
+	width: calc(33.333% - 0.67em);
+}
+
+.flex.column-4>div {
+	width: calc(25% - 0.75em);
+}
+
+.flex.justify-space-between {
+	justify-content: space-between;
+}
+
+@media (max-width: 52em) {
+	.flex {
+		flex-direction: column;
+	}
+
+	.flex.column-2>div,
+	.flex.column-3>div,
+	.flex.column-4>div {
+		width: 100%;
+	}
+}
+
+/* Forms */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+	-webkit-appearance: none;
+	border-radius: 0.1875em;
+	box-sizing: border-box;
+	width: 100%;
+	height: 2.5em;
+	padding: 0.3125em 0.9375em;
+	border: 1px solid #a4a4a4;
+	background-color: #fff;
+	color: #3e3e3e;
+	font: 16px @body;
+	transition: all 0.3s;
+}
+
+input:focus,
+select:focus {
+	outline: 0;
+	background: #f2f9fc;
+	box-shadow: 0 0 4px 1px #338bba;
+}
+
+input.error {
+	border-color: @brand-error;
+	box-shadow: inset 0 -5px 0 0 @brand-error;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+	margin: 1em 0;
+}
+
+.breadcrumbs ul {
+	list-style: none;
+	padding: 1em;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	background-color: @brand-light-gray;
+}
+
+.breadcrumbs li {
+	padding: 0;
+	margin: 0;
+	font-size: 0.9em;
+	color: var(--brand-black);
+}
+
+.breadcrumbs li:after {
+	content: "/";
+	padding: 0 0.5em;
+}
+
+.breadcrumbs li:last-child:after {
+	content: "";
+}
+
+/* Color Swatches */
+.color-swatch {
+	width: 100px;
+	height: 100px;
+	border-radius: 8px;
+	margin-bottom: 0.5em;
+	border: 1px solid #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.color-info {
+	text-align: center;
+	font-size: 0.9em;
+}
+
+.color-name {
+	font-weight: 600;
+	margin-bottom: 0.25em;
+}
+
+.color-hex {
+	font-family: @data;
+	font-size: 0.8em;
+	color: var(--brand-gray);
+}
+
+/* Style Guide Specific */
+.style-section {
+	margin: 3em 0;
+	padding: 2em 0;
+	border-bottom: 1px solid @brand-light-gray;
+}
+
+.style-section:last-child {
+	border-bottom: none;
+}
+
+.component-demo {
+	background: #f8f9fa;
+	padding: 2em;
+	margin: 1em 0;
+	border-radius: 4px;
+	border: 1px solid @brand-light-gray;
+}
+
+.code-block {
+	background: #2d3748;
+	color: #e2e8f0;
+	padding: 1em;
+	border-radius: 4px;
+	font-family: @data;
+	font-size: 0.9em;
+	overflow-x: auto;
+	margin: 1em 0;
+}
+
+.navigation {
+	background: @brand-primary;
+	padding: 1em 0;
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2em;
+
+		/* Dropdown Menu Styles */
+		.dropdown {
+			position: relative;
+		}
+
+		.dropdown-toggle {
+			cursor: pointer;
+		}
+
+		.dropdown-menu {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			min-width: 200px;
+			background-color: white;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+			border-radius: 4px;
+			z-index: 100;
+		}
+
+		.dropdown:hover .dropdown-menu {
+			display: block;
+		}
+
+		.dropdown-menu li {
+			display: block;
+			border-bottom: 1px solid @brand-light-gray;
+
+			&:last-child {
+				border-bottom: none;
+				
+				
+				a {
+					border-bottom-right-radius: 4px;
+					border-bottom-left-radius: 4px;
+				}
+			}
+
+			&:first-child {
+				a {
+					border-top-right-radius: 4px;
+					border-top-left-radius: 4px;
+				}
+			}
+		}
+
+		.dropdown-menu li a {
+			padding: 8px 16px;
+			display: block;
+			color: #333;
+			text-decoration: none;
+			transition: background-color 0.2s, color 0.2s;
+		}
+
+		.dropdown-menu li a:hover {
+			background-color: @brand-secondary;
+			color: @brand-white;
+		}
+	}
+
+	a {
+		color: @brand-white;
+		text-decoration: none;
+		transition: color 0.2s;
+
+		&:hover {
+			color: @brand-secondary;
+		}
+	}
+
+}
+
+/* Data Visualization Elements */
+.chart-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	margin: 1em 0;
+}
+
+.legend-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.legend-color {
+	width: 20px;
+	height: 20px;
+	border-radius: 3px;
+}
+
+.data-card {
+	background: @brand-white;
+	border: 1px solid @brand-light-gray;
+	border-radius: 8px;
+	padding: 1.5em;
+	margin: 1em 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.data-metric {
+	font-size: 2em;
+	font-weight: 700;
+	color: @brand-primary;
+	font-family: @data;
+}
+
+.data-label {
+	font-size: 0.9em;
+	color: var(--brand-gray);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.status-badge {
+	padding: 0.25em 0.75em;
+	border-radius: 20px;
+	font-size: 0.8em;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.status-success {
+	background: @viz-light-green;
+	color: @viz-green;
+}
+
+.status-warning {
+	background: @viz-light-yellow;
+	color: @viz-yellow;
+}
+
+.status-error {
+	background: @viz-light-red;
+	color: @viz-red;
+}
+
+.status-progress {
+	background: @viz-light-blue;
+	color: @viz-blue;
+}
+
+.table-container {
+	overflow-x: auto;
+	margin: 1em 0;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+}
+
+th,
+td {
+	padding: 0.75em;
+	text-align: left;
+	border-bottom: 1px solid @brand-light-gray;
+}
+
+th {
+	background: @brand-light-gray;
+	font-weight: 600;
+	color: @brand-primary;
+}
+
+tbody tr:hover {
+	background: #f8f9fa;
+}
+
+// ______________________________________
+// Reusable Animated Grid Items
+// Can be used for any list or grid that needs bubble hover effects
+.report-item {
+	position: relative;
+	z-index: 1;
+	transition: z-index 0.3s ease;
+
+	&:hover {
+		z-index: 10;
+	}
+
+	.report-link {
+		display: flex;
+		align-items: center;
+		gap: 1.5em;
+		padding: 1.5em 2em;
+		background: @brand-primary;
+		color: @brand-white;
+		text-decoration: none;
+		border-radius: 8px;
+		position: relative;
+		overflow: hidden;
+		transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		border: 2px solid transparent;
+
+		@media (max-width: @widthMobile) {
+			padding: 1.25em 1.5em;
+			gap: 1em;
+		}
+
+		// Bubble growth animation on hover
+		&:hover {
+			transform: scale(1.05) translateY(-5px);
+			border-radius: 16px;
+			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+			border-color: @brand-secondary;
+
+			.gradient-overlay {
+				opacity: 1;
+				animation: gradientMove 3s ease infinite;
+			}
+
+			.report-icon {
+				transform: scale(1.2) rotate(5deg);
+			}
+
+			.report-arrow {
+				transform: translateX(8px) scale(1.2);
+			}
+
+			.report-title {
+				transform: translateX(5px);
+			}
+
+			.report-description {
+				transform: translateX(5px);
+				opacity: 0.9;
+			}
+
+			~ .report-actions {
+				transform: scale(1.6)  translate(-13px, -1px);
+			}
+		}
+
+		// Focus state for accessibility
+		&:focus {
+			outline: 3px solid @brand-secondary;
+			outline-offset: 3px;
+		}
+
+		.report-icon {
+			font-size: 2rem;
+			flex-shrink: 0;
+			transition: all 0.3s ease;
+
+			@media (max-width: @widthMobile) {
+				font-size: 1.5rem;
+			}
+		}
+
+		.report-content {
+			flex: 1;
+
+			.report-title {
+				font-size: 1.3rem;
+				font-weight: 700;
+				margin-bottom: 0.25em;
+				color: @brand-white;
+				transition: all 0.3s ease;
+
+				@media (max-width: @widthMobile) {
+					font-size: 1.1rem;
+				}
+			}
+
+			.report-description {
+				font-size: 0.9rem;
+				opacity: 0.8;
+				margin: 0;
+				transition: all 0.3s ease;
+				line-height: 1.4;
+
+				@media (max-width: @widthMobile) {
+					font-size: 0.85rem;
+				}
+			}
+		}
+
+		.report-arrow {
+			flex-shrink: 0;
+			opacity: 0.8;
+			transition: all 0.3s ease;
+
+			svg {
+				transition: transform 0.3s ease;
+			}
+		}
+
+		.gradient-overlay {
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(45deg,
+					transparent 30%,
+					rgba(255, 255, 255, 0.1) 50%,
+					transparent 70%);
+			opacity: 0;
+			transition: opacity 0.3s ease;
+			pointer-events: none;
+		}
+	}
+}
+
+// Gradient movement animation
+@keyframes gradientMove {
+	0% {
+		left: -100%;
+	}
+
+	50% {
+		left: 100%;
+	}
+
+	100% {
+		left: -100%;
+	}
+}
+
+// Staggered entrance animation
+.report-item {
+	animation: slideInUp 0.6s ease-out both;
+
+	&:nth-child(1) {
+		animation-delay: 0.1s;
+	}
+
+	&:nth-child(2) {
+		animation-delay: 0.2s;
+	}
+
+	&:nth-child(3) {
+		animation-delay: 0.3s;
+	}
+
+	&:nth-child(4) {
+		animation-delay: 0.4s;
+	}
+
+	&:nth-child(5) {
+		animation-delay: 0.5s;
+	}
+
+	&:nth-child(6) {
+		animation-delay: 0.6s;
+	}
+
+	&:nth-child(7) {
+		animation-delay: 0.7s;
+	}
+
+	&:nth-child(8) {
+		animation-delay: 0.8s;
+	}
+
+	&:nth-child(9) {
+		animation-delay: 0.9s;
+	}
+
+	&:nth-child(10) {
+		animation-delay: 1.0s;
+	}
+
+	// Continue pattern for more items if needed
+	&:nth-child(n+11) {
+		animation-delay: 1.1s;
+	}
+}
+
+@keyframes slideInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Responsive adjustments for animated items
+@media (max-width: @widthTablet) {
+	.report-item .report-link {
+		padding: 1.25em 1.5em;
+
+		&:hover {
+			transform: scale(1.03) translateY(-3px);
+		}
+	}
+}
+
+@media (max-width: @widthMobile) {
+	.report-item .report-link {
+		flex-direction: row;
+		gap: 1em;
+
+		&:hover {
+			transform: scale(1.02) translateY(-2px);
+		}
+	}
+}
+
+// Reusable Animated Grid Items
+// Can be used for any list or grid that needs bubble hover effects
+// ______________________________________
+
+.show-scrollbar {
+	/* Reserve space for a gutter on both edges */
+	scrollbar-gutter: stable right-only;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		/* thin track */
+		background-color: rgba(@brand-primary, 0.3);
+		/* no background “rail” */
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 3px;
+		background-color: rgba(@brand-primary, 0.3);
+	}
+}

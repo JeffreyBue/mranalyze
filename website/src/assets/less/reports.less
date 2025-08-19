@@ -1,0 +1,164 @@
+/* Report Item Enhancements */
+.report-item {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    &.archiving {
+        animation: fadeOutShrink 0.5s forwards;
+    }
+
+    .report-actions {
+        transition: all 0.3s ease;
+        position: absolute;
+        top: 0.3em;
+        left: 0.3em;
+        z-index: 10;
+    }
+}
+
+.archive-label {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+
+    .archive-checkbox {
+        display: none;
+        /* Hide the actual checkbox */
+    }
+
+    .archive-icon {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transition: all 0.2s ease;
+
+        &::before {
+            content: '🗄️';
+            /* Archive icon */
+            font-size: 16px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.2s ease;
+        }
+    }
+
+    &:hover .archive-icon {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+    }
+}
+
+/* Dialog Styles */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+
+    .dialog-box {
+        background: #1e1e1e;
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid #333;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        transform: scale(0.9);
+        animation: popIn 0.3s forwards;
+
+        h2 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        strong {
+            color: #ffc107;
+            /* A highlight color */
+            word-break: break-all;
+        }
+
+        .dialog-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+
+    &.btn-danger {
+        background-color: #dc3545;
+        color: white;
+
+        &:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+    }
+
+    &.btn-secondary {
+        background-color: #6c757d;
+        color: white;
+
+        &:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOutShrink {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        max-height: 100px;
+        /* Adjust as needed */
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+        max-height: 0;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+}

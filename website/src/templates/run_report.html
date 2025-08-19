@@ -1,0 +1,338 @@
+title: "MrAnalyze - Route Comparison Analysis"
+description: "Create and run comparative analysis reports between multiple lists of HTTPS routes with real-time progress
+tracking."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/run_report.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    <!-- Main Container -->
+    <main class="route-comparison-container">
+        <div class="container">
+
+            <!-- Page Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <h1 class="page-title">Route Comparison Analysis</h1>
+                    <p class="page-description">Compare up to 6 route lists with 30 URLs each for comprehensive analysis
+                    </p>
+                </div>
+
+                <!-- Process Status Indicator -->
+                <div class="process-status" id="processStatus">
+                    <div class="status-indicator idle" id="statusIndicator">
+                        <span class="status-icon" id="statusIcon">⚪</span>
+                        <span class="status-text" id="statusText">Ready to Start</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Navigation Tabs -->
+            <nav class="analysis-tabs" role="tablist">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="setup" role="tab" aria-selected="true"
+                        aria-controls="setup-panel">
+                        <span class="tab-icon">⚙️</span>
+                        Setup Routes
+                    </button>
+                    <button class="tab-button disabled" data-tab="progress" role="tab" aria-selected="false"
+                        aria-controls="progress-panel" disabled>
+                        <span class="tab-icon">🚀</span>
+                        Run Analysis
+                    </button>
+                    <button class="tab-button disabled" data-tab="results" role="tab" aria-selected="false"
+                        aria-controls="results-panel" disabled>
+                        <span class="tab-icon">📊</span>
+                        View Results
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Tab Content Container -->
+            <div class="tab-content-container">
+
+                <!-- Setup Tab -->
+                <div class="tab-content active" id="setup-panel" role="tabpanel" aria-labelledby="setup-tab">
+                    <div class="setup-section">
+
+                        <!-- Route Lists Container - Will be populated by jQuery -->
+                        <div id="routeListsContainer">
+                            <div class="route-lists-container">
+                                <!-- Dynamic route lists will be inserted here -->
+                            </div>
+                            <button id="addListBtn" class="add-list-btn" data-action="add-list">
+                                <span class="btn-icon">➕</span>
+                                Add List
+                            </button>
+                        </div>
+
+                        <!-- Connection Lines Visualization -->
+                        <div class="connection-lines" id="connectionLines" aria-hidden="true">
+                            <!-- Dynamic connection lines will be generated here -->
+                        </div>
+
+                        <!-- Validation Summary -->
+                        <div class="validation-summary" id="validationSummary">
+                            <div class="summary-content">
+                                <div class="summary-stats">
+                                    <span class="stat-item">
+                                        <span class="stat-number" id="totalRoutes">0</span>
+                                        <span class="stat-label">Valid Routes</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <span class="stat-number" id="totalComparisons">0</span>
+                                        <span class="stat-label">Comparisons</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <span class="stat-number" id="duplicateWarnings">0</span>
+                                        <span class="stat-label">Duplicates</span>
+                                    </span>
+                                </div>
+
+                                <div class="global-validation-messages" id="globalValidation">
+                                    <!-- Dynamic validation messages will appear here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Setup Actions -->
+                        <div class="setup-actions">
+                            <button class="btn-primary run-analysis-btn" id="runAnalysisBtn" disabled>
+                                <span class="btn-icon">🚀</span>
+                                Run Analysis
+                                <span class="btn-subtitle">Add routes to continue</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Tab -->
+                <div class="tab-content" id="progress-panel" role="tabpanel" aria-labelledby="progress-tab">
+                    <div class="progress-section">
+
+                        <!-- Progress Overview -->
+                        <div class="progress-overview">
+                            <h2>Analysis in Progress</h2>
+                            <p class="progress-description" id="progressDescription">
+                                Analyzing routes across multiple sites. This process may take up to 20 minutes.
+                            </p>
+
+                            <!-- Overall Progress -->
+                            <div class="overall-progress">
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" id="overallProgressBar">
+                                        <div class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <span class="progress-percentage">0%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add this to your Progress tab, before the "Start Analysis" button -->
+                        <div class="connection-status-container">
+                            <div class="connection-indicator disconnected" id="sseConnectionIndicator"></div>
+                            <span class="connection-status-text" id="sseConnectionStatus">⚪ Disconnected</span>
+                        </div>
+
+                        <!-- Progress Actions -->
+                        <div class="progress-actions">
+                            <button class="btn-secondary cancel-analysis-btn" id="cancelAnalysisBtn">
+                                <span class="btn-icon">⏹️</span>
+                                Cancel Analysis
+                            </button>
+                        </div>
+
+                        <!-- Terminal Output -->
+                        <div class="terminal-container">
+                            <div class="terminal-header" onclick="toggleTerminal()">
+                                <div class="terminal-title">
+                                    <span class="terminal-icon">💻</span>
+                                    <span>Live Process Output</span>
+                                </div>
+                                <button class="terminal-toggle" id="terminalToggle"
+                                    aria-label="Toggle terminal visibility">
+                                    <span class="toggle-arrow">▼</span>
+                                </button>
+                            </div>
+
+                            <div class="terminal-tunnel" id="terminalTunnel">
+                                <div class="tunnel-depth-1">
+                                    <div class="tunnel-depth-2">
+                                        <div class="tunnel-depth-3">
+                                            <div class="terminal-screen">
+                                                <div class="terminal-output" id="terminalOutput">
+                                                    <!-- Terminal lines will be added dynamically -->
+                                                </div>
+                                                <div class="terminal-cursor">█</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step Progress -->
+                        <div class="step-progress-container">
+                            <div class="steps-grid" id="stepsGrid">
+                                <!-- Analysis steps will be populated dynamically -->
+                                <div class="step-item pending" data-step="scraping">
+                                    <div class="step-icon">
+                                        <span class="step-emoji">🔄</span>
+                                        <div class="step-indicator pending"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h3 class="step-title">Scraping</h3>
+                                        <p class="step-description">Fetching content from all route URLs</p>
+                                        <div class="step-progress-bar">
+                                            <div class="step-progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-item pending" data-step="visual-analysis">
+                                    <div class="step-icon">
+                                        <span class="step-emoji">🎨</span>
+                                        <div class="step-indicator pending"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h3 class="step-title">Visual Analysis</h3>
+                                        <p class="step-description">Analyzing layouts, styles, and visual elements</p>
+                                        <div class="step-progress-bar">
+                                            <div class="step-progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-item pending" data-step="content-analysis">
+                                    <div class="step-icon">
+                                        <span class="step-emoji">📝</span>
+                                        <div class="step-indicator pending"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h3 class="step-title">Content Analysis</h3>
+                                        <p class="step-description">Processing headings, text, and content structure</p>
+                                        <div class="step-progress-bar">
+                                            <div class="step-progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-item pending" data-step="technical-analysis">
+                                    <div class="step-icon">
+                                        <span class="step-emoji">⚙️</span>
+                                        <div class="step-indicator pending"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h3 class="step-title">Technical Analysis</h3>
+                                        <p class="step-description">Examining code, frameworks, and technical details
+                                        </p>
+                                        <div class="step-progress-bar">
+                                            <div class="step-progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-item pending" data-step="seo-analysis">
+                                    <div class="step-icon">
+                                        <span class="step-emoji">🔍</span>
+                                        <div class="step-indicator pending"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h3 class="step-title">SEO Analysis</h3>
+                                        <p class="step-description">Evaluating search optimization and metadata</p>
+                                        <div class="step-progress-bar">
+                                            <div class="step-progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-item pending" data-step="final-report">
+                                    <div class="step-icon">
+                                        <span class="step-emoji">📊</span>
+                                        <div class="step-indicator pending"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h3 class="step-title">Final Report</h3>
+                                        <p class="step-description">Generating comprehensive comparison report</p>
+                                        <div class="step-progress-bar">
+                                            <div class="step-progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Tab -->
+                <div class="tab-content" id="results-panel" role="tabpanel" aria-labelledby="results-tab">
+                    <div class="results-section">
+
+                        <!-- Results Header -->
+                        <div class="results-header">
+                            <h2>Analysis Complete</h2>
+                            <div class="results-meta" id="resultsMeta">
+                                <!-- Results metadata will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Results Summary -->
+                        <div class="results-summary">
+                            <div class="summary-cards" id="resultsSummaryCards">
+                                <!-- Summary cards will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Results Actions -->
+                        <div class="results-actions">
+                            <a href="#" class="btn-primary view-report-btn" id="viewReportBtn">
+                                <span class="btn-icon">📄</span>
+                                View Full Report
+                            </a>
+
+                            <button class="btn-secondary download-report-btn" id="downloadReportBtn">
+                                <span class="btn-icon">💾</span>
+                                Download Report
+                            </button>
+
+                            <button class="btn-secondary new-analysis-btn" id="newAnalysisBtn">
+                                <span class="btn-icon">🔄</span>
+                                New Analysis
+                            </button>
+                        </div>
+
+                        <!-- Quick Results Preview -->
+                        <div class="results-preview">
+                            <h3>Quick Preview</h3>
+                            <div class="preview-content">
+                                <p>Full detailed results are available in the complete report. The analysis includes:
+                                </p>
+                                <ul class="preview-features">
+                                    <li>Content structure comparison</li>
+                                    <li>Visual layout analysis</li>
+                                    <li>Technical implementation details</li>
+                                    <li>SEO optimization insights</li>
+                                    <li>Performance metrics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    {{> FOOTER }}
+    {{> FOOT }}
+    <script defer src="/_/js/run_report.js?{{assetsDate.js}}"></script>
+</body>
+
+</html>

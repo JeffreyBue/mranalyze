@@ -1,0 +1,473 @@
+title: "Visual Analysis Summary - {{analysisType}} | MrAnalyze."
+description: "Comprehensive visual analysis summary including layout, typography, colors, and responsive design
+comparisons across multiple sites."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+
+    <link rel="stylesheet" href="/_/css/report_visual_summary.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#visualSummary}}
+
+    <!-- Header Section -->
+    <header class="visual-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li>Visual Analysis Summary</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="analysis-info">
+                    <h1 class="page-title">Visual Analysis Summary</h1>
+                    <div class="analysis-meta">
+                        <span class="analysis-type">{{#titleCase}}{{analysisType}}{{/titleCase}}</span>
+                        <span class="total-comparisons">{{totalComparisons}} Comparisons</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="features-overview">
+                    <h3>Analysis Features</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-icon">📱</span>
+                            <span class="feature-label">{{#length}}{{features.viewportsAnalyzed}}{{/length}}
+                                Viewports</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📐</span>
+                            <span class="feature-label">{{#booleanText}}{{features.responsiveAnalysis}}{{/booleanText}}
+                                Responsive</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎨</span>
+                            <span
+                                class="feature-label">{{#booleanText}}{{features.designSystemDetection}}{{/booleanText}}
+                                Design System</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏗️</span>
+                            <span
+                                class="feature-label">{{#booleanText}}{{features.visualHierarchyAnalysis}}{{/booleanText}}
+                                Hierarchy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Overview Stats -->
+    <section class="overview-stats paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Analysis Overview</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card total-comparisons">
+                    <div class="stat-icon">⚖️</div>
+                    <div class="stat-content">
+                        <div class="stat-number">{{totalComparisons}}</div>
+                        <div class="stat-label">Site Comparisons</div>
+                        <div class="stat-description">Cross-site visual analysis</div>
+                    </div>
+                </div>
+
+                <div class="stat-card viewports">
+                    <div class="stat-icon">📱</div>
+                    <div class="stat-content">
+                        <div class="stat-number">{{#length}}{{features.viewportsAnalyzed}}{{/length}}</div>
+                        <div class="stat-label">Viewports Tested</div>
+                        <div class="stat-description">
+                            {{#features.viewportsAnalyzed}}
+                            <span class="viewport-tag">{{#titleCase}}{{.}}{{/titleCase}}</span>
+                            {{/features.viewportsAnalyzed}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card avg-score">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="average-score">--</div>
+                        <div class="stat-label">Average Similarity</div>
+                        <div class="stat-description">Across all comparisons</div>
+                    </div>
+                </div>
+
+                <div class="stat-card pages-analyzed">
+                    <div class="stat-icon">📄</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="total-pages">--</div>
+                        <div class="stat-label">Total Pages</div>
+                        <div class="stat-description">Analyzed across all sites</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Metrics Dashboard -->
+    <section class="metrics-dashboard">
+        <div class="container">
+            <h2 class="section-title">Visual Metrics Dashboard</h2>
+
+            <div class="metrics-legend">
+                <div class="legend-item">
+                    <div class="legend-color layout"></div>
+                    <span>Layout Structure</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color colors"></div>
+                    <span>Color Schemes</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color typography"></div>
+                    <span>Typography</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color responsive"></div>
+                    <span>Responsive Design</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color design-system"></div>
+                    <span>Design System</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color hierarchy"></div>
+                    <span>Visual Hierarchy</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color spacing"></div>
+                    <span>Spacing</span>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                {{#results}}
+                <div class="metric-card">
+                    <div class="card-header">
+                        <h3 class="comparison-title" data-comparison="{{comparison}}">{{comparison}}</h3>
+                        <div class="overall-score">
+                            <span class="score-number">{{#multiply}}{{avgScore}} 100{{/multiply}}%</span>
+                            <span class="score-label">Overall</span>
+                        </div>
+                    </div>
+
+                    <div class="metrics-bars">
+                        <div class="metric-bar">
+                            <span class="metric-label">Layout</span>
+                            <div class="bar-container">
+                                <div class="bar-fill layout"
+                                    style="width: {{#multiply}}{{metrics.layout}} 100{{/multiply}}%;"
+                                    data-value="{{#multiply}}{{metrics.layout}} 100{{/multiply}}%"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{metrics.layout}} 100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-bar">
+                            <span class="metric-label">Colors</span>
+                            <div class="bar-container">
+                                <div class="bar-fill colors"
+                                    style="width: {{#multiply}}{{metrics.colors}} 100{{/multiply}}%;"
+                                    data-value="{{#multiply}}{{metrics.colors}} 100{{/multiply}}%"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{metrics.colors}} 100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-bar">
+                            <span class="metric-label">Typography</span>
+                            <div class="bar-container">
+                                <div class="bar-fill typography"
+                                    style="width: {{#multiply}}{{metrics.typography}} 100{{/multiply}}%;"
+                                    data-value="{{#multiply}}{{metrics.typography}} 100{{/multiply}}%"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{metrics.typography}} 100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-bar">
+                            <span class="metric-label">Responsive</span>
+                            <div class="bar-container">
+                                <div class="bar-fill responsive"
+                                    style="width: {{#multiply}}{{metrics.responsive}} 100{{/multiply}}%;"
+                                    data-value="{{#multiply}}{{metrics.responsive}} 100{{/multiply}}%"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{metrics.responsive}} 100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-bar">
+                            <span class="metric-label">Design System</span>
+                            <div class="bar-container">
+                                <div class="bar-fill design-system"
+                                    style="width: {{#multiply}}{{metrics.designSystem}} 100{{/multiply}}%;"
+                                    data-value="{{#multiply}}{{metrics.designSystem}} 100{{/multiply}}%"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{metrics.designSystem}} 100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-bar">
+                            <span class="metric-label">Hierarchy</span>
+                            <div class="bar-container">
+                                <div class="bar-fill hierarchy"
+                                    style="width: {{#multiply}}{{metrics.hierarchy}} 100{{/multiply}}%;"
+                                    data-value="{{#multiply}}{{metrics.hierarchy}} 100{{/multiply}}%"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{metrics.hierarchy}} 100{{/multiply}}%</span>
+                        </div>
+
+                        <div class="metric-bar">
+                            <span class="metric-label">Spacing</span>
+                            <div class="bar-container">
+                                <div class="bar-fill spacing"
+                                    style="width: {{#multiply}}{{metrics.spacing}} 100{{/multiply}}%;"
+                                    data-value="{{#multiply}}{{metrics.spacing}} 100{{/multiply}}%"></div>
+                            </div>
+                            <span class="metric-value">{{#multiply}}{{metrics.spacing}} 100{{/multiply}}%</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="pages-count">
+                            <span class="pages-number">{{totalPages}}</span>
+                            <span class="pages-label">Pages</span>
+                        </div>
+                        <a href="/report/{{report}}/visual/compare/{{comparison}}/" class="view-details-btn">
+                            View Details
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                {{/results}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights & Recommendations -->
+    <section class="insights-section paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Key Insights & Patterns</h2>
+
+            <div class="insights-grid">
+                <div class="insight-card performance-summary">
+                    <div class="insight-header">
+                        <h3>📊 Performance Summary</h3>
+                    </div>
+                    <div class="insight-content">
+                        <div class="performance-metrics">
+                            <div class="perf-item best">
+                                <span class="perf-label">Strongest Metric:</span>
+                                <span class="perf-value" id="best-metric">Layout Structure</span>
+                            </div>
+                            <div class="perf-item needs-work">
+                                <span class="perf-label">Needs Improvement:</span>
+                                <span class="perf-value" id="worst-metric">Design System</span>
+                            </div>
+                            <div class="perf-item variance">
+                                <span class="perf-label">Consistency Level:</span>
+                                <span class="perf-value" id="consistency-level">Moderate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card recommendations">
+                    <div class="insight-header">
+                        <h3>💡 Recommendations</h3>
+                    </div>
+                    <div class="insight-content">
+                        <div class="recommendations-list">
+                            <div class="recommendation-item high">
+                                <span class="rec-priority">HIGH</span>
+                                <span class="rec-text">Establish consistent design system across all sites</span>
+                            </div>
+                            <div class="recommendation-item medium">
+                                <span class="rec-priority">MEDIUM</span>
+                                <span class="rec-text">Standardize color palettes and typography scales</span>
+                            </div>
+                            <div class="recommendation-item low">
+                                <span class="rec-priority">LOW</span>
+                                <span class="rec-text">Optimize spacing consistency for better visual harmony</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card common-patterns">
+                    <div class="insight-header">
+                        <h3>🔍 Common Patterns</h3>
+                    </div>
+                    <div class="insight-content">
+                        <div class="pattern-list">
+                            {{#results}}
+                            <p class="pattern-title" data-comparison="{{comparison}}">{{comparison}} Patterns</p>
+                            {{#topInsights}}
+                            <div class="pattern-item">
+                                <span class="pattern-text">{{.}}</span>
+                            </div>
+                            {{/topInsights}}
+                            {{/results}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Comparisons -->
+    <section class="detailed-comparisons">
+        <div class="container">
+            <h2 class="section-title">Detailed Site Comparisons</h2>
+
+            <div class="comparisons-container">
+                {{#summaries}}
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <div class="comparison-info">
+                            <h3 class="comparison-name" data-comparison="{{comparison}}">{{comparison}}</h3>
+                            <div class="comparison-meta">
+                                <span class="pages-analyzed">{{totalPages}} pages analyzed</span>
+                                <span class="analysis-type">{{#titleCase}}{{analysisType}}{{/titleCase}}</span>
+                            </div>
+                        </div>
+                        <div class="comparison-score">
+                            <div class="score-circle" data-score="{{avgScore}}">
+                                <span class="score-percentage">{{#multiply}}{{avgScore}} 100{{/multiply}}%</span>
+                            </div>
+                            <span class="score-description">Overall Similarity</span>
+                        </div>
+                    </div>
+
+                    <div class="comparison-insights">
+                        <h4>Key Insights:</h4>
+                        <div class="insights-list">
+                            {{#insights}}
+                            <div class="insight-item">
+                                <span class="insight-text">{{.}}</span>
+                            </div>
+                            {{/insights}}
+                        </div>
+                    </div>
+
+                    <div class="comparison-actions">
+                        <a href="/report/{{report}}/visual/compare/{{comparison}}/" class="action-btn primary">
+                            <span>View Full Comparison</span>
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+                        <button class="action-btn secondary" onclick="toggleMetricsDetail(this)">
+                            <span>Show Metrics</span>
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <path d="M7 10L12 15L17 10H7Z" fill="currentColor" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="metrics-detail" style="display: none;">
+                        <div class="metrics-breakdown">
+                            <div class="metric-item">
+                                <span class="metric-name">Layout Structure</span>
+                                <div class="metric-bar-small">
+                                    <div class="bar-fill-small layout"
+                                        style="width: {{#multiply}}{{metrics.layout}} 100{{/multiply}}%;"></div>
+                                </div>
+                                <span class="metric-percent">{{#multiply}}{{metrics.layout}} 100{{/multiply}}%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Color Schemes</span>
+                                <div class="metric-bar-small">
+                                    <div class="bar-fill-small colors"
+                                        style="width: {{#multiply}}{{metrics.colors}} 100{{/multiply}}%;"></div>
+                                </div>
+                                <span class="metric-percent">{{#multiply}}{{metrics.colors}} 100{{/multiply}}%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Typography</span>
+                                <div class="metric-bar-small">
+                                    <div class="bar-fill-small typography"
+                                        style="width: {{#multiply}}{{metrics.typography}} 100{{/multiply}}%;"></div>
+                                </div>
+                                <span class="metric-percent">{{#multiply}}{{metrics.typography}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Responsive Design</span>
+                                <div class="metric-bar-small">
+                                    <div class="bar-fill-small responsive"
+                                        style="width: {{#multiply}}{{metrics.responsive}} 100{{/multiply}}%;"></div>
+                                </div>
+                                <span class="metric-percent">{{#multiply}}{{metrics.responsive}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Design System</span>
+                                <div class="metric-bar-small">
+                                    <div class="bar-fill-small design-system"
+                                        style="width: {{#multiply}}{{metrics.designSystem}} 100{{/multiply}}%;"></div>
+                                </div>
+                                <span class="metric-percent">{{#multiply}}{{metrics.designSystem}}
+                                    100{{/multiply}}%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Visual Hierarchy</span>
+                                <div class="metric-bar-small">
+                                    <div class="bar-fill-small hierarchy"
+                                        style="width: {{#multiply}}{{metrics.hierarchy}} 100{{/multiply}}%;"></div>
+                                </div>
+                                <span class="metric-percent">{{#multiply}}{{metrics.hierarchy}} 100{{/multiply}}%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Spacing</span>
+                                <div class="metric-bar-small">
+                                    <div class="bar-fill-small spacing"
+                                        style="width: {{#multiply}}{{metrics.spacing}} 100{{/multiply}}%;"></div>
+                                </div>
+                                <span class="metric-percent">{{#multiply}}{{metrics.spacing}} 100{{/multiply}}%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/summaries}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Optimize Your Visual Design?</h2>
+                <p>Use these insights to create more consistent and effective visual experiences across your sites.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Analysis Report</button>
+                    <a href="/reports" class="button-blue">View All Reports</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/_/js/visual_master_summary.js?{{assetsDate.js}}"></script>
+
+    {{/visualSummary}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+</body>
+
+</html>

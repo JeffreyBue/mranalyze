@@ -1,0 +1,831 @@
+title: "MrAnalyze - Page Analysis Report"
+description: "Detailed analysis of the page {{url}} with statistics, content structure, visual layout, and technical details."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/report_page.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#page_data}}
+
+    <!-- Header Section -->
+    <header class="route-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="javascript:history.back()">Go Back</a></li>
+                        <li>{{#truncate}}{{url}}{{/truncate}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="route-info">
+                    <h1 class="page-title">Route Analysis</h1>
+                    <div class="route-meta">
+                        <span class="route-url"><a href="{{url}}" target="_blank">{{url}}</a></span>
+                        <span class="route-id">ID: {{pageId}}</span>
+                        <span class="scraped-date" data-timestamp="{{scrapedAt}}">{{scrapedAt}}</span>
+                        <span class="scraped-date"><a href="/report/{{report}}/seo/page/{{#seo_page}}{{site}} {{pageId}}{{/seo_page}}/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            SEO Analysis
+                        </a></span></a>
+                    </div>
+                </div>
+
+                <div class="route-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-number">{{content.stats.wordCount}}</div>
+                            <div class="stat-label">Words</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-content">
+                            <div class="stat-number">{{content.stats.charCount}}</div>
+                            <div class="stat-label">Characters</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🖼️</div>
+                        <div class="stat-content">
+                            <div class="stat-number">{{content.stats.imageCount}}</div>
+                            <div class="stat-label">Images</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🔗</div>
+                        <div class="stat-content">
+                            <div class="stat-number">{{content.stats.linkCount}}</div>
+                            <div class="stat-label">Links</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="analysis-tabs">
+        <div class="container">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="overview">Overview</button>
+                <button class="tab-button" data-tab="content">Content</button>
+                <button class="tab-button" data-tab="visual">Visual</button>
+                <button class="tab-button" data-tab="technical">Technical</button>
+                <button class="tab-button" data-tab="snapshot">Snapshot</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tab Content -->
+    <main class="tab-content-container">
+        <div class="container">
+            
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="overview">
+                <div class="overview-grid">
+                    <div class="overview-card meta-info">
+                        <h3>Page Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Title:</span>
+                                <span class="info-value">{{content.meta.title}}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Description:</span>
+                                <span class="info-value">{{content.meta.description}}</span>
+                            </div>
+                            
+                            <div class="info-item">
+                                <span class="info-label">Keywords:</span>
+                                <span class="info-value">
+                                    {{#content.meta.keywords.length}}
+                                        {{content.meta.keywords}}
+                                    {{/content.meta.keywords.length}}
+                                    {{^content.meta.keywords.length}}
+                                        No Keywords Found
+                                    {{/content.meta.keywords.length}}
+                                </span>
+                            </div>
+                            
+
+                            <div class="info-item">
+                                <span class="info-label">URL Index:</span>
+                                <span class="info-value">{{urlIndex}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card quick-stats">
+                        <h3>Quick Statistics</h3>
+                        <div class="stats-list">
+                            <div class="stat-row">
+                                <span class="stat-name">H1 Headings</span>
+                                <span class="stat-value">{{content.headings.h1.length}}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">H2 Headings</span>
+                                <span class="stat-value">{{content.headings.h2.length}}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">H3 Headings</span>
+                                <span class="stat-value">{{content.headings.h3.length}}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Paragraphs</span>
+                                <span class="stat-value">{{content.paragraphs.length}}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Navigation Items</span>
+                                <span class="stat-value">{{content.navigation.length}}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Forms</span>
+                                <span class="stat-value">{{content.forms.length}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card visual-summary">
+                        <h3>Visual Summary</h3>
+                        <div class="visual-info">
+                            <div class="visual-item">
+                                <span class="visual-label">Layout Type:</span>
+                                <span class="visual-value">
+                                    {{#visual.layout.hasHeader}}Header{{/visual.layout.hasHeader}}
+                                    {{#visual.layout.hasNav}}+ Nav{{/visual.layout.hasNav}}
+                                    {{#visual.layout.hasSidebar}}+ Sidebar{{/visual.layout.hasSidebar}}
+                                    {{#visual.layout.hasFooter}}+ Footer{{/visual.layout.hasFooter}}
+                                </span>
+                            </div>
+                            <div class="visual-item">
+                                <span class="visual-label">Container Size:</span>
+                                <span class="visual-value">{{visual.layout.containerWidth}} × {{visual.layout.containerHeight}}</span>
+                            </div>
+                            <div class="visual-item">
+                                <span class="visual-label">Primary Font:</span>
+                                <span class="visual-value">{{visual.elementStyles.body.fontFamily}}</span>
+                            </div>
+                            <div class="visual-item">
+                                <span class="visual-label">Background Color:</span>
+                                <span class="visual-value">
+                                    <span class="color-preview" style="background-color: {{visual.elementStyles.body.backgroundColor}}"></span>
+                                    {{visual.elementStyles.body.backgroundColor}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card technical-summary">
+                        <h3>Technical Summary</h3>
+                        <div class="tech-info">
+                            <div class="tech-item">
+                                <span class="tech-label">DOCTYPE:</span>
+                                <span class="tech-value">{{technical.structure.doctype}}</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-label">Language:</span>
+                                <span class="tech-value">{{technical.structure.lang}}</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-label">Character Set:</span>
+                                <span class="tech-value">{{technical.structure.charset}}</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-label">Frameworks:</span>
+                                <span class="tech-value">
+                                    {{#technical.frameworks.jquery}}jQuery{{/technical.frameworks.jquery}}
+                                    {{#technical.frameworks.react}}React{{/technical.frameworks.react}}
+                                    {{#technical.frameworks.angular}}Angular{{/technical.frameworks.angular}}
+                                    {{#technical.frameworks.vue}}Vue{{/technical.frameworks.vue}}
+                                    {{#technical.frameworks.bootstrap}}Bootstrap{{/technical.frameworks.bootstrap}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tab -->
+            <div class="tab-content" id="content">
+                <div class="content-sections">
+                    
+                    <!-- Meta Information -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Meta Information</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content">
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <strong>Title:</strong>
+                                    <span>{{content.meta.title}}</span>
+                                </div>
+                                <div class="data-item">
+                                    <strong>Description:</strong>
+                                    <span>{{content.meta.description}}</span>
+                                </div>
+                                {{#content.meta.keywords.length}}
+                                <div class="data-item">
+                                    <strong>Keywords:</strong>
+                                    <span>{{content.meta.keywords}}</span>
+                                </div>
+                                {{/content.meta.keywords.length}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Headings -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Headings Structure</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content">
+                            <div class="headings-structure show-scrollbar">
+                                {{#content.headings.h1}}
+                                <div class="heading-item h1">
+                                    <span class="heading-level">H1</span>
+                                    <span class="heading-text">{{.}}</span>
+                                </div>
+                                {{/content.headings.h1}}
+                                {{#content.headings.h2}}
+                                <div class="heading-item h2">
+                                    <span class="heading-level">H2</span>
+                                    <span class="heading-text">{{.}}</span>
+                                </div>
+                                {{/content.headings.h2}}
+                                {{#content.headings.h3}}
+                                <div class="heading-item h3">
+                                    <span class="heading-level">H3</span>
+                                    <span class="heading-text">{{.}}</span>
+                                </div>
+                                {{/content.headings.h3}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paragraphs -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Paragraphs ({{content.paragraphs.length}})</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="paragraph-list show-scrollbar">
+                                {{#content.paragraphs}}
+                                <div class="paragraph-item">
+                                    <div class="paragraph-number">{{#index}}{{#content.paragraphs}}{{{.}}} ::: {{/content.paragraphs}}{{/index}}</div>
+                                    <div class="paragraph-text">{{.}}</div>
+                                </div>
+                                {{/content.paragraphs}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Navigation Links ({{content.navigation.length}})</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="navigation-list show-scrollbar">
+                                {{#content.navigation}}
+                                <div class="nav-item">
+                                    <span class="nav-text">{{text}}</span>
+                                    <span class="nav-href">{{href}}</span>
+                                </div>
+                                {{/content.navigation}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Forms -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Forms ({{content.forms.length}})</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="forms-list show-scrollbar">
+                                {{#content.forms}}
+                                <div class="form-item">{{.}}</div>
+                                {{/content.forms}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Visual Tab -->
+            <div class="tab-content" id="visual">
+                <div class="visual-sections">
+                    
+                    <!-- Element Styles -->
+                    <div class="visual-section">
+                        <div class="section-header">
+                            <h3>Element Styles</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content">
+                            <div class="styles-grid">
+                                {{#visual.elementStyles.body}}
+                                <div class="style-card">
+                                    <h4>Body</h4>
+                                    <div class="style-properties">
+                                        <div class="style-prop">
+                                            <span class="prop-name">Background:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{backgroundColor}}"></span>
+                                                {{backgroundColor}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Color:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{color}}"></span>
+                                                {{color}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Size:</span>
+                                            <span class="prop-value">{{fontSize}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Family:</span>
+                                            <span class="prop-value">{{fontFamily}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Weight:</span>
+                                            <span class="prop-value">{{fontWeight}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/visual.elementStyles.body}}
+
+                                {{#visual.elementStyles.h1}}
+                                <div class="style-card">
+                                    <h4>H1</h4>
+                                    <div class="style-properties">
+                                        <div class="style-prop">
+                                            <span class="prop-name">Background:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{backgroundColor}}"></span>
+                                                {{backgroundColor}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Color:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{color}}"></span>
+                                                {{color}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Size:</span>
+                                            <span class="prop-value">{{fontSize}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Family:</span>
+                                            <span class="prop-value">{{fontFamily}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Weight:</span>
+                                            <span class="prop-value">{{fontWeight}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/visual.elementStyles.h1}}
+
+                                {{#visual.elementStyles.h2}}
+                                <div class="style-card">
+                                    <h4>H2</h4>
+                                    <div class="style-properties">
+                                        <div class="style-prop">
+                                            <span class="prop-name">Background:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{backgroundColor}}"></span>
+                                                {{backgroundColor}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Color:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{color}}"></span>
+                                                {{color}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Size:</span>
+                                            <span class="prop-value">{{fontSize}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Family:</span>
+                                            <span class="prop-value">{{fontFamily}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Weight:</span>
+                                            <span class="prop-value">{{fontWeight}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/visual.elementStyles.h2}}
+
+                                {{#visual.elementStyles.nav}}
+                                <div class="style-card">
+                                    <h4>Navigation</h4>
+                                    <div class="style-properties">
+                                        <div class="style-prop">
+                                            <span class="prop-name">Background:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{backgroundColor}}"></span>
+                                                {{backgroundColor}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Color:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{color}}"></span>
+                                                {{color}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Size:</span>
+                                            <span class="prop-value">{{fontSize}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Family:</span>
+                                            <span class="prop-value">{{fontFamily}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Weight:</span>
+                                            <span class="prop-value">{{fontWeight}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/visual.elementStyles.nav}}
+
+                                {{#visual.elementStyles.button}}
+                                <div class="style-card">
+                                    <h4>Button</h4>
+                                    <div class="style-properties">
+                                        <div class="style-prop">
+                                            <span class="prop-name">Background:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{backgroundColor}}"></span>
+                                                {{backgroundColor}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Color:</span>
+                                            <span class="prop-value">
+                                                <span class="color-preview" style="background-color: {{color}}"></span>
+                                                {{color}}
+                                            </span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Size:</span>
+                                            <span class="prop-value">{{fontSize}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Family:</span>
+                                            <span class="prop-value">{{fontFamily}}</span>
+                                        </div>
+                                        <div class="style-prop">
+                                            <span class="prop-name">Font Weight:</span>
+                                            <span class="prop-value">{{fontWeight}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/visual.elementStyles.button}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Layout Information -->
+                    <div class="visual-section">
+                        <div class="section-header">
+                            <h3>Layout Structure</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="layout-info">
+                                <div class="layout-item">
+                                    <span class="layout-label">Has Header:</span>
+                                    <span class="layout-value">{{#statusText}}{{visual.layout.hasHeader}}{{/statusText}}</span>
+                                </div>
+                                <div class="layout-item">
+                                    <span class="layout-label">Has Navigation:</span>
+                                    <span class="layout-value">{{#statusText}}{{visual.layout.hasNav}}{{/statusText}}</span>
+                                </div>
+                                <div class="layout-item">
+                                    <span class="layout-label">Has Sidebar:</span>
+                                    <span class="layout-value">{{#statusText}}{{visual.layout.hasSidebar}}{{/statusText}}</span>
+                                </div>
+                                <div class="layout-item">
+                                    <span class="layout-label">Has Footer:</span>
+                                    <span class="layout-value">{{#statusText}}{{visual.layout.hasFooter}}{{/statusText}}</span>
+                                </div>
+                                <div class="layout-item">
+                                    <span class="layout-label">Container Width:</span>
+                                    <span class="layout-value">{{visual.layout.containerWidth}}px</span>
+                                </div>
+                                <div class="layout-item">
+                                    <span class="layout-label">Container Height:</span>
+                                    <span class="layout-value">{{visual.layout.containerHeight}}px</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CSS Classes -->
+                    <div class="visual-section">
+                        <div class="section-header">
+                            <h3>CSS Classes ({{visual.cssClasses.length}})</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="css-classes-list show-scrollbar">
+                                {{#visual.cssClasses}}
+                                <div class="css-class-item">
+                                    <code>.{{.}}</code>
+                                </div>
+                                {{/visual.cssClasses}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Technical Tab -->
+            <div class="tab-content" id="technical">
+                <div class="technical-sections">
+                    
+                    <!-- Meta Tags -->
+                    <div class="technical-section">
+                        <div class="section-header">
+                            <h3>Meta Tags</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content">
+                            <div class="meta-tags">
+                                {{#technical.metaTags.viewport}}
+                                <div class="meta-tag">
+                                    <span class="meta-name">viewport</span>
+                                    <span class="meta-value">{{.}}</span>
+                                </div>
+                                {{/technical.metaTags.viewport}}
+                                {{#technical.metaTags.description}}
+                                <div class="meta-tag">
+                                    <span class="meta-name">description</span>
+                                    <span class="meta-value">{{.}}</span>
+                                </div>
+                                {{/technical.metaTags.description}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Schemas -->
+                    <div class="technical-section">
+                        <div class="section-header">
+                            <h3>Schema.org Data ({{technical.schemas.length}})</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="schemas-list">
+                                {{#technical.schemas}}
+                                <div class="schema-item">
+                                    <div class="schema-header">
+                                        <span class="schema-type">{{@type}}</span>
+                                        {{#@context}}
+                                        <span class="schema-context">{{@context}}</span>
+                                        {{/@context}}
+                                    </div>
+                                    <div class="schema-content code-block">
+                                        <pre class="code-block">{{asText}}</pre>
+                                    </div>
+                                </div>
+                                {{/technical.schemas}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resources -->
+                    <div class="technical-section">
+                        <div class="section-header">
+                            <h3>Resources</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="resources-grid">
+                                <div class="resource-group">
+                                    <h4>Stylesheets ({{technical.resources.stylesheets.length}})</h4>
+                                    <div class="resource-list show-scrollbar">
+                                        {{#technical.resources.stylesheets}}
+                                        <div class="resource-item">
+                                            <a href="{{{.}}}" target="_blank">{{#truncateUrl}}{{{.}}}{{/truncateUrl}}</a>
+                                        </div>
+                                        {{/technical.resources.stylesheets}}
+                                    </div>
+                                </div>
+                                <div class="resource-group">
+                                    <h4>Scripts ({{technical.resources.scripts.length}})</h4>
+                                    <div class="resource-list show-scrollbar">
+                                        {{#technical.resources.scripts}}
+                                        <div class="resource-item">
+                                            <a href="{{{.}}}" target="_blank">{{#truncateUrl}}{{{.}}}{{/truncateUrl}}</a>
+                                        </div>
+                                        {{/technical.resources.scripts}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div class="technical-section">
+                        <div class="section-header">
+                            <h3>Frameworks & Libraries</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="frameworks-grid">
+                                <div class="framework-item">
+                                    <span class="framework-name">jQuery</span>
+                                    <span class="framework-status {{#statusClass}}{{technical.frameworks.jquery}}{{/statusClass}}">
+                                        {{#statusText}}{{technical.frameworks.jquery}}{{/statusText}}
+                                    </span>
+                                </div>
+                                <div class="framework-item">
+                                    <span class="framework-name">React</span>
+                                    <span class="framework-status {{#statusClass}}{{technical.frameworks.react}}{{/statusClass}}">
+                                        {{#statusText}}{{technical.frameworks.react}}{{/statusText}}
+                                    </span>
+                                </div>
+                                <div class="framework-item">
+                                    <span class="framework-name">Angular</span>
+                                    <span class="framework-status {{#statusClass}}{{technical.frameworks.angular}}{{/statusClass}}">
+                                        {{#statusText}}{{technical.frameworks.angular}}{{/statusText}}
+                                    </span>
+                                </div>
+                                <div class="framework-item">
+                                    <span class="framework-name">Vue</span>
+                                    <span class="framework-status {{#statusClass}}{{technical.frameworks.vue}}{{/statusClass}}">
+                                        {{#statusText}}{{technical.frameworks.vue}}{{/statusText}}
+                                    </span>
+                                </div>
+                                <div class="framework-item">
+                                    <span class="framework-name">Bootstrap</span>
+                                    <span class="framework-status {{#statusClass}}{{technical.frameworks.bootstrap}}{{/statusClass}}">
+                                        {{#statusText}}{{technical.frameworks.bootstrap}}{{/statusText}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Document Structure -->
+                    <div class="technical-section">
+                        <div class="section-header">
+                            <h3>Document Structure</h3>
+                            <button class="toggle-button" onclick="toggleSection(this)">
+                                <svg class="toggle-icon" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="section-content collapsed">
+                            <div class="structure-info">
+                                <div class="structure-item">
+                                    <span class="structure-label">DOCTYPE:</span>
+                                    <span class="structure-value">{{technical.structure.doctype}}</span>
+                                </div>
+                                <div class="structure-item">
+                                    <span class="structure-label">Language:</span>
+                                    <span class="structure-value">{{technical.structure.lang}}</span>
+                                </div>
+                                <div class="structure-item">
+                                    <span class="structure-label">Character Set:</span>
+                                    <span class="structure-value">{{technical.structure.charset}}</span>
+                                </div>
+                                <div class="structure-item">
+                                    <span class="structure-label">Head Elements:</span>
+                                    <span class="structure-value">{{technical.structure.headElementCount}}</span>
+                                </div>
+                                <div class="structure-item">
+                                    <span class="structure-label">Body Elements:</span>
+                                    <span class="structure-value">{{technical.structure.bodyElementCount}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Snapshot Tab -->
+            <div class="tab-content" id="snapshot">
+                <div class="snapshot-section">
+                    <div class="section-header">
+                        <h3>Content Snapshot</h3>
+                        <div class="snapshot-actions">
+                            <button class="copy-button" onclick="copySnapshot()">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"/>
+                                </svg>
+                                Copy
+                            </button>
+                            <button class="download-button" onclick="downloadSnapshot()">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
+                                </svg>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="snapshot-content">
+                        <div class="code-block" id="snapshot-code">
+                            {{{page_report}}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    {{/page_data}}
+    
+    {{> FOOTER }}
+    {{> FOOT }}
+    <script defer src="/_/js/report_page.js?{{assetsDate.js}}"></script>
+</body>
+
+</html>

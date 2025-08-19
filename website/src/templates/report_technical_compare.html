@@ -1,0 +1,276 @@
+title: "Technical Site Comparison - {{comparison}} | MrAnalyze"
+description: "Detailed technical comparison between two specific sites analyzing HTML structure, meta tags, and frameworks to detect similarities and potential copying."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/report_technical_compare.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#technicalComparison}}
+
+    <!-- Header Section -->
+    <header class="technical-comparison-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="/report/{{report}}/technical/">Technical Summary</a></li>
+                        <li>Site Comparison</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="comparison-info">
+                    <h1 class="page-title">Technical Site Comparison</h1>
+                    <div class="sites-display">
+                        <div class="site-item">
+                            <span class="site-name">{{#getFirstSite}}{{comparison}}{{/getFirstSite}}</span>
+                        </div>
+                        <div class="vs-separator">VS</div>
+                        <div class="site-item">
+                            <span class="site-name">{{#getSecondSite}}{{comparison}}{{/getSecondSite}}</span>
+                        </div>
+                    </div>
+                    <div class="comparison-meta">
+                        <span class="analysis-type">{{#titleCase}}{{analysisType}}{{/titleCase}} Analysis</span>
+                        <span class="total-pages">{{totalPages}} pages compared</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="technical-metrics">
+                    <div class="overall-score {{#getSimilarityClass}}{{avgScore}}{{/getSimilarityClass}}">
+                        <div class="score-circle">
+                            <span class="score-percentage">{{#multiply}}{{avgScore}} 100{{/multiply}}%</span>
+                            <span class="score-label">Technical Similarity</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detailed-metrics">
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span class="metric-icon">🏗️</span>
+                                <span class="metric-name">HTML Structure</span>
+                            </div>
+                            <div class="metric-score {{#getSimilarityClass}}{{detailedScores.htmlStructure}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{detailedScores.htmlStructure}} 100{{/multiply}}%
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill {{#getSimilarityClass}}{{detailedScores.htmlStructure}}{{/getSimilarityClass}}" 
+                                     style="width: 0%;" data-width="{{#multiply}}{{detailedScores.htmlStructure}} 100{{/multiply}}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span class="metric-icon">🏷️</span>
+                                <span class="metric-name">Meta Tags</span>
+                            </div>
+                            <div class="metric-score {{#getSimilarityClass}}{{detailedScores.metaTags}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{detailedScores.metaTags}} 100{{/multiply}}%
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill {{#getSimilarityClass}}{{detailedScores.metaTags}}{{/getSimilarityClass}}" 
+                                     style="width: 0%;" data-width="{{#multiply}}{{detailedScores.metaTags}} 100{{/multiply}}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span class="metric-icon">⚡</span>
+                                <span class="metric-name">Frameworks</span>
+                            </div>
+                            <div class="metric-score {{#getSimilarityClass}}{{detailedScores.frameworks}}{{/getSimilarityClass}}">
+                                {{#multiply}}{{detailedScores.frameworks}} 100{{/multiply}}%
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill {{#getSimilarityClass}}{{detailedScores.frameworks}}{{/getSimilarityClass}}" 
+                                     style="width: 0%;" data-width="{{#multiply}}{{detailedScores.frameworks}} 100{{/multiply}}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Technical Analysis Summary -->
+    <section class="technical-analysis-summary paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Technical Analysis Summary</h2>
+            
+            <div class="summary-cards">
+                <div class="summary-card risk-assessment">
+                    <div class="summary-content">
+                        <h4>🚨 Technical Risk Assessment</h4>
+                        {{#eval}}{{avgScore}} >= 0.75|||
+                        <div class="risk-level">
+                            <span class="risk-indicator critical">CRITICAL RISK</span>
+                            <span class="risk-text">High technical similarity detected - investigate for potential infrastructure copying</span>
+                        </div>
+                        {{/eval}}
+                        {{#eval}}{{avgScore}} >= 0.5 && {{avgScore}} < 0.75|||
+                        <div class="risk-level">
+                            <span class="risk-indicator high">HIGH RISK</span>
+                            <span class="risk-text">Significant technical overlap - review for shared infrastructure</span>
+                        </div>
+                        {{/eval}}
+                        {{#eval}}{{avgScore}} >= 0.25 && {{avgScore}} < 0.5|||
+                        <div class="risk-level">
+                            <span class="risk-indicator moderate">MODERATE RISK</span>
+                            <span class="risk-text">Some technical similarities detected - monitor for patterns</span>
+                        </div>
+                        {{/eval}}
+                        {{#eval}}{{avgScore}} < 0.25|||
+                        <div class="risk-level">
+                            <span class="risk-indicator low">LOW RISK</span>
+                            <span class="risk-text">Good technical uniqueness - acceptable infrastructure differences</span>
+                        </div>
+                        {{/eval}}
+                    </div>
+                </div>
+
+                <div class="summary-card component-breakdown">
+                    <div class="summary-content">
+                        <h4>🔍 Component Analysis</h4>
+                        <div class="component-insights">
+                            {{#eval}}{{detailedScores.htmlStructure}} > 0.9|||
+                            <div class="insight-item critical">
+                                <span class="insight-icon">🏗️</span>
+                                <span class="insight-text">Extremely high HTML structure similarity - possible template copying</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{detailedScores.frameworks}} > 0.8|||
+                            <div class="insight-item warning">
+                                <span class="insight-icon">⚡</span>
+                                <span class="insight-text">High framework similarity - identical technical stack detected</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{detailedScores.metaTags}} > 0.7|||
+                            <div class="insight-item warning">
+                                <span class="insight-icon">🏷️</span>
+                                <span class="insight-text">High meta tag similarity - possible SEO strategy copying</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{detailedScores.metaTags}} < 0.3|||
+                            <div class="insight-item good">
+                                <span class="insight-icon">✅</span>
+                                <span class="insight-text">Meta tags show good uniqueness - different SEO approaches</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{avgScore}} < 0.4|||
+                            <div class="insight-item good">
+                                <span class="insight-icon">🎯</span>
+                                <span class="insight-text">Overall technical architecture shows good differentiation</span>
+                            </div>
+                            {{/eval}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card technical-recommendations">
+                    <div class="summary-content">
+                        <h4>💡 Technical Recommendations</h4>
+                        <div class="recommendations-list">
+                            {{#eval}}{{detailedScores.htmlStructure}} > 0.9|||
+                            <div class="recommendation-item critical">
+                                <span class="rec-priority">CRITICAL</span>
+                                <span class="rec-text">Investigate HTML structure for potential template reuse</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{detailedScores.frameworks}} > 0.8|||
+                            <div class="recommendation-item high">
+                                <span class="rec-priority">HIGH</span>
+                                <span class="rec-text">Review framework implementations for copying patterns</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{detailedScores.metaTags}} > 0.6|||
+                            <div class="recommendation-item medium">
+                                <span class="rec-priority">MEDIUM</span>
+                                <span class="rec-text">Monitor meta tag strategies for SEO overlap</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{avgScore}} < 0.5|||
+                            <div class="recommendation-item low">
+                                <span class="rec-priority">LOW</span>
+                                <span class="rec-text">Technical uniqueness is acceptable - continue monitoring</span>
+                            </div>
+                            {{/eval}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Comparisons List -->
+    <section class="page-comparisons">
+        <div class="container">
+            <h2 class="section-title">Individual Page Technical Comparisons</h2>
+            
+            <div class="page-links-grid">
+                {{#technicalFiles}}
+                <a href="/report/{{report}}/technical/page/{{#removeExtension}}{{url}}{{/removeExtension}}/" class="page-link-bubble">
+                    <div class="bubble-content">
+                        <div class="page-names">
+                            <span class="page-name">{{#getFirstSite}}{{comparison}}{{/getFirstSite}}</span>
+                            <div class="page-index">{{titles.page1}}</div>
+                            <span class="vs-text">vs</span>
+                            <br/>
+                            <span class="page-name">{{#getSecondSite}}{{comparison}}{{/getSecondSite}}</span>
+                            <div class="page-index">{{titles.page2}}</div>
+                        </div>
+                        <div class="page-score {{#getSimilarityClass}}.{{overallSimilarity}}{{/getSimilarityClass}}">
+                            {{overallSimilarity}}%
+                        </div>
+                    </div>
+                    <div class="bubble-arrow">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="currentColor" />
+                        </svg>
+                    </div>
+                </a>
+                {{/technicalFiles}}
+                
+                {{^technicalFiles}}
+                <div class="no-pages-message">
+                    <div class="message-icon">🔧</div>
+                    <h3>No Technical Page Comparisons Available</h3>
+                    <p>Individual page technical comparison data is not yet available for this site comparison.</p>
+                </div>
+                {{/technicalFiles}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Technical Site Comparison Complete</h2>
+                <p>Use these insights to understand technical similarities and identify potential infrastructure copying between sites.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Technical Report</button>
+                    <a href="/report/{{report}}/technical/" class="button-blue">Back to Technical Summary</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{/technicalComparison}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+    <script src="/_/js/technical_comparison.js?{{assetsDate.js}}"></script>
+</body>
+
+</html>

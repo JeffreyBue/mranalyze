@@ -1,0 +1,34 @@
+ACTIONABLE ITEMS SUMMARY
+Generated: 8/11/2025, 9:54:22 PM
+
+PRIORITY BREAKDOWN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 Critical Actions: 0
+⚡ High Priority Actions: 3
+📊 Total Actions: 6
+
+IMMEDIATE ACTIONS (Critical Priority)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+HIGH PRIORITY ACTIONS (Next 7 Days)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Increase Content Uniqueness
+   Category: Content Uniqueness
+   Action: Content lacks unique, specific information
+
+2. Increase Content Uniqueness
+   Category: Content Uniqueness
+   Action: Content lacks unique, specific information
+
+3. Resolve Keyword Cannibalization
+   Category: Keyword Strategy
+   Action: Pages competing for same keywords: baacke, diane
+
+
+ACTIONS BY CATEGORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 Content Uniqueness (2 items)
+📋 Keyword Strategy (1 items)
+📋 Technical SEO (2 items)
+📋 Content Gaps (1 items)

@@ -1,0 +1,1178 @@
+// SEO Single Page Analysis Styles
+@import (reference) "./seo";
+
+// Analysis Header
+.analysis-header {
+    background: linear-gradient(135deg, @brand-primary 0%, darken(@brand-primary, 10%) 100%);
+    color: @brand-white;
+    padding: 2em 0 3em;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><pattern id="lines" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M0 80L80 0" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="80" height="80" fill="url(%23lines)"/></svg>');
+        opacity: 0.3;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .header-breadcrumbs {
+        margin-bottom: 1.5em;
+
+        .breadcrumbs ul {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            li {
+                color: @brand-white;
+
+                a {
+                    color: @brand-white;
+                    opacity: 0.8;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2em;
+
+        @media (max-width: @widthTablet) {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    .page-info {
+        flex: 1;
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+            color: @brand-white;
+
+            @media (max-width: @widthMobile) {
+                font-size: 2rem;
+            }
+        }
+
+        .page-url {
+            margin-bottom: 1em;
+
+            .url-label {
+                font-weight: 600;
+                margin-right: 0.5em;
+                opacity: 0.9;
+            }
+
+            .url-link {
+                color: @brand-white;
+                text-decoration: underline;
+                font-family: @data;
+                font-size: 0.9rem;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .page-meta {
+            display: flex;
+            gap: 2em;
+            font-family: @data;
+            font-size: 0.9rem;
+            opacity: 0.9;
+
+            @media (max-width: @widthMobile) {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+
+            span {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 0.25em 0.75em;
+                border-radius: 4px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+
+    .overall-score-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            .score-percentage {
+                font-family: @data;
+                font-size: 2rem;
+                font-weight: 700;
+                color: @brand-white;
+                line-height: 1;
+            }
+
+            .score-label {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                text-align: center;
+            }
+        }
+
+        .score-grade {
+            text-align: center;
+
+            .grade-letter {
+                font-size: 3rem;
+                font-weight: 700;
+                color: @brand-white;
+                display: block;
+                line-height: 1;
+            }
+
+            .grade-description {
+                font-size: 1rem;
+                opacity: 0.9;
+            }
+        }
+    }
+}
+
+// Quick Summary
+.quick-summary {
+    background: @brand-white;
+
+    .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2em;
+    }
+
+    .summary-card {
+        background: @brand-light-gray;
+        border-radius: 12px;
+        padding: 2em;
+        text-align: center;
+        border-left: 5px solid;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        &.title-tag {
+            border-left-color: @viz-blue;
+        }
+
+        &.meta-description {
+            border-left-color: @viz-green;
+        }
+
+        &.content-quality {
+            border-left-color: @viz-orange;
+        }
+
+        &.technical-seo {
+            border-left-color: @viz-purple;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1em;
+        }
+
+        .card-content {
+            .card-score {
+                font-family: @data;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: @brand-primary;
+                line-height: 1;
+                margin-bottom: 0.25em;
+            }
+
+            .card-label {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: @brand-text;
+                margin-bottom: 0.5em;
+            }
+
+            .card-detail {
+                font-size: 0.9rem;
+                color: @brand-gray;
+            }
+        }
+    }
+}
+
+// Detailed Analysis
+.detailed-analysis {
+    background: @brand-light-gray;
+    padding: 4em 0;
+
+    .analysis-section {
+        background: @brand-white;
+        border-radius: 16px;
+        margin-bottom: 2em;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .section-header {
+        background: @brand-primary;
+        color: @brand-white;
+        padding: 1.5em 2em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: @widthMobile) {
+            flex-direction: column;
+            gap: 1em;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: @brand-white;
+        }
+
+        .section-score {
+            font-family: @data;
+            font-size: 2rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5em 1em;
+            border-radius: 25px;
+            min-width: 100px;
+            text-align: center;
+        }
+    }
+
+    .section-content {
+        padding: 2em;
+    }
+}
+
+// Analysis Grid Components
+.analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    margin-bottom: 2em;
+
+    @media (max-width: @widthTablet) {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+    }
+}
+
+.analysis-details {
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75em 0;
+        border-bottom: 1px solid @brand-light-gray;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: @brand-text;
+        }
+
+        .detail-value {
+            font-family: @data;
+            font-weight: 600;
+            color: @brand-primary;
+
+            &.good {
+                color: @viz-green;
+            }
+
+            &.warning {
+                color: @viz-orange;
+            }
+
+            &.error {
+                color: @viz-red;
+            }
+        }
+    }
+}
+
+// Keywords Section
+.keywords-section, .primary-keywords {
+    h4 {
+        margin-bottom: 1em;
+        color: @brand-primary;
+        font-size: 1.1rem;
+    }
+
+    .keywords-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+
+        &.primary .keyword-tag {
+            background: @viz-blue;
+            color: @brand-white;
+            font-weight: 600;
+        }
+
+        .keyword-tag {
+            background: @brand-light-gray;
+            color: @brand-text;
+            padding: 0.35em 0.75em;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}
+
+// Issues Section
+.issues-section {
+    background: @viz-light-red;
+    padding: 1.5em;
+    border-radius: 8px;
+    border-left: 4px solid @viz-red;
+    margin-top: 1.5em;
+
+    h4 {
+        margin-bottom: 1em;
+        color: @viz-red;
+        font-size: 1.1rem;
+    }
+
+    .issues-list {
+        .issue-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75em;
+            padding: 0.5em 0;
+
+            .issue-icon {
+                font-size: 1.2rem;
+            }
+
+            .issue-text {
+                color: @brand-text;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+// Opportunities Section
+.opportunities-section {
+    background: @viz-light-blue;
+    padding: 1.5em;
+    border-radius: 8px;
+    border-left: 4px solid @viz-blue;
+    margin-top: 1.5em;
+
+    h4 {
+        margin-bottom: 1em;
+        color: @viz-blue;
+        font-size: 1.1rem;
+    }
+
+    .opportunities-list {
+        .opportunity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75em;
+            padding: 0.5em 0;
+
+            .opportunity-icon {
+                font-size: 1.2rem;
+                margin-top: 0.1em;
+            }
+
+            .opportunity-text {
+                color: @brand-text;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+// Heading Stats
+.heading-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+
+    @media (max-width: @widthMobile) {
+        grid-template-columns: 1fr;
+    }
+
+    .heading-count {
+        display: flex;
+        gap: 2em;
+
+        .count-item {
+            text-align: center;
+
+            .count-number {
+                font-family: @data;
+                font-size: 2rem;
+                font-weight: 700;
+                color: @brand-primary;
+                display: block;
+                line-height: 1;
+            }
+
+            .count-label {
+                font-size: 0.9rem;
+                color: @brand-gray;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+}
+
+// Content Metrics
+.content-metrics {
+    .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5em;
+        margin-bottom: 2em;
+
+        .metric-item {
+            text-align: center;
+            padding: 1.5em;
+            background: @brand-light-gray;
+            border-radius: 8px;
+
+            .metric-value {
+                font-family: @data;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: @brand-primary;
+                display: block;
+                line-height: 1;
+                margin-bottom: 0.5em;
+            }
+
+            .metric-label {
+                font-size: 0.9rem;
+                color: @brand-gray;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+}
+
+// Keyword Density
+.keyword-density {
+    h4 {
+        margin-bottom: 1.5em;
+        color: @brand-primary;
+        font-size: 1.1rem;
+    }
+
+    .density-list {
+        .density-item {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            padding: 0.75em 0;
+            border-bottom: 1px solid @brand-light-gray;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .density-keyword {
+                min-width: 100px;
+                font-weight: 600;
+                color: @brand-text;
+                font-family: @data;
+            }
+
+            .density-bar {
+                flex: 1;
+                height: 8px;
+                background: @brand-light-gray;
+                border-radius: 4px;
+                overflow: hidden;
+
+                .density-fill {
+                    height: 100%;
+                    background: @viz-green;
+                    transition: width 0.8s ease;
+
+                    // Color based on density percentage
+                    &[style*="width: 1"] {
+                        background: @viz-green;
+                    }
+
+                    &[style*="width: 2"] {
+                        background: @viz-green;
+                    }
+
+                    &[style*="width: 3"] {
+                        background: @viz-orange;
+                    }
+
+                    &[style*="width: 4"] {
+                        background: @viz-orange;
+                    }
+
+                    &[style*="width: 5"] {
+                        background: @viz-red;
+                    }
+
+                    &[style*="width: 6"] {
+                        background: @viz-red;
+                    }
+                }
+            }
+
+            .density-percentage {
+                font-family: @data;
+                font-weight: 600;
+                color: @brand-primary;
+                min-width: 50px;
+                text-align: right;
+            }
+        }
+    }
+}
+
+// Keyword Placement Table
+.placement-table {
+    
+    .placement-table-header {
+        margin-bottom: 1.5em;
+    
+        h4 {
+            margin-bottom: 0.75em;
+            color: @brand-primary;
+            font-size: 1.1rem;
+        }
+    
+        .table-description {
+            color: @brand-gray;
+            margin-bottom: 1.5em;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    
+        .placement-header-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 1em;
+            align-items: center;
+            padding: 1em;
+            background: @brand-primary;
+            color: @brand-white;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            font-size: 0.9rem;
+    
+            @media (max-width: @widthMobile) {
+                grid-template-columns: 1fr;
+                gap: 0.5em;
+                text-align: center;
+            }
+    
+            .header-placement {
+                text-align: center;
+    
+                .header-indicators {
+                    display: block;
+                    margin-bottom: 0.5em;
+                }
+    
+                .indicator-legend {
+                    display: flex;
+                    gap: 0.75em;
+                    font-size: 0.8rem;
+                    opacity: 0.9;
+    
+                    @media (max-width: @widthMobile) {
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    }
+    
+                    .legend-item {
+                        white-space: nowrap;
+    
+                        strong {
+                            background: rgba(255, 255, 255, 0.2);
+                            padding: 0.2em 0.4em;
+                            border-radius: 3px;
+                            margin-right: 0.25em;
+                        }
+                    }
+                }
+            }
+    
+            .header-density,
+            .header-score {
+                text-align: center;
+            }
+        }
+    }
+    .placement-row {
+        display: grid;
+        grid-template-columns: 1fr auto auto auto;
+        gap: 1em;
+        align-items: center;
+        padding: 1em;
+        background: @brand-light-gray;
+        margin-bottom: 0.5em;
+        border-radius: 8px;
+
+        @media (max-width: @widthMobile) {
+            grid-template-columns: 1fr;
+            gap: 0.5em;
+            text-align: center;
+        }
+
+        &:first-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        .keyword-name {
+            font-family: @data;
+            font-weight: 600;
+            color: @brand-primary;
+        }
+
+        .placement-indicators {
+            display: flex;
+            gap: 0.5em;
+
+            .indicator {
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8rem;
+                font-weight: 700;
+                cursor: pointer;
+
+                &.good {
+                    background: @viz-green;
+                    color: @brand-white !important;
+                }
+
+                &.bad {
+                    background: @brand-error;
+                    color: @brand-white !important;
+                }
+            }
+        }
+
+        .keyword-density,
+        .keyword-score {
+            font-family: @data;
+            font-weight: 600;
+            color: @brand-primary;
+            min-width: 3em;
+            text-align: right;
+        }
+    }
+}
+
+// Semantic Groups
+.semantic-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+
+    .semantic-group {
+        background: @brand-light-gray;
+        padding: 1em;
+        border-radius: 8px;
+
+        .group-title {
+            font-weight: 600;
+            color: @brand-primary;
+            margin-bottom: 0.5em;
+            text-transform: capitalize;
+        }
+
+        .group-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25em;
+
+            .keyword-tag {
+                background: @brand-white;
+                color: @brand-text;
+                padding: 0.25em 0.5em;
+                border-radius: 12px;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+// Technical Overview
+.technical-overview {
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5em;
+        margin-bottom: 2em;
+
+        .tech-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+            background: @brand-light-gray;
+            border-radius: 8px;
+
+            .tech-label {
+                font-weight: 600;
+                color: @brand-text;
+            }
+
+            .tech-value {
+                font-family: @data;
+                font-weight: 600;
+                color: @brand-primary;
+
+                &.good {
+                    color: @viz-green;
+                }
+
+                &.bad {
+                    color: @viz-red;
+                }
+            }
+        }
+    }
+}
+
+// Meta Tags Section
+.meta-tags-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+
+    @media (max-width: @widthTablet) {
+        grid-template-columns: 1fr;
+    }
+
+    h4 {
+        margin-bottom: 1em;
+        color: @brand-primary;
+        font-size: 1.1rem;
+    }
+
+    .tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+
+        .tag-item {
+            padding: 0.5em 1em;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: @data;
+
+            &.present {
+                background: @viz-light-green;
+                color: @viz-green;
+            }
+
+            &.missing {
+                background: @viz-light-red;
+                color: @viz-red;
+            }
+        }
+    }
+}
+
+// Uniqueness Elements
+.uniqueness-breakdown {
+
+    .unique-elements,
+    .generic-elements {
+        margin-bottom: 2em;
+
+        h4 {
+            margin-bottom: 1em;
+            color: @brand-primary;
+            font-size: 1.1rem;
+        }
+
+        .elements-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+
+            .element-tag {
+                padding: 0.5em 1em;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 600;
+
+                &.unique {
+                    background: @viz-light-green;
+                    color: @viz-green;
+                }
+
+                &.generic {
+                    background: @viz-light-orange;
+                    color: @viz-orange;
+                }
+            }
+        }
+
+        .no-elements {
+            color: @brand-gray;
+            font-style: italic;
+        }
+    }
+}
+
+// Action Items Summary
+.action-items-summary {
+    background: @brand-white;
+
+    .action-items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2em;
+    }
+
+    .action-item {
+        background: @brand-light-gray;
+        border-radius: 12px;
+        padding: 2em;
+        border-left: 5px solid;
+
+        &.CRITICAL {
+            border-left-color: @viz-red;
+            background: @viz-light-red;
+        }
+
+        &.HIGH {
+            border-left-color: @viz-orange;
+            background: @viz-light-orange;
+        }
+
+        &.MEDIUM {
+            border-left-color: @viz-blue;
+            background: @viz-light-blue;
+        }
+
+        &.LOW {
+            border-left-color: @viz-green;
+            background: @viz-light-green;
+        }
+
+        .action-header {
+            display: flex;
+            gap: 1em;
+            margin-bottom: 1.5em;
+
+            .priority-badge {
+                padding: 0.5em 1em;
+                border-radius: 25px;
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+
+                &.CRITICAL {
+                    background: @viz-red;
+                    color: @brand-white;
+                }
+
+                &.HIGH {
+                    background: @viz-orange;
+                    color: @brand-white;
+                }
+
+                &.MEDIUM {
+                    background: @viz-blue;
+                    color: @brand-white;
+                }
+
+                &.LOW {
+                    background: @viz-green;
+                    color: @brand-white;
+                }
+            }
+
+            .category-tag {
+                background: @brand-white;
+                color: @brand-text;
+                padding: 0.5em 1em;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                border: 1px solid @brand-gray;
+            }
+        }
+
+        .action-content {
+            .action-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: @brand-primary;
+                margin-bottom: 1em;
+            }
+
+            .action-description {
+                font-size: 1rem;
+                color: @brand-text;
+                margin-bottom: 1.5em;
+                line-height: 1.6;
+            }
+
+            .action-details {
+                margin-bottom: 1.5em;
+
+                .action-impact {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5em;
+
+                    .impact-label {
+                        font-weight: 600;
+                        color: @brand-text;
+                    }
+
+                    .impact-badge {
+                        padding: 0.25em 0.75em;
+                        border-radius: 15px;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+
+                        &.HIGH {
+                            background: @viz-light-red;
+                            color: @viz-red;
+                        }
+
+                        &.MEDIUM {
+                            background: @viz-light-orange;
+                            color: @viz-orange;
+                        }
+
+                        &.LOW {
+                            background: @viz-light-green;
+                            color: @viz-green;
+                        }
+                    }
+                }
+            }
+
+            .specific-action {
+                background: @brand-white;
+                padding: 1.5em;
+                border-radius: 8px;
+                border-left: 4px solid @brand-secondary;
+
+                h4 {
+                    margin-bottom: 0.75em;
+                    color: @brand-primary;
+                    font-size: 1.1rem;
+                }
+
+                p {
+                    margin: 0;
+                    line-height: 1.6;
+                    color: @brand-text;
+                }
+            }
+        }
+    }
+}
+
+// Footer CTA
+.footer-cta {
+    background: linear-gradient(135deg, @brand-secondary 0%, darken(@brand-secondary, 10%) 100%);
+    color: @brand-white;
+    padding: 4em 0;
+    text-align: center;
+
+    .cta-content {
+        max-width: 600px;
+        margin: 0 auto;
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1em;
+            color: @brand-white;
+
+            @media (max-width: @widthTablet) {
+                font-size: 2rem;
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2em;
+            opacity: 0.9;
+        }
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+
+        @media (max-width: @widthMobile) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+// Utility Classes for Dynamic Content
+.good {
+    color: @viz-green !important;
+}
+
+.warning {
+    color: @viz-orange !important;
+}
+
+.error {
+    color: @viz-red !important;
+}
+
+.bad {
+    color: @viz-red !important;
+}
+
+// Boolean styling
+.boolean-true {
+    color: @viz-green;
+}
+
+.boolean-false {
+    color: @viz-red;
+}
+
+// Responsive Design
+@media (max-width: @widthTablet) {
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .heading-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .meta-tags-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: @widthMobile) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-header {
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .overall-score-display {
+            .score-circle {
+                width: 100px;
+                height: 100px;
+
+                .score-percentage {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .grade-letter {
+                font-size: 2.5rem;
+            }
+        }
+    }
+}
+
+// Print Styles
+@media print {
+    .analysis-header {
+        background: @brand-light-gray !important;
+        color: @brand-black !important;
+    }
+
+    .action-item,
+    .analysis-section {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid @brand-gray !important;
+    }
+
+    .footer-cta {
+        display: none !important;
+    }
+}

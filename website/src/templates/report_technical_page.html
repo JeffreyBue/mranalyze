@@ -1,0 +1,745 @@
+title: "Technical Page Analysis - {{page1.pageId}} vs {{page2.pageId}} | MrAnalyze"
+description: "Comprehensive technical analysis between two specific pages including HTML structure, frameworks, schema markup, resources, and performance metrics."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/report_technical_page.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#technicalPage}}
+
+    <!-- Header Section -->
+    <header class="technical-page-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li><a href="/report/{{report}}/technical/">Technical Summary</a></li>
+                        <li><a href="/report/{{report}}/technical/compare/{{comparison}}/">Site Comparison</a></li>
+                        <li>Page {{pageIndex}} Analysis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="page-comparison-info">
+                    <h1 class="page-title">Technical Page Analysis</h1>
+                    <div class="pages-display">
+                        <div class="page-item">
+                            <span class="site-label">{{#getFirstSite}}{{page1.folder}}{{/getFirstSite}}</span>
+                            <span class="page-name">{{page1.pageId}}</span>
+                            <span class="folder-name">{{page1.folder}}</span>
+                            <a href="/report/{{report}}/page/{{page1.folder}}/{{page1.pageId}}/" class="button-green">Route Analysis</a>
+                        </div>
+                        <div class="vs-separator">VS</div>
+                        <div class="page-item">
+                            <span class="site-label">{{#getFirstSite}}{{page2.folder}}{{/getFirstSite}}</span>
+                            <span class="page-name">{{page2.pageId}}</span>
+                            <span class="folder-name">{{page2.folder}}</span>
+                            <a href="/report/{{report}}/page/{{page2.folder}}/{{page2.pageId}}/" class="button-green">Route Analysis</a>
+                        </div>
+                    </div>
+                    <div class="page-meta">
+                        <span class="page-index">Page {{pageIndex}} Comparison</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="technical-radar">
+                    <div class="radar-container">
+                        <h3>Technical Similarity Radar</h3>
+                        <div class="radar-chart" id="technicalRadar">
+                            <svg viewBox="0 0 300 300" class="radar-svg">
+                                <!-- Radar grid (will be drawn by JS) -->
+                                <g class="radar-grid"></g>
+                                <!-- Radar data (will be drawn by JS) -->
+                                <g class="radar-data"></g>
+                                <!-- Radar labels (will be drawn by JS) -->
+                                <g class="radar-labels"></g>
+                            </svg>
+                        </div>
+                        <div class="radar-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot overall"></span>
+                                <span class="legend-label">Overall: {{#multiply}}{{technical.overallScore}} 100{{/multiply}}%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Technical Analysis Dashboard -->
+    <section class="technical-analysis-dashboard paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Technical Analysis</h2>
+
+            <!-- HTML Structure Analysis -->
+            <div class="analysis-module html-structure-module">
+                <div class="module-header">
+                    <h3>🏗️ HTML Structure Analysis</h3>
+                    <div class="module-score {{#getSimilarityClass}}{{technical.htmlStructure.score}}{{/getSimilarityClass}}">
+                        {{#multiply}}{{technical.htmlStructure.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="structure-comparison">
+                        <div class="structure-visual">
+                            <div class="page-structure">
+                                <h4>{{page1.pageId}}</h4>
+                                <div class="structure-bars">
+                                    <div class="structure-bar head-elements">
+                                        <span class="bar-label">Head Elements</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 0%;" data-width="{{#percentage}}{{technical.htmlStructure.stats.page1.headElements}} 50{{/percentage}}%"></div>
+                                            <span class="bar-value">{{technical.htmlStructure.stats.page1.headElements}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="structure-bar body-elements">
+                                        <span class="bar-label">Body Elements</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 0%;" data-width="{{#percentage}}{{technical.htmlStructure.stats.page1.bodyElements}} 50{{/percentage}}%"></div>
+                                            <span class="bar-value">{{technical.htmlStructure.stats.page1.bodyElements}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="vs-divider">
+                                <span class="similarity-score {{#getSimilarityClass}}{{technical.htmlStructure.score}}{{/getSimilarityClass}}">
+                                    {{#multiply}}{{technical.htmlStructure.score}} 100{{/multiply}}%
+                                </span>
+                            </div>
+                            
+                            <div class="page-structure">
+                                <h4>{{page2.pageId}}</h4>
+                                <div class="structure-bars">
+                                    <div class="structure-bar head-elements">
+                                        <span class="bar-label">Head Elements</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 0%;" data-width="{{#percentage}}{{technical.htmlStructure.stats.page2.headElements}} 50{{/percentage}}%"></div>
+                                            <span class="bar-value">{{technical.htmlStructure.stats.page2.headElements}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="structure-bar body-elements">
+                                        <span class="bar-label">Body Elements</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 0%;" data-width="{{#percentage}}{{technical.htmlStructure.stats.page2.bodyElements}} 50{{/percentage}}%"></div>
+                                            <span class="bar-value">{{technical.htmlStructure.stats.page2.bodyElements}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meta Tags Matrix -->
+            <div class="analysis-module meta-tags-module">
+                <div class="module-header">
+                    <h3>🏷️ Meta Tags Analysis</h3>
+                    <div class="module-score {{#getSimilarityClass}}{{technical.metaTags.score}}{{/getSimilarityClass}}">
+                        {{#multiply}}{{technical.metaTags.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="meta-matrix">
+                        <div class="matrix-stats">
+                            <div class="stat-circle">
+                                <div class="circle-progress" data-progress="{{#multiply}}{{technical.metaTags.analysis.tagOverlap}} 100{{/multiply}}">
+                                    <span class="progress-value">{{technical.metaTags.details.commonTags}}</span>
+                                    <span class="progress-label">Common Tags</span>
+                                </div>
+                            </div>
+                            <div class="stat-circle">
+                                <div class="circle-progress" data-progress="{{#multiply}}{{technical.metaTags.analysis.valueMatch}} 100{{/multiply}}">
+                                    <span class="progress-value">{{#multiply}}{{technical.metaTags.analysis.valueMatch}} 100{{/multiply}}%</span>
+                                    <span class="progress-label">Value Match</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="exact-matches">
+                            <h4>Exact Tag Matches ({{technical.metaTags.details.exactMatches.length}})</h4>
+                            <div class="tags-list">
+                                {{#technical.metaTags.details.exactMatches}}
+                                <span class="tag-match">{{.}}</span>
+                                {{/technical.metaTags.details.exactMatches}}
+                                {{^technical.metaTags.details.exactMatches}}
+                                <span class="no-matches">No exact matches found</span>
+                                {{/technical.metaTags.details.exactMatches}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schema Markup Visualization -->
+            <div class="analysis-module schema-module">
+                <div class="module-header">
+                    <h3>📋 Schema Markup Analysis</h3>
+                    <div class="module-score {{#getSimilarityClass}}{{technical.schemaMarkup.score}}{{/getSimilarityClass}}">
+                        {{#multiply}}{{technical.schemaMarkup.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="schema-visualization">
+                        <div class="schema-venn">
+                            <h4>Schema Types Overlap</h4>
+                            <div class="venn-container">
+                                <div class="schema-stats">
+                                    <div class="schema-count">
+                                        <span class="count-number">{{technical.schemaMarkup.schemas.count1}}</span>
+                                        <span class="count-label">{{page1.pageId}} Schemas</span>
+                                    </div>
+                                    <div class="schema-count common">
+                                        <span class="count-number">{{technical.schemaMarkup.schemas.commonCount}}</span>
+                                        <span class="count-label">Shared Schemas</span>
+                                    </div>
+                                    <div class="schema-count">
+                                        <span class="count-number">{{technical.schemaMarkup.schemas.count2}}</span>
+                                        <span class="count-label">{{page2.pageId}} Schemas</span>
+                                    </div>
+                                </div>
+                                <div class="jaccard-similarity">
+                                    <span class="jaccard-value">{{#multiply}}{{technical.schemaMarkup.details.jaccardSimilarity}} 100{{/multiply}}%</span>
+                                    <span class="jaccard-label">Jaccard Similarity</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schema-types">
+                            <div class="schema-column">
+                                <h5>Common Schema Types ({{technical.schemaMarkup.details.commonTypes.length}})</h5>
+                                <div class="schema-list common">
+                                    {{#technical.schemaMarkup.details.commonTypes}}
+                                    <span class="schema-type shared">{{.}}</span>
+                                    {{/technical.schemaMarkup.details.commonTypes}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frameworks Detection Grid -->
+            <div class="analysis-module frameworks-module">
+                <div class="module-header">
+                    <h3>⚡ Frameworks & Libraries</h3>
+                    <div class="module-score {{#getSimilarityClass}}{{technical.frameworks.score}}{{/getSimilarityClass}}">
+                        {{#multiply}}{{technical.frameworks.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="frameworks-grid">
+                        <div class="framework-item jquery">
+                            <div class="framework-header">
+                                <span class="framework-icon">📦</span>
+                                <span class="framework-name">jQuery</span>
+                                <span class="framework-match {{#booleanClass}}{{technical.frameworks.details.jquery.match}}{{/booleanClass}}">
+                                    {{#booleanText}}{{technical.frameworks.details.jquery.match}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="framework-status">
+                                <div class="status-indicator">
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.jquery.page1}}{{/booleanClass}}">
+                                        {{page1.pageId}}: {{#booleanText}}{{technical.frameworks.details.jquery.page1}}{{/booleanText}}
+                                    </span>
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.jquery.page2}}{{/booleanClass}}">
+                                        {{page2.pageId}}: {{#booleanText}}{{technical.frameworks.details.jquery.page2}}{{/booleanText}}
+                                    </span>
+                                </div>
+                                <div class="framework-weight">Weight: {{#multiply}}{{technical.frameworks.details.jquery.weight}} 100{{/multiply}}%</div>
+                            </div>
+                        </div>
+
+                        <div class="framework-item react">
+                            <div class="framework-header">
+                                <span class="framework-icon">⚛️</span>
+                                <span class="framework-name">React</span>
+                                <span class="framework-match {{#booleanClass}}{{technical.frameworks.details.react.match}}{{/booleanClass}}">
+                                    {{#booleanText}}{{technical.frameworks.details.react.match}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="framework-status">
+                                <div class="status-indicator">
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.react.page1}}{{/booleanClass}}">
+                                        {{page1.pageId}}: {{#booleanText}}{{technical.frameworks.details.react.page1}}{{/booleanText}}
+                                    </span>
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.react.page2}}{{/booleanClass}}">
+                                        {{page2.pageId}}: {{#booleanText}}{{technical.frameworks.details.react.page2}}{{/booleanText}}
+                                    </span>
+                                </div>
+                                <div class="framework-weight">Weight: {{#multiply}}{{technical.frameworks.details.react.weight}} 100{{/multiply}}%</div>
+                            </div>
+                        </div>
+
+                        <div class="framework-item angular">
+                            <div class="framework-header">
+                                <span class="framework-icon">🅰️</span>
+                                <span class="framework-name">Angular</span>
+                                <span class="framework-match {{#booleanClass}}{{technical.frameworks.details.angular.match}}{{/booleanClass}}">
+                                    {{#booleanText}}{{technical.frameworks.details.angular.match}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="framework-status">
+                                <div class="status-indicator">
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.angular.page1}}{{/booleanClass}}">
+                                        {{page1.pageId}}: {{#booleanText}}{{technical.frameworks.details.angular.page1}}{{/booleanText}}
+                                    </span>
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.angular.page2}}{{/booleanClass}}">
+                                        {{page2.pageId}}: {{#booleanText}}{{technical.frameworks.details.angular.page2}}{{/booleanText}}
+                                    </span>
+                                </div>
+                                <div class="framework-weight">Weight: {{#multiply}}{{technical.frameworks.details.angular.weight}} 100{{/multiply}}%</div>
+                            </div>
+                        </div>
+
+                        <div class="framework-item vue">
+                            <div class="framework-header">
+                                <span class="framework-icon">💚</span>
+                                <span class="framework-name">Vue.js</span>
+                                <span class="framework-match {{#booleanClass}}{{technical.frameworks.details.vue.match}}{{/booleanClass}}">
+                                    {{#booleanText}}{{technical.frameworks.details.vue.match}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="framework-status">
+                                <div class="status-indicator">
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.vue.page1}}{{/booleanClass}}">
+                                        {{page1.pageId}}: {{#booleanText}}{{technical.frameworks.details.vue.page1}}{{/booleanText}}
+                                    </span>
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.vue.page2}}{{/booleanClass}}">
+                                        {{page2.pageId}}: {{#booleanText}}{{technical.frameworks.details.vue.page2}}{{/booleanText}}
+                                    </span>
+                                </div>
+                                <div class="framework-weight">Weight: {{#multiply}}{{technical.frameworks.details.vue.weight}} 100{{/multiply}}%</div>
+                            </div>
+                        </div>
+
+                        <div class="framework-item bootstrap">
+                            <div class="framework-header">
+                                <span class="framework-icon">🅱️</span>
+                                <span class="framework-name">Bootstrap</span>
+                                <span class="framework-match {{#booleanClass}}{{technical.frameworks.details.bootstrap.match}}{{/booleanClass}}">
+                                    {{#booleanText}}{{technical.frameworks.details.bootstrap.match}}{{/booleanText}}
+                                </span>
+                            </div>
+                            <div class="framework-status">
+                                <div class="status-indicator">
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.bootstrap.page1}}{{/booleanClass}}">
+                                        {{page1.pageId}}: {{#booleanText}}{{technical.frameworks.details.bootstrap.page1}}{{/booleanText}}
+                                    </span>
+                                    <span class="page-status {{#booleanClass}}{{technical.frameworks.details.bootstrap.page2}}{{/booleanClass}}">
+                                        {{page2.pageId}}: {{#booleanText}}{{technical.frameworks.details.bootstrap.page2}}{{/booleanText}}
+                                    </span>
+                                </div>
+                                <div class="framework-weight">Weight: {{#multiply}}{{technical.frameworks.details.bootstrap.weight}} 100{{/multiply}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frameworks-summary">
+                        <div class="summary-stat">
+                            <span class="stat-value">{{technical.frameworks.summary.matchingFrameworks}}/{{technical.frameworks.summary.totalFrameworks}}</span>
+                            <span class="stat-label">Matching Frameworks</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-value">{{#multiply}}{{technical.frameworks.summary.weightedScore}} 100{{/multiply}}%</span>
+                            <span class="stat-label">Weighted Score</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources & Dependencies -->
+            <div class="analysis-module resources-module">
+                <div class="module-header">
+                    <h3>📦 Resources & Dependencies</h3>
+                    <div class="module-score {{#getSimilarityClass}}{{technical.resources.score}}{{/getSimilarityClass}}">
+                        {{#multiply}}{{technical.resources.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="resources-breakdown">
+                        <div class="resource-type stylesheets">
+                            <h4>📄 Stylesheets</h4>
+                            <div class="resource-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">Domain Similarity:</span>
+                                    <span class="metric-value {{#getSimilarityClass}}{{technical.resources.stylesheets.domainSimilarity}}{{/getSimilarityClass}}">
+                                        {{#multiply}}{{technical.resources.stylesheets.domainSimilarity}} 100{{/multiply}}%
+                                    </span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Exact Matches:</span>
+                                    <span class="metric-value">{{technical.resources.stylesheets.exactMatches}}</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Total Files:</span>
+                                    <span class="metric-value">{{technical.resources.stylesheets.stats.count1}} vs {{technical.resources.stylesheets.stats.count2}}</span>
+                                </div>
+                            </div>
+                            <div class="resource-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill {{#getSimilarityClass}}{{technical.resources.stylesheets.score}}{{/getSimilarityClass}}" 
+                                         style="width: 0%;" data-width="{{#multiply}}{{technical.resources.stylesheets.score}} 100{{/multiply}}%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="resource-type scripts">
+                            <h4>📜 JavaScript Files</h4>
+                            <div class="resource-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">Domain Similarity:</span>
+                                    <span class="metric-value {{#getSimilarityClass}}{{technical.resources.scripts.domainSimilarity}}{{/getSimilarityClass}}">
+                                        {{#multiply}}{{technical.resources.scripts.domainSimilarity}} 100{{/multiply}}%
+                                    </span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Exact Matches:</span>
+                                    <span class="metric-value">{{technical.resources.scripts.exactMatches}}</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Total Files:</span>
+                                    <span class="metric-value">{{technical.resources.scripts.stats.count1}} vs {{technical.resources.scripts.stats.count2}}</span>
+                                </div>
+                            </div>
+                            <div class="resource-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill {{#getSimilarityClass}}{{technical.resources.scripts.score}}{{/getSimilarityClass}}" 
+                                         style="width: 0%;" data-width="{{#multiply}}{{technical.resources.scripts.score}} 100{{/multiply}}%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="resource-type cdn">
+                            <h4>🌐 CDN Usage</h4>
+                            <div class="cdn-status">
+                                <div class="cdn-indicator">
+                                    <span class="cdn-label">{{page1.pageId}} CDN:</span>
+                                    <span class="cdn-status {{#booleanClass}}{{technical.resources.cdn.cdnUsage1}}{{/booleanClass}}">
+                                        {{#booleanText}}{{technical.resources.cdn.cdnUsage1}}{{/booleanText}}
+                                    </span>
+                                </div>
+                                <div class="cdn-indicator">
+                                    <span class="cdn-label">{{page2.pageId}} CDN:</span>
+                                    <span class="cdn-status {{#booleanClass}}{{technical.resources.cdn.cdnUsage2}}{{/booleanClass}}">
+                                        {{#booleanText}}{{technical.resources.cdn.cdnUsage2}}{{/booleanText}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="resource-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill {{#getSimilarityClass}}{{technical.resources.cdn.score}}{{/getSimilarityClass}}" 
+                                         style="width: 0%;" data-width="{{#multiply}}{{technical.resources.cdn.score}} 100{{/multiply}}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance & SEO Technical -->
+            <div class="analysis-module performance-seo-module">
+                <div class="module-header">
+                    <h3>🚀 Performance & SEO Technical</h3>
+                    <div class="module-score {{#getSimilarityClass}}{{technical.performance.score}}{{/getSimilarityClass}}">
+                        {{#multiply}}{{technical.performance.score}} 100{{/multiply}}%
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="performance-seo-grid">
+                        <div class="perf-card">
+                            <h4>⚡ Performance Metrics</h4>
+                            <div class="perf-metrics">
+                                <div class="perf-metric">
+                                    <span class="metric-icon">📊</span>
+                                    <div class="metric-details">
+                                        <span class="metric-name">Resource Count</span>
+                                        <span class="metric-comparison">{{technical.performance.resourceCount.page1}} vs {{technical.performance.resourceCount.page2}}</span>
+                                        <span class="metric-similarity {{#getSimilarityClass}}{{technical.performance.resourceCount.similarity}}{{/getSimilarityClass}}">
+                                            {{#multiply}}{{technical.performance.resourceCount.similarity}} 100{{/multiply}}% similar
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="perf-metric">
+                                    <span class="metric-icon">🧮</span>
+                                    <div class="metric-details">
+                                        <span class="metric-name">Complexity Score</span>
+                                        <span class="metric-comparison">{{technical.performance.complexity.page1}} vs {{technical.performance.complexity.page2}}</span>
+                                        <span class="metric-similarity {{#getSimilarityClass}}{{technical.performance.complexity.similarity}}{{/getSimilarityClass}}">
+                                            {{#multiply}}{{technical.performance.complexity.similarity}} 100{{/multiply}}% similar
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="performance-patterns">
+                                <h5>Performance Patterns</h5>
+                                <div class="patterns-comparison">
+                                    <div class="page-patterns">
+                                        <span class="page-label">{{page1.pageId}}:</span>
+                                        <div class="pattern-tags">
+                                            {{#technical.performance.patterns.page1}}
+                                            <span class="pattern-tag">{{.}}</span>
+                                            {{/technical.performance.patterns.page1}}
+                                        </div>
+                                    </div>
+                                    <div class="page-patterns">
+                                        <span class="page-label">{{page2.pageId}}:</span>
+                                        <div class="pattern-tags">
+                                            {{#technical.performance.patterns.page2}}
+                                            <span class="pattern-tag">{{.}}</span>
+                                            {{/technical.performance.patterns.page2}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="patterns-similarity">
+                                    Pattern Similarity: <span class="similarity-value {{#getSimilarityClass}}{{technical.performance.patterns.similarity}}{{/getSimilarityClass}}">
+                                        {{#multiply}}{{technical.performance.patterns.similarity}} 100{{/multiply}}%
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="seo-card">
+                            <h4>🔍 SEO Technical Analysis</h4>
+                            <div class="seo-breakdown">
+                                <div class="seo-metric">
+                                    <span class="seo-label">Structured Data:</span>
+                                    <span class="seo-score {{#getSimilarityClass}}{{technical.seoTechnical.structuredData}}{{/getSimilarityClass}}">
+                                        {{#multiply}}{{technical.seoTechnical.structuredData}} 100{{/multiply}}%
+                                    </span>
+                                </div>
+                                <div class="seo-metric">
+                                    <span class="seo-label">Meta SEO:</span>
+                                    <span class="seo-score {{#getSimilarityClass}}{{technical.seoTechnical.metaSEO}}{{/getSimilarityClass}}">
+                                        {{#multiply}}{{technical.seoTechnical.metaSEO}} 100{{/multiply}}%
+                                    </span>
+                                </div>
+                                <div class="seo-metric">
+                                    <span class="seo-label">Technical SEO:</span>
+                                    <span class="seo-score {{#getSimilarityClass}}{{technical.seoTechnical.technicalSEO}}{{/getSimilarityClass}}">
+                                        {{#multiply}}{{technical.seoTechnical.technicalSEO}} 100{{/multiply}}%
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="seo-elements-comparison">
+                                <h5>SEO Elements Comparison</h5>
+                                <div class="elements-grid">
+                                    <div class="element-status">
+                                        <span class="element-name">Structured Data</span>
+                                        <div class="status-comparison">
+                                            <span class="page-status {{#booleanClass}}{{technical.seoTechnical.elements.page1.hasStructuredData}}{{/booleanClass}}">
+                                                {{page1.pageId}}: {{#booleanText}}{{technical.seoTechnical.elements.page1.hasStructuredData}}{{/booleanText}}
+                                            </span>
+                                            <span class="page-status {{#booleanClass}}{{technical.seoTechnical.elements.page2.hasStructuredData}}{{/booleanClass}}">
+                                                {{page2.pageId}}: {{#booleanText}}{{technical.seoTechnical.elements.page2.hasStructuredData}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="element-status">
+                                        <span class="element-name">Viewport Meta</span>
+                                        <div class="status-comparison">
+                                            <span class="page-status {{#ifEquals}}{{technical.seoTechnical.elements.page1.hasViewportMeta}}|||{{technical.seoTechnical.elements.page2.hasViewportMeta}}|||good{{/ifEquals}}">
+                                                Match: {{#ifEquals}}{{technical.seoTechnical.elements.page1.hasViewportMeta}}|||{{technical.seoTechnical.elements.page2.hasViewportMeta}}|||Yes{{/ifEquals}}{{^ifEquals}}{{technical.seoTechnical.elements.page1.hasViewportMeta}}|||{{technical.seoTechnical.elements.page2.hasViewportMeta}}|||No{{/ifEquals}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="element-status">
+                                        <span class="element-name">Open Graph Tags</span>
+                                        <div class="status-comparison">
+                                            <span class="page-status {{#booleanClass}}{{technical.seoTechnical.elements.page1.hasOGTags}}{{/booleanClass}}">
+                                                {{page1.pageId}}: {{#booleanText}}{{technical.seoTechnical.elements.page1.hasOGTags}}{{/booleanText}}
+                                            </span>
+                                            <span class="page-status {{#booleanClass}}{{technical.seoTechnical.elements.page2.hasOGTags}}{{/booleanClass}}">
+                                                {{page2.pageId}}: {{#booleanText}}{{technical.seoTechnical.elements.page2.hasOGTags}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="element-status">
+                                        <span class="element-name">Twitter Tags</span>
+                                        <div class="status-comparison">
+                                            <span class="page-status {{#booleanClass}}{{technical.seoTechnical.elements.page1.hasTwitterTags}}{{/booleanClass}}">
+                                                {{page1.pageId}}: {{#booleanText}}{{technical.seoTechnical.elements.page1.hasTwitterTags}}{{/booleanText}}
+                                            </span>
+                                            <span class="page-status {{#booleanClass}}{{technical.seoTechnical.elements.page2.hasTwitterTags}}{{/booleanClass}}">
+                                                {{page2.pageId}}: {{#booleanText}}{{technical.seoTechnical.elements.page2.hasTwitterTags}}{{/booleanText}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Analysis Summary -->
+    <section class="technical-summary">
+        <div class="container">
+            <h2 class="section-title">Technical Analysis Summary</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-card technical-insights">
+                    <div class="summary-header">
+                        <h3>🔍 Technical Insights</h3>
+                    </div>
+                    <div class="summary-content">
+                        <div class="insights-list">
+                            {{#eval}}{{technical.overallScore}} >= 0.9|||
+                            <div class="insight-item critical">
+                                <span class="insight-icon">🚨</span>
+                                <span class="insight-text">Extremely high technical similarity - potential infrastructure copying detected</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.htmlStructure.score}} > 0.95|||
+                            <div class="insight-item critical">
+                                <span class="insight-icon">🏗️</span>
+                                <span class="insight-text">Nearly identical HTML structure suggests template reuse</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.frameworks.score}} == 1|||
+                            <div class="insight-item warning">
+                                <span class="insight-icon">⚡</span>
+                                <span class="insight-text">Perfect framework match indicates identical technical stack</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.schemaMarkup.details.jaccardSimilarity}} > 0.8|||
+                            <div class="insight-item warning">
+                                <span class="insight-icon">📋</span>
+                                <span class="insight-text">High schema markup overlap suggests shared SEO strategy</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.performance.patterns.similarity}} == 1|||
+                            <div class="insight-item info">
+                                <span class="insight-icon">🚀</span>
+                                <span class="insight-text">Identical performance patterns indicate similar optimization approaches</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.overallScore}} < 0.5|||
+                            <div class="insight-item good">
+                                <span class="insight-icon">✅</span>
+                                <span class="insight-text">Good technical differentiation - unique implementation approaches</span>
+                            </div>
+                            {{/eval}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card risk-matrix">
+                    <div class="summary-header">
+                        <h3>⚖️ Risk Assessment Matrix</h3>
+                    </div>
+                    <div class="summary-content">
+                        <div class="risk-matrix">
+                            {{#eval}}{{technical.overallScore}} >= 0.9|||
+                            <div class="risk-level critical">
+                                <span class="risk-badge critical">CRITICAL RISK</span>
+                                <p>Extremely high technical similarity strongly indicates infrastructure copying or shared development resources. Immediate investigation recommended.</p>
+                                <div class="risk-factors">
+                                    <span class="factor">HTML Structure: {{#multiply}}{{technical.htmlStructure.score}} 100{{/multiply}}%</span>
+                                    <span class="factor">Frameworks: {{#multiply}}{{technical.frameworks.score}} 100{{/multiply}}%</span>
+                                    <span class="factor">Performance: {{#multiply}}{{technical.performance.score}} 100{{/multiply}}%</span>
+                                </div>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.overallScore}} >= 0.75 && {{technical.overallScore}} < 0.9|||
+                            <div class="risk-level high">
+                                <span class="risk-badge high">HIGH RISK</span>
+                                <p>Significant technical overlap detected. Review for potential intellectual property concerns and shared infrastructure.</p>
+                                <div class="risk-factors">
+                                    <span class="factor">Overall Score: {{#multiply}}{{technical.overallScore}} 100{{/multiply}}%</span>
+                                </div>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.overallScore}} >= 0.5 && {{technical.overallScore}} < 0.75|||
+                            <div class="risk-level moderate">
+                                <span class="risk-badge moderate">MODERATE RISK</span>
+                                <p>Some technical similarities present. Monitor for patterns across multiple pages and investigate specific high-scoring components.</p>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.overallScore}} < 0.5|||
+                            <div class="risk-level low">
+                                <span class="risk-badge low">LOW RISK</span>
+                                <p>Technical implementation shows good uniqueness. Similarity levels are within acceptable ranges for independent development.</p>
+                            </div>
+                            {{/eval}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card recommendations">
+                    <div class="summary-header">
+                        <h3>💡 Technical Recommendations</h3>
+                    </div>
+                    <div class="summary-content">
+                        <div class="recommendations-list">
+                            {{#eval}}{{technical.htmlStructure.score}} > 0.95|||
+                            <div class="recommendation-item critical">
+                                <span class="rec-priority">CRITICAL</span>
+                                <span class="rec-text">Investigate HTML structure for potential template copying - {{#multiply}}{{technical.htmlStructure.score}} 100{{/multiply}}% similarity</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.frameworks.score}} == 1|||
+                            <div class="recommendation-item high">
+                                <span class="rec-priority">HIGH</span>
+                                <span class="rec-text">Review identical framework implementations for development process overlap</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.schemaMarkup.details.jaccardSimilarity}} > 0.8|||
+                            <div class="recommendation-item medium">
+                                <span class="rec-priority">MEDIUM</span>
+                                <span class="rec-text">Monitor schema markup strategies - {{#multiply}}{{technical.schemaMarkup.details.jaccardSimilarity}} 100{{/multiply}}% overlap detected</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.resources.score}} > 0.7|||
+                            <div class="recommendation-item medium">
+                                <span class="rec-priority">MEDIUM</span>
+                                <span class="rec-text">Investigate resource dependencies for shared hosting or CDN infrastructure</span>
+                            </div>
+                            {{/eval}}
+                            {{#eval}}{{technical.overallScore}} < 0.5|||
+                            <div class="recommendation-item low">
+                                <span class="rec-priority">LOW</span>
+                                <span class="rec-text">Technical uniqueness is acceptable - continue standard monitoring</span>
+                            </div>
+                            {{/eval}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Comprehensive Technical Analysis Complete</h2>
+                <p>Use these detailed insights to understand technical similarities and identify potential infrastructure copying between pages.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Technical Analysis</button>
+                    <a href="/report/{{report}}/technical/compare/{{comparison}}/" class="button-blue">Back to Site Comparison</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{/technicalPage}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+    <script src="/_/js/technical_page.js?{{assetsDate.js}}"></script>
+</body>
+
+</html>

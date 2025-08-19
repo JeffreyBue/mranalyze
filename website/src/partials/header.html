@@ -1,0 +1,16 @@
+<nav class="navigation">
+    <div class="container">
+        <ul>
+            <li><a href="/">MrAnalyze</a></li>
+            <li class="dropdown">
+                <a href="/reports/" class="dropdown-toggle">Latest Reports</a>
+                <ul class="dropdown-menu">
+                    {{#reports}}
+                    <li><a href="/report/{{.}}/">{{#titleCase}}{{.}}{{/titleCase}}</a></li>
+                    {{/reports}}
+                </ul>
+            </li>
+            <li><a href="/run_report/">Run Report</a></li>
+        </ul>
+    </div>
+</nav>

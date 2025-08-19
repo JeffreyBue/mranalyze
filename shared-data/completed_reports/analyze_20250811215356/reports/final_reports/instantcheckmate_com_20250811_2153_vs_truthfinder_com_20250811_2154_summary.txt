@@ -1,0 +1,53 @@
+FINAL COMPARISON REPORT
+instantcheckmate_com_20250811_2153_vs_truthfinder_com_20250811_2154
+Generated: 8/11/2025, 9:54:22 PM
+
+OVERALL SIMILARITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Score: 71.0%
+Classification: VERY_SIMILAR
+
+DIMENSIONAL BREAKDOWN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 Visual Similarity:    78.2%
+📝 Content Similarity:   64.3%
+⚙️ Technical Similarity: 82.4%
+🔍 SEO Duplicate Risk:   66.7% (HIGH)
+
+ANALYSIS COVERAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 Visual Analysis:    ✅ (1 pages)
+📝 Content Analysis:   ✅ (1 pages)
+⚙️ Technical Analysis: ✅ (1 pages)
+🔍 SEO Analysis:       ✅ (HIGH risk)
+
+KEY INSIGHTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• 📊 MODERATE: Sites share significant similarities
+• 🔍 HIGH SEO RISK: Significant duplicate content risk - optimization needed
+
+
+TOP ACTIONABLE ITEMS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. [HIGH] Resolve Keyword Cannibalization
+   Category: Keyword Strategy
+   Action: Pages competing for same keywords: baacke, diane
+   Specific: Differentiate keyword focus - assign unique primary keywords to each page
+
+2. [MEDIUM] Add Unique Content Elements
+   Category: Content Gaps
+   Action: Pages lack sufficient unique content elements
+   Specific: Add testimonials or reviews; Include specific case studies or examples; Add location-specific information
+
+
+DETAILED METRICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ Technical Metrics:
+   HTML Structure:          99.0%
+   Meta Tags:               66.3%
+   Frameworks:              100.0%
+   Schema Markup:           NaN%
+
+🔍 SEO Risk Analysis:
+   Duplicate Content Risk:  66.7% (HIGH)
+   Critical Pages:          0

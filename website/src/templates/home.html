@@ -1,0 +1,531 @@
+title: "MrAnalyze - Site Comparison Engine | Detect Content Similarities & Duplicate Analysis"
+description: "Professional site comparison engine for analyzing content similarities, detecting duplicate pages, and
+ensuring unique content footprints across multiple domains."
+h1: "Just A Landing Page To Get Started"
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{{> HEAD }}
+
+	<link rel="stylesheet" href="/_/css/home.css?{{assetsDate.css}}">
+	<link rel="stylesheet" href="/_/css/_partials/home_preview.css?{{assetsDate.css}}">
+</head>
+
+<body>
+	{{> HEADER }}
+	<!-- Hero Section -->
+	<section class="hero-section">
+		<div class="container">
+			<div class="hero-content">
+				<div class="hero-badge">
+					<span class="status-badge status-success">🔍 MrAnalysis Engine</span>
+				</div>
+				<h1 class="hero-title">Site Comparison Engine</h1>
+				<p class="hero-subtitle">Analyze and compare directory pages across multiple domains. Ensure unique
+					content footprints while avoiding search engine penalties for duplicate content.</p>
+
+				<div class="hero-stats">
+					<div class="stat-item">
+						<div class="stat-number">5</div>
+						<div class="stat-label">Analysis Dimensions</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-number">99%</div>
+						<div class="stat-label">Accuracy Rate</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-number">{{reports.length}}</div>
+						<div class="stat-label">Comparisons Analyzed</div>
+					</div>
+				</div>
+
+				<div class="hero-cta">
+					<a href="/reports/" class="button-green cta-primary">Latest Reports</button>
+						<a href="#how-it-works" class="cta-secondary">Learn How It Works</a>
+				</div>
+			</div>
+
+			<div class="hero-visual">
+				<div class="analysis-preview" id="analysisPreview">
+					{{#homePreview}}
+					<div class="preview-header">
+						<div class="preview-tabs" role="tablist">
+							{{#analysisTypes}}
+							<button class="tab" data-analysis="{{id}}" role="tab"
+								aria-selected="false"
+								aria-controls="{{id}}-content">
+								{{name}}
+							</button>
+							{{/analysisTypes}}
+						</div>
+						<div class="report-info">
+							<span class="report-timestamp" data-timestamp="{{reportTimestamp}}">
+								Latest: {{#formatDate}}{{reportTimestamp}}{{/formatDate}} - {{#titleCase}}{{report}}{{/titleCase}}
+							</span>
+						</div>
+					</div>
+
+					<div class="preview-content">
+						{{#analysisTypes}}
+						<div class="tab-content" id="{{id}}-content" role="tabpanel"
+							data-analysis="{{id}}">
+
+							<div class="content-layout">
+								<div class="metrics-section">
+									<p class="overall">Overall Average:</span>
+									<div class="score-circles">
+										<div class="score-circle-container">
+											<div class="score-circle"
+												data-score="{{#getScorePercentage}}{{overallScore}}{{/getScorePercentage}}">
+												<div class="score-value">
+													{{#getScorePercentage}}{{overallScore}}{{/getScorePercentage}}%
+												</div>
+												<div class="score-label">
+													{{#getSimilarityLabel}}{{overallScore}}{{/getSimilarityLabel}}</div>
+											</div>
+											<div
+												class="risk-indicator {{#getRiskLevel}}{{overallScore}}{{/getRiskLevel}}">
+												{{#getRiskText}}{{overallScore}}{{/getRiskText}}
+											</div>
+										</div>
+									</div>
+
+									<div class="metrics-list">
+										{{#metrics}}
+										<div class="metric-row">
+											<div class="metric-info">
+												<span class="metric-label">{{label}}</span>
+												<span
+													class="metric-score">{{#getScorePercentage}}{{score}}{{/getScorePercentage}}%</span>
+											</div>
+											<div class="metric-description">{{description}}</div>
+										</div>
+										{{/metrics}}
+									</div>
+								</div>
+							</div>
+
+							<div class="analysis-insights">
+								<h4>Key Insights</h4>
+								<ul class="insights-list">
+									{{#insights}}
+									<li class="insight-item">{{.}}</li>
+									{{/insights}}
+								</ul>
+							</div>
+						</div>
+						{{/analysisTypes}}
+					</div>
+
+					<div class="preview-footer">
+						<a href="/report/{{report}}/" class="view-full-report">
+							View Full Report →
+						</a>
+					</div>
+					{{/homePreview}}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Key Benefits Section -->
+	<section class="benefits-section paddingtopbottom">
+		<div class="container">
+			<h2 class="section-title center">Why Choose Our Analysis Engine?</h2>
+			<div class="flex column-4">
+				<div class="benefit-card">
+					<div class="benefit-icon">🎯</div>
+					<h3>Unique Content Footprint</h3>
+					<p>Ensure each domain maintains distinct content while avoiding search engine penalties for
+						duplication.</p>
+				</div>
+				<div class="benefit-card">
+					<div class="benefit-icon">⚡</div>
+					<h3>Multi-Dimensional Analysis</h3>
+					<p>Five-layer comparison across visual, content, technical, structural, and SEO dimensions for
+						complete insights.</p>
+				</div>
+				<div class="benefit-card">
+					<div class="benefit-icon">⚡</div>
+					<h3>Scalable Performance</h3>
+					<p>Analyze thousands of pages efficiently with memory-optimized processing and batch operations.</p>
+				</div>
+				<div class="benefit-card">
+					<div class="benefit-icon">📊</div>
+					<h3>Actionable Reports</h3>
+					<p>Content audit-ready insights with clear recommendations for improving uniqueness.</p>
+				</div>
+				<div class="benefit-card">
+					<div class="benefit-icon">🔍</div>
+					<h3>SEO Optimization</h3>
+					<p>Comprehensive SEO analysis with duplicate content detection, keyword cannibalization prevention,
+						and actionable improvement roadmaps.</p>
+				</div>
+				<div class="benefit-card">
+					<div class="benefit-icon">📊</div>
+					<h3>Priority-Based Actions</h3>
+					<p>Get critical, high, medium, and low priority action items with specific timelines and
+						implementation roadmaps.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- How It Works Section -->
+	<section id="how-it-works" class="process-section">
+		<div class="container">
+			<h2 class="section-title center">How The Analysis Works</h2>
+			<p class="section-subtitle center">Our engine analyzes websites across four key dimensions to provide
+				comprehensive similarity detection</p>
+
+			<div class="process-steps">
+				<div class="process-step">
+					<div class="step-number">1</div>
+					<div class="step-content">
+						<h3>🌐 Scraping</h3>
+						<p><strong>Capture website data</strong></p>
+						<p>Visits each URL and captures content, visual elements, and technical metadata across desktop,
+							tablet, and mobile viewports with Cloudflare bypass.</p>
+						<div class="step-features">
+							<span class="feature-tag">Multi-viewport</span>
+							<span class="feature-tag">Anti-detection</span>
+							<span class="feature-tag">Auto-retry</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="process-step">
+					<div class="step-number">2</div>
+					<div class="step-content">
+						<h3>🎨 Visual Analysis</h3>
+						<p><strong>Compare design & layout</strong></p>
+						<p>Analyzes colors, typography, layouts, responsive design patterns, and visual hierarchy to
+							detect template usage and design system similarities.</p>
+						<div class="step-features">
+							<span class="feature-tag">Color palettes</span>
+							<span class="feature-tag">Typography</span>
+							<span class="feature-tag">Layout detection</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="process-step">
+					<div class="step-number">3</div>
+					<div class="step-content">
+						<h3>📝 Content Analysis</h3>
+						<p><strong>Examine text similarity</strong></p>
+						<p>Uses advanced NLP algorithms including Jaccard similarity, cosine similarity, content
+							fingerprinting, and semantic analysis to compare meaning and structure.</p>
+						<div class="step-features">
+							<span class="feature-tag">NLP algorithms</span>
+							<span class="feature-tag">Semantic analysis</span>
+							<span class="feature-tag">Topic modeling</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="process-step">
+					<div class="step-number">4</div>
+					<div class="step-content">
+						<h3>⚙️ Technical Analysis</h3>
+						<p><strong>Inspect code structure</strong></p>
+						<p>Examines HTML structure, frameworks, meta tags, schema markup, and technical implementation
+							patterns to identify shared technologies.</p>
+						<div class="step-features">
+							<span class="feature-tag">Framework detection</span>
+							<span class="feature-tag">Meta analysis</span>
+							<span class="feature-tag">Schema markup</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="process-step">
+					<div class="step-number">5</div>
+					<div class="step-content">
+						<h3>🔍 SEO Analysis</h3>
+						<p><strong>Optimize for search engines</strong></p>
+						<p>Comprehensive SEO optimization recommendations including duplicate content detection, keyword
+							cannibalization analysis, and actionable improvement plans with priority-based roadmaps.</p>
+						<div class="step-features">
+							<span class="feature-tag">Duplicate detection</span>
+							<span class="feature-tag">SEO scoring</span>
+							<span class="feature-tag">Action plans</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="process-step">
+					<div class="step-number">6</div>
+					<div class="step-content">
+						<h3>📝 Final Reporting</h3>
+						<p><strong>Comprehensive, consolidated reports presented in a clear and actionable
+								format</strong></p>
+						<p>Our final reports aggregate all analysis results, providing a unified overview of content,
+							visual, technical, and SEO findings. Each report is structured for readability, highlighting
+							key issues, recommended actions, and prioritized next steps to support efficient
+							decision-making and implementation.</p>
+						<div class="step-features">
+							<span class="feature-tag">Analysis of domains and pages</span>
+							<span class="feature-tag">Prioritized Recommendations</span>
+							<span class="feature-tag">Overview Plans</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Metrics Section -->
+	<section class="metrics-section paddingtopbottom">
+		<div class="container">
+			<h2 class="section-title center">Understanding the Metrics</h2>
+
+			<div class="metrics-grid">
+				<div class="metric-category">
+					<h3>📝 Content Metrics</h3>
+					<div class="metric-items">
+						<div class="metric-item">
+							<h4>Jaccard Similarity</h4>
+							<p>Word overlap detection for identifying copied or templated content. High scores (>0.8)
+								indicate very similar vocabulary.</p>
+						</div>
+						<div class="metric-item">
+							<h4>Cosine Similarity</h4>
+							<p>Document similarity using word frequency vectors. Better than Jaccard as it accounts for
+								word frequency, not just presence.</p>
+						</div>
+						<div class="metric-item">
+							<h4>Semantic Analysis</h4>
+							<p>Meaning and context similarity across headings, paragraphs, and navigation structure.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="metric-category">
+					<h3>🎨 Visual Metrics</h3>
+					<div class="metric-items">
+						<div class="metric-item">
+							<h4>Color Similarity</h4>
+							<p>RGB color distance analysis across backgrounds, text, and accent colors. High scores
+								indicate same design systems.</p>
+						</div>
+						<div class="metric-item">
+							<h4>Typography Matching</h4>
+							<p>Font families, sizes, and weights comparison to detect shared typographic systems.</p>
+						</div>
+						<div class="metric-item">
+							<h4>Responsive Design</h4>
+							<p>Consistency analysis across viewports to identify shared responsive frameworks.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="metric-category">
+					<h3>⚙️ Technical Metrics</h3>
+					<div class="metric-items">
+						<div class="metric-item">
+							<h4>Framework Detection</h4>
+							<p>Identifies React, Vue, Angular, jQuery, Bootstrap usage with weighted scoring for major
+								frameworks.</p>
+						</div>
+						<div class="metric-item">
+							<h4>Meta Tag Analysis</h4>
+							<p>SEO and metadata comparison including viewport, robots, og:tags, and twitter:cards.</p>
+						</div>
+						<div class="metric-item">
+							<h4>Schema Markup</h4>
+							<p>Structured data implementation analysis for SEO and rich snippet strategies.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="metric-category">
+					<h3>🔍 SEO Metrics</h3>
+					<div class="metric-items">
+						<div class="metric-item">
+							<h4>Duplicate Content Risk</h4>
+							<p>Critical, high, medium, and low risk scoring for content similarity across domains with
+								actionable recommendations.</p>
+						</div>
+						<div class="metric-item">
+							<h4>Keyword Cannibalization</h4>
+							<p>Detection of conflicting keyword strategies and recommendations for unique content
+								positioning.</p>
+						</div>
+						<div class="metric-item">
+							<h4>SEO Optimization</h4>
+							<p>Title tags, meta descriptions, heading structure, and content quality analysis with
+								specific improvement actions.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Classifications Section -->
+	<section class="seo-features-section paddingtopbottom">
+		<div class="container">
+			<h2 class="section-title center">SEO Analysis Features</h2>
+
+			<div class="flex column-3">
+				<div class="seo-feature-group">
+					<h3>✅ Individual Page Analysis</h3>
+					<ul class="feature-list">
+						<li><strong>Title Tag Optimization:</strong> Length, keyword presence, uniqueness scoring</li>
+						<li><strong>Meta Description Analysis:</strong> Call-to-action and keyword optimization</li>
+						<li><strong>Heading Structure:</strong> H1-H3 hierarchy and keyword distribution</li>
+						<li><strong>Content Quality:</strong> Word count, density, readability metrics</li>
+						<li><strong>Technical SEO:</strong> Meta tags, structured data, performance indicators</li>
+					</ul>
+				</div>
+
+				<div class="seo-feature-group">
+					<h3>⚖️ Cross-Site Comparison</h3>
+					<ul class="feature-list">
+						<li><strong>Duplicate Content Detection:</strong> Risk scoring and factor identification</li>
+						<li><strong>Keyword Cannibalization:</strong> Conflicting strategy detection</li>
+						<li><strong>Uniqueness Gap Analysis:</strong> Content differentiation opportunities</li>
+						<li><strong>Structural Similarity:</strong> Layout and element comparison</li>
+						<li><strong>Priority Action Plans:</strong> Critical to low priority roadmaps</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="seo-scoring-section">
+				<h3>SEO Scoring System</h3>
+				<div class="flex column-5">
+					<div class="seo-score-item excellent">
+						<div class="score-range">90-100%</div>
+						<div class="score-label">Excellent</div>
+						<p>Optimal SEO implementation</p>
+					</div>
+					<div class="seo-score-item good">
+						<div class="score-range">70-89%</div>
+						<div class="score-label">Good</div>
+						<p>Minor improvements needed</p>
+					</div>
+					<div class="seo-score-item moderate">
+						<div class="score-range">50-69%</div>
+						<div class="score-label">Moderate</div>
+						<p>Significant optimization required</p>
+					</div>
+					<div class="seo-score-item poor">
+						<div class="score-range">0-49%</div>
+						<div class="score-label">Poor</div>
+						<p>Major improvements needed</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="classifications-section">
+		<div class="container">
+			<h2 class="section-title center">Similarity Classifications</h2>
+
+			<div class="classification-grid">
+				<div class="classification-item danger">
+					<div class="classification-score">90-100%</div>
+					<div class="classification-label">🚨 IDENTICAL</div>
+					<p>Likely duplicate sites or same template. <strong>Immediate action required</strong> to avoid SEO
+						penalties.</p>
+				</div>
+
+				<div class="classification-item warning">
+					<div class="classification-score">70-89%</div>
+					<div class="classification-label">⚠️ VERY SIMILAR</div>
+					<p>Strong template/content overlap. <strong>Review and differentiate</strong> key elements and
+						content.
+					</p>
+				</div>
+
+				<div class="classification-item moderate">
+					<div class="classification-score">50-69%</div>
+					<div class="classification-label">📊 SIMILAR</div>
+					<p>Moderate similarities with possible shared elements. <strong>Monitor and optimize</strong> for
+						uniqueness.</p>
+				</div>
+
+				<div class="classification-item success">
+					<div class="classification-score">&lt;50%</div>
+					<div class="classification-label">✅ DIFFERENT</div>
+					<p>Sufficiently unique sites. <strong>Good differentiation</strong> achieved across analyzed
+						dimensions.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Technical Specs Section -->
+	<section class="specs-section paddingtopbottom">
+		<div class="container">
+			<h2 class="section-title center">Technical Specifications</h2>
+
+			<div class="flex column-3">
+				<div class="specs-card">
+					<h3>📋 System Requirements</h3>
+					<ul class="specs-list">
+						<li><strong>Node.js:</strong> v16.0.0 or higher</li>
+						<li><strong>Memory:</strong> 8GB RAM minimum (16GB recommended)</li>
+						<li><strong>Storage:</strong> 2GB free space for cache</li>
+						<li><strong>Browser:</strong> Chrome/Chromium (auto-installed)</li>
+						<li><strong>Network:</strong> Stable internet connection</li>
+					</ul>
+				</div>
+
+				<div class="specs-card">
+					<h3>⚡ Performance Features</h3>
+					<ul class="specs-list">
+						<li><strong>Batch Processing:</strong> Configurable batch sizes</li>
+						<li><strong>Memory Optimization:</strong> Light versions available</li>
+						<li><strong>Caching:</strong> Intelligent analysis caching</li>
+						<li><strong>Retry Logic:</strong> Exponential backoff for failures</li>
+						<li><strong>Multi-viewport:</strong> Desktop, tablet, mobile analysis</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="quick-start-section">
+				<h3>🚀 Quick Start</h3>
+				<div class="code-block">
+					# Install dependencies<br />
+					npm install<br />
+					<br />
+					# Run complete analysis pipeline<br />
+					npm run SAR<br />
+					<br />
+					# Scrape and Analyze from custom folders<br />
+					npm run SAR -- ./sites_urls --dest=scraped_20250708<br />
+					<br />
+					# Only scrape, into custom folder<br />
+					npm run scrape-all ./urls -- --folder=scraped_20250708<br />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="cta-section">
+		<div class="container">
+			<div class="cta-content">
+				<h2>Ready to Analyze Your Sites?</h2>
+				<p>Start identifying content similarities and ensuring unique content footprints across your domains.
+				</p>
+				<div class="cta-buttons">
+					<button class="button-green cta-primary">Start Analysis</button>
+					<a href="/style_guide/" class="button-blue">View Style Guide</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{{> FOOTER }}
+	{{> FOOT }}
+	<script defer src="/_/js/_partials/home_preview.js?{{assetsDate.js}}"></script>
+</body>
+
+</html>

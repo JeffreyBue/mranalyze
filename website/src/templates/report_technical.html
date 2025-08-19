@@ -1,0 +1,344 @@
+title: "Technical Analysis Summary - {{analysisType}} | MrAnalyze"
+description: "Comprehensive technical analysis summary examining HTML structure, meta tags, and frameworks across multiple sites to detect similarities and potential copying."
+--yaml--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> HEAD }}
+    <link rel="stylesheet" href="/_/css/report_technical_summary.css?{{assetsDate.css}}">
+</head>
+
+<body>
+    {{> HEADER }}
+
+    {{#technicalSummary}}
+
+    <!-- Header Section -->
+    <header class="technical-header">
+        <div class="container">
+            <div class="header-breadcrumbs">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/report/{{report}}/">{{#titleCase}}{{report}}{{/titleCase}}</a></li>
+                        <li>Technical Analysis Summary</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="analysis-info">
+                    <h1 class="page-title">Technical Analysis Summary</h1>
+                    <div class="analysis-meta">
+                        <span class="analysis-type">{{#titleCase}}{{analysisType}}{{/titleCase}} Analysis</span>
+                        <span class="total-comparisons">{{totalComparisons}} Comparisons</span>
+                        <span class="analysis-date" data-timestamp="{{timestamp}}">{{timestamp}}</span>
+                    </div>
+                </div>
+
+                <div class="technical-overview">
+                    <h3>Technical Similarity Analysis</h3>
+                    <div class="overview-metrics">
+                        <div class="metric-item">
+                            <span class="metric-icon">🏗️</span>
+                            <div class="metric-info">
+                                <span class="metric-label">HTML Structure</span>
+                                <span class="metric-value" id="html-avg">--</span>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-icon">🏷️</span>
+                            <div class="metric-info">
+                                <span class="metric-label">Meta Tags</span>
+                                <span class="metric-value" id="meta-avg">--</span>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-icon">⚡</span>
+                            <div class="metric-info">
+                                <span class="metric-label">Frameworks</span>
+                                <span class="metric-value" id="frameworks-avg">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Technical Analysis Overview -->
+    <section class="technical-analysis-overview paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Technical Analysis Components</h2>
+            
+            <div class="components-grid">
+                <div class="component-card html-structure">
+                    <div class="component-header">
+                        <div class="component-icon">🏗️</div>
+                        <div class="component-info">
+                            <h3>HTML Structure Analysis 
+                                <span class="tooltip-trigger" data-tooltip="html-structure">❓</span>
+                            </h3>
+                            <div class="component-avg" id="html-structure-avg">--</div>
+                        </div>
+                    </div>
+                    <div class="component-description">
+                        Analyzes DOM structure, element hierarchy, and HTML patterns to detect similar page architectures
+                    </div>
+                </div>
+
+                <div class="component-card meta-tags">
+                    <div class="component-header">
+                        <div class="component-icon">🏷️</div>
+                        <div class="component-info">
+                            <h3>Meta Tags Comparison 
+                                <span class="tooltip-trigger" data-tooltip="meta-tags">❓</span>
+                            </h3>
+                            <div class="component-avg" id="meta-tags-avg">--</div>
+                        </div>
+                    </div>
+                    <div class="component-description">
+                        Compares meta descriptions, titles, keywords, and other metadata elements for similarities
+                    </div>
+                </div>
+
+                <div class="component-card frameworks">
+                    <div class="component-header">
+                        <div class="component-icon">⚡</div>
+                        <div class="component-info">
+                            <h3>Framework Detection 
+                                <span class="tooltip-trigger" data-tooltip="frameworks">❓</span>
+                            </h3>
+                            <div class="component-avg" id="frameworks-avg-display">--</div>
+                        </div>
+                    </div>
+                    <div class="component-description">
+                        Identifies shared JavaScript libraries, CSS frameworks, and technical infrastructure
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tooltips -->
+            <div class="tooltip" id="tooltip-html-structure">
+                <div class="tooltip-content">
+                    <h4>HTML Structure Analysis</h4>
+                    <p>Examines the Document Object Model (DOM) structure, including element nesting, semantic markup patterns, and overall page architecture. High similarity suggests potential template reuse or copying.</p>
+                </div>
+            </div>
+
+            <div class="tooltip" id="tooltip-meta-tags">
+                <div class="tooltip-content">
+                    <h4>Meta Tags Comparison</h4>
+                    <p>Analyzes HTML meta elements including titles, descriptions, keywords, and Open Graph tags. Similar meta tags may indicate content strategy copying or shared SEO approaches.</p>
+                </div>
+            </div>
+
+            <div class="tooltip" id="tooltip-frameworks">
+                <div class="tooltip-content">
+                    <h4>Framework Detection</h4>
+                    <p>Detects and compares JavaScript libraries, CSS frameworks (Bootstrap, Foundation), and other technical components. Identical frameworks suggest similar development approaches or copying.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Similarity Dashboard -->
+    <section class="technical-similarity-dashboard">
+        <div class="container">
+            <h2 class="section-title">Technical Similarity Analysis</h2>
+
+            <div class="similarity-grid">
+                {{#results}}
+                <div class="similarity-card">
+                    <div class="card-header">
+                        <h3 class="comparison-title" data-comparison="{{comparison}}">{{comparison}}</h3>
+                        <div class="overall-score {{#getSimilarityClass}}{{avgScore}}{{/getSimilarityClass}}">
+                            <span class="score-number">{{#multiply}}{{avgScore}} 100{{/multiply}}%</span>
+                            <span class="score-label">Technical Similarity</span>
+                        </div>
+                    </div>
+
+                    <div class="technical-breakdown">
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span class="metric-name">HTML Structure</span>
+                                <span class="metric-value {{#getSimilarityClass}}{{detailedScores.htmlStructure}}{{/getSimilarityClass}}">
+                                    {{#multiply}}{{detailedScores.htmlStructure}} 100{{/multiply}}%
+                                </span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill {{#getSimilarityClass}}{{detailedScores.htmlStructure}}{{/getSimilarityClass}}" 
+                                     style="width: 0%;" data-width="{{#multiply}}{{detailedScores.htmlStructure}} 100{{/multiply}}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span class="metric-name">Meta Tags</span>
+                                <span class="metric-value {{#getSimilarityClass}}{{detailedScores.metaTags}}{{/getSimilarityClass}}">
+                                    {{#multiply}}{{detailedScores.metaTags}} 100{{/multiply}}%
+                                </span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill {{#getSimilarityClass}}{{detailedScores.metaTags}}{{/getSimilarityClass}}" 
+                                     style="width: 0%;" data-width="{{#multiply}}{{detailedScores.metaTags}} 100{{/multiply}}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span class="metric-name">Frameworks</span>
+                                <span class="metric-value {{#getSimilarityClass}}{{detailedScores.frameworks}}{{/getSimilarityClass}}">
+                                    {{#multiply}}{{detailedScores.frameworks}} 100{{/multiply}}%
+                                </span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill {{#getSimilarityClass}}{{detailedScores.frameworks}}{{/getSimilarityClass}}" 
+                                     style="width: 0%;" data-width="{{#multiply}}{{detailedScores.frameworks}} 100{{/multiply}}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="technical-info">
+                            <span class="pages-count">{{totalPages}} pages analyzed</span>
+                        </div>
+                        <a href="/report/{{report}}/technical/compare/{{comparison}}/" class="view-details-btn">
+                            View Technical Details
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="currentColor" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                {{/results}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Analysis Insights -->
+    <section class="technical-analysis-insights paddingtopbottom">
+        <div class="container">
+            <h2 class="section-title">Technical Analysis Insights</h2>
+
+            <div class="insights-grid">
+                <div class="insight-card risk-assessment">
+                    <div class="insight-header">
+                        <h3>🚨 Technical Risk Assessment</h3>
+                    </div>
+                    <div class="insight-content">
+                        <div class="risk-levels">
+                            <div class="risk-item critical" id="tech-critical-count">
+                                <span class="risk-icon">🔴</span>
+                                <span class="risk-number">--</span>
+                                <span class="risk-label">Critical Technical Similarity</span>
+                            </div>
+                            <div class="risk-item high" id="tech-high-count">
+                                <span class="risk-icon">🟠</span>
+                                <span class="risk-number">--</span>
+                                <span class="risk-label">High Technical Overlap</span>
+                            </div>
+                            <div class="risk-item moderate" id="tech-moderate-count">
+                                <span class="risk-icon">🟡</span>
+                                <span class="risk-number">--</span>
+                                <span class="risk-label">Moderate Similarity</span>
+                            </div>
+                            <div class="risk-item low" id="tech-low-count">
+                                <span class="risk-icon">🟢</span>
+                                <span class="risk-number">--</span>
+                                <span class="risk-label">Unique Implementation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card component-analysis">
+                    <div class="insight-header">
+                        <h3>🔍 Component Analysis</h3>
+                    </div>
+                    <div class="insight-content">
+                        <div class="component-insights">
+                            <div class="insight-metric">
+                                <span class="insight-label">Most Similar Component:</span>
+                                <span class="insight-value" id="most-similar-component">HTML Structure</span>
+                            </div>
+                            <div class="insight-metric">
+                                <span class="insight-label">Least Similar Component:</span>
+                                <span class="insight-value" id="least-similar-component">Meta Tags</span>
+                            </div>
+                            <div class="insight-metric">
+                                <span class="insight-label">Highest Variance:</span>
+                                <span class="insight-value" id="highest-variance">Frameworks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card technical-patterns">
+                    <div class="insight-header">
+                        <h3>📊 Technical Patterns</h3>
+                    </div>
+                    <div class="insight-content">
+                        <div class="patterns-list">
+                            <div class="pattern-item">
+                                <span class="pattern-text" id="html-pattern">High HTML structure similarity suggests template reuse</span>
+                            </div>
+                            <div class="pattern-item">
+                                <span class="pattern-text" id="framework-pattern">Common frameworks indicate shared development practices</span>
+                            </div>
+                            <div class="pattern-item">
+                                <span class="pattern-text" id="meta-pattern">Meta tag variations show different SEO strategies</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card recommendations">
+                    <div class="insight-header">
+                        <h3>💡 Technical Recommendations</h3>
+                    </div>
+                    <div class="insight-content">
+                        <div class="recommendations-list">
+                            <div class="recommendation-item critical">
+                                <span class="rec-priority">CRITICAL</span>
+                                <span class="rec-text">Investigate sites with >90% HTML structure similarity</span>
+                            </div>
+                            <div class="recommendation-item high">
+                                <span class="rec-priority">HIGH</span>
+                                <span class="rec-text">Review identical framework combinations for copying</span>
+                            </div>
+                            <div class="recommendation-item medium">
+                                <span class="rec-priority">MEDIUM</span>
+                                <span class="rec-text">Monitor meta tag patterns for SEO strategy overlap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Technical Analysis Complete</h2>
+                <p>Use these insights to identify technical similarities and potential infrastructure copying between sites.</p>
+                <div class="cta-buttons">
+                    <button class="button-green" onclick="window.print()">Print Technical Report</button>
+                    <a href="/reports" class="button-blue">View All Reports</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/_/js/technical_master_summary.js?{{assetsDate.js}}"></script>
+
+    {{/technicalSummary}}
+
+    {{> FOOTER }}
+    {{> FOOT }}
+</body>
+
+</html>

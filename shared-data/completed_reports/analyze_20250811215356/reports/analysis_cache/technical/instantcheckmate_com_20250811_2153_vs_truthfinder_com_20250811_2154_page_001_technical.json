@@ -1,0 +1,222 @@
+{
+  "comparison": "instantcheckmate_com_20250811_2153_vs_truthfinder_com_20250811_2154",
+  "pageIndex": 1,
+  "page1": {
+    "folder": "instantcheckmate_com_20250811_2153",
+    "pageId": "001_people_diane-baacke",
+    "url": "https://www.instantcheckmate.com/people/diane-baacke/"
+  },
+  "page2": {
+    "folder": "truthfinder_com_20250811_2154",
+    "pageId": "001_people-search_diane-baacke",
+    "url": "https://www.truthfinder.com/people-search/diane-baacke/"
+  },
+  "technical": {
+    "htmlStructure": {
+      "score": 0.99,
+      "details": {
+        "doctype": null,
+        "language": null,
+        "charset": null,
+        "complexity": null
+      },
+      "stats": {
+        "page1": {
+          "headElements": 26,
+          "bodyElements": 36
+        },
+        "page2": {
+          "headElements": 27,
+          "bodyElements": 31
+        }
+      }
+    },
+    "metaTags": {
+      "score": 0.6629272567922875,
+      "details": {
+        "commonTags": 2,
+        "totalTags1": 2,
+        "totalTags2": 2,
+        "sharedImportantTags": [],
+        "exactMatches": [
+          "viewport"
+        ]
+      },
+      "analysis": {
+        "tagOverlap": 1,
+        "valueMatch": 0.6687116564417178,
+        "importantTags": 0.14285714285714285
+      }
+    },
+    "schemaMarkup": {
+      "score": 0.8152498377676833,
+      "details": {
+        "types1": [
+          "Organization",
+          "WebPage",
+          "FAQPage",
+          "SoftwareApplication",
+          "BreadcrumbList",
+          "Person"
+        ],
+        "types2": [
+          "Organization",
+          "SoftwareApplication",
+          "FAQPage",
+          "WebPage",
+          "BreadcrumbList",
+          "Person"
+        ],
+        "commonTypes": [
+          "Organization",
+          "WebPage",
+          "FAQPage",
+          "SoftwareApplication",
+          "BreadcrumbList",
+          "Person"
+        ],
+        "jaccardSimilarity": 1,
+        "contentSimilarity": 0.5381245944192083
+      },
+      "schemas": {
+        "count1": 10,
+        "count2": 7,
+        "commonCount": 6
+      }
+    },
+    "frameworks": {
+      "score": 1,
+      "details": {
+        "jquery": {
+          "page1": true,
+          "page2": true,
+          "match": true,
+          "weight": 0.8
+        },
+        "react": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 1
+        },
+        "angular": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 1
+        },
+        "vue": {
+          "page1": false,
+          "page2": false,
+          "match": true,
+          "weight": 1
+        },
+        "bootstrap": {
+          "page1": true,
+          "page2": true,
+          "match": true,
+          "weight": 0.6
+        }
+      },
+      "summary": {
+        "totalFrameworks": 5,
+        "matchingFrameworks": 5,
+        "weightedScore": 1
+      }
+    },
+    "resources": {
+      "score": 0.5666666666666667,
+      "stylesheets": {
+        "score": 0.5,
+        "domainSimilarity": 0.5,
+        "exactMatches": 2,
+        "commonDomains": [
+          "wsv3cdn.audioeye.com",
+          "wsv3cdn.audioeye.com"
+        ],
+        "stats": {
+          "count1": 4,
+          "count2": 4,
+          "commonDomainCount": 2
+        }
+      },
+      "scripts": {
+        "score": 0.4166666666666667,
+        "domainSimilarity": 0.5833333333333334,
+        "exactMatches": 2,
+        "commonDomains": [
+          "cdn-cookieyes.com",
+          "wsmcdn.audioeye.com",
+          "www.googletagmanager.com",
+          "cdn-cookieyes.com",
+          "wsv3cdn.audioeye.com",
+          "wsv3cdn.audioeye.com",
+          "wsv3cdn.audioeye.com"
+        ],
+        "stats": {
+          "count1": 12,
+          "count2": 12,
+          "commonDomainCount": 7
+        }
+      },
+      "cdn": {
+        "score": 1,
+        "cdns1": [],
+        "cdns2": [],
+        "commonCDNs": [],
+        "cdnUsage1": false,
+        "cdnUsage2": false
+      },
+      "summary": {
+        "totalResources1": 16,
+        "totalResources2": 16
+      }
+    },
+    "performance": {
+      "score": 0.988,
+      "resourceCount": {
+        "page1": 16,
+        "page2": 16,
+        "similarity": 1
+      },
+      "complexity": {
+        "page1": 62,
+        "page2": 58,
+        "similarity": 0.96
+      },
+      "patterns": {
+        "page1": [
+          "many_scripts",
+          "analytics"
+        ],
+        "page2": [
+          "many_scripts",
+          "analytics"
+        ],
+        "similarity": 1
+      }
+    },
+    "seoTechnical": {
+      "score": 0.727326928972104,
+      "structuredData": 0.8152498377676833,
+      "metaSEO": 0.33742331288343563,
+      "technicalSEO": 1,
+      "elements": {
+        "page1": {
+          "hasStructuredData": true,
+          "hasViewportMeta": "width=device-width, initial-scale=1",
+          "hasOGTags": false,
+          "hasTwitterTags": false
+        },
+        "page2": {
+          "hasStructuredData": true,
+          "hasViewportMeta": "width=device-width, initial-scale=1",
+          "hasOGTags": false,
+          "hasTwitterTags": false
+        }
+      }
+    },
+    "overallScore": 0.8235392734722153
+  },
+  "timestamp": "2025-08-11T21:54:21.561Z"
+}
