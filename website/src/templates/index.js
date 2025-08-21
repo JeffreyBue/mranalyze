@@ -18,6 +18,7 @@ const report_technical_page = await readFromFile('/src/templates/report_technica
 const report_page = await readFromFile('/src/templates/report_page.html');
 const run_report = await readFromFile('/src/templates/run_report.html');
 const style_guide = await readFromFile('/src/templates/style_guide.html');
+const robots = await readFromFile('/src/templates/robots.txt');
 
 export default {
     home,
@@ -37,5 +38,6 @@ export default {
     report_technical_page,
     report_page,
     run_report,
-    style_guide
+    style_guide,
+    robots
 }
