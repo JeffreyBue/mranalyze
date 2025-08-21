@@ -111,6 +111,11 @@ export default {
 			"host": "",
 			"path": "/style_guide/?",
 			"template": "style_guide"
+		},
+		{
+			"host": "",
+			"path": "/robots.txt",
+			"template": "robots"
 		}
 	],
 	"404pagetypes": [],
