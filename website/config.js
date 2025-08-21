@@ -14,9 +14,9 @@ export default {
 	"hosts": [
 		"localhost",
 		"www.localhost",
-		"mranalyze.com",
-		"www.mranalyze.com",
-		"www2.mranalyze.com"
+		"mranalyze.dev",
+		"www.mranalyze.dev",
+		"www2.mranalyze.dev"
 	],
 	"endpoints": {
 		"api_base_url": {}
